@@ -17,6 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSLog(@"%f  %f  %f",UIWindowLevelNormal,UIWindowLevelAlert,UIWindowLevelStatusBar);
+
+    
+
+    
+    
 }
 
 - (void)initSubView {
