@@ -16,6 +16,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = CBColor(100, 200, 100);
+
 }
 
 /*

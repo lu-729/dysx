@@ -68,6 +68,8 @@
             NSLog(@"点击下次再说按钮");  //如果不add这段Action，则弹窗中只有1个按钮，即强制用户更新
     }]];
     
+    NSLog(@"000000000000000%f", IOS_VERSION);
+    
     
     /*
     NSString *subVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
