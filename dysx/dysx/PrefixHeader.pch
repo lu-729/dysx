@@ -24,6 +24,7 @@
 //获取系统版本
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 
-//
+//设置view的frame
+#define CBRect(x,y,width,height) CGRectMake((x),(y),(width),(height))
 
 #endif /* PrefixHeader_pch */
