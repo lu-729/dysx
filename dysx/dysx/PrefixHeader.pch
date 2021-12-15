@@ -12,7 +12,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 //主色
-#define MAIN_COLOR [UIColor colorWithRed:238/255.f green:246/255.f blue:255/255.f alpha:1];
+#define MAIN_COLOR [UIColor colorWithRed:0/255.f green:190/255.f blue:255/255.f alpha:1];
 
 //屏幕宽高
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
