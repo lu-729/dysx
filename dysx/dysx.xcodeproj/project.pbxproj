@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,9 @@
 		88D5F428275DB20000B7082A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F422275DB1FF00B7082A /* BaseViewController.m */; };
 		88D5F429275DB20000B7082A /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F424275DB1FF00B7082A /* MineViewController.m */; };
 		8997E5A61CD45EA859DF2403 /* Pods_dysx_dysxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */; };
+		95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB440E2779E0BA00BC8062 /* CBTabBarController.m */; };
+		95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44112779E5D800BC8062 /* CBTabBarButton.m */; };
+		95DB44152779E61500BC8062 /* CBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44142779E61500BC8062 /* CBTabBar.m */; };
 		9D8159865A7CC4D6F28C4D8C /* Pods_dysxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0D324A78950A511AD55115 /* Pods_dysxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +73,12 @@
 		88D5F423275DB1FF00B7082A /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		88D5F424275DB1FF00B7082A /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		88D5F425275DB1FF00B7082A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		95DB440D2779E0BA00BC8062 /* CBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBarController.h; sourceTree = "<group>"; };
+		95DB440E2779E0BA00BC8062 /* CBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBarController.m; sourceTree = "<group>"; };
+		95DB44102779E5D800BC8062 /* CBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBarButton.h; sourceTree = "<group>"; };
+		95DB44112779E5D800BC8062 /* CBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBarButton.m; sourceTree = "<group>"; };
+		95DB44132779E61500BC8062 /* CBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBar.h; sourceTree = "<group>"; };
+		95DB44142779E61500BC8062 /* CBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBar.m; sourceTree = "<group>"; };
 		E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dysx_dysxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +154,12 @@
 				88D5F421275DB1FF00B7082A /* BaseNavigationController.m */,
 				88D5F420275DB1FF00B7082A /* BaseViewController.h */,
 				88D5F422275DB1FF00B7082A /* BaseViewController.m */,
+				95DB440D2779E0BA00BC8062 /* CBTabBarController.h */,
+				95DB440E2779E0BA00BC8062 /* CBTabBarController.m */,
+				95DB44102779E5D800BC8062 /* CBTabBarButton.h */,
+				95DB44112779E5D800BC8062 /* CBTabBarButton.m */,
+				95DB44132779E61500BC8062 /* CBTabBar.h */,
+				95DB44142779E61500BC8062 /* CBTabBar.m */,
 				88D5F425275DB1FF00B7082A /* MainViewController.h */,
 				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
 				88D5F423275DB1FF00B7082A /* MineViewController.h */,
@@ -252,7 +267,6 @@
 		88D5F3DD275DB12100B7082A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					88D5F3E4275DB12100B7082A = {
@@ -422,10 +436,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */,
 				88D5F427275DB20000B7082A /* BaseNavigationController.m in Sources */,
 				88D5F428275DB20000B7082A /* BaseViewController.m in Sources */,
 				88D5F3EA275DB12200B7082A /* AppDelegate.m in Sources */,
+				95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */,
 				88D5F429275DB20000B7082A /* MineViewController.m in Sources */,
+				95DB44152779E61500BC8062 /* CBTabBar.m in Sources */,
 				88D5F426275DB20000B7082A /* MainViewController.m in Sources */,
 				88D5F3FB275DB12600B7082A /* main.m in Sources */,
 			);
