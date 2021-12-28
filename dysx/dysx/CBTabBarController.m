@@ -27,13 +27,20 @@
     CBTabBar *tabBar = [[CBTabBar alloc] init];
     tabBar.delegate = self;
     tabBar.frame = rect;
+    tabBar.backgroundColor = MAIN_COLOR;
     [self.tabBar addSubview:tabBar];
     //添加按钮
     for (int i=0; i<self.viewControllers.count; i++) {
-        
+        NSString *imageName = [NSString stringWithFormat:@"TabBar%d", i + 1];
+        NSString *selectedImageName =  [NSString stringWithFormat:@"TabBar%dSel", i + 1];
+        UIImage *image = [UIImage imageNamed:imageName];
+        UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
+        [tabBar addButtonWithImage:image selectedImage:selectedImage];
     }
 }
 
-
+- (void)tabBar:(CBTabBar *)tabBar selectedFrom:(NSInteger)from to:(NSInteger)to {
+    self.selectedIndex = to;
+}
 
 @end

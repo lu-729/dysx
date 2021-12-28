@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<CBTabBarDelegate> delegate;
 
+- (void)addButtonWithImage:(UIImage *)image selectedImage:(UIImage *)selectedImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

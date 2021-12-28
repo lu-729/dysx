@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "MineViewController.h"
 #import "AFHTTPSessionManager.h"
+#import "CBTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +23,7 @@
     
     //创建窗口、显示窗口
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _window.backgroundColor = [UIColor redColor];
+//    _window.backgroundColor = [UIColor redColor];
     [_window makeKeyAndVisible];
 
     //设置窗口根视图控制器为TabBarController
@@ -32,7 +33,7 @@
 //    mineVC.view.backgroundColor = [UIColor yellowColor];
     UINavigationController *mainNav = [[BaseNavigationController alloc] initWithRootViewController:mainVC];
     UINavigationController *mineNav = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+    CBTabBarController *tabBarVC = [[CBTabBarController alloc] init];
     tabBarVC.viewControllers = @[mainNav, mineNav];
     _window.rootViewController = tabBarVC;
     

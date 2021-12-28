@@ -25,7 +25,9 @@
     [btn setBackgroundImage:selectedImage forState:UIControlStateSelected];
     [self addSubview:btn];
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    if (self.subviews.count == 1) {
+        [self btnAction:btn];
+    }
 }
 
 //按钮点击事件
