@@ -3,14 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0623448B277B3FDA006173EB /* UIView+CBWL.m */; };
 		468D7AFD8D98599EA2579360 /* Pods_dysx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465C56E1770C6A1AD4049932 /* Pods_dysx.framework */; };
 		88D5F3EA275DB12200B7082A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F3E9275DB12200B7082A /* AppDelegate.m */; };
 		88D5F3F5275DB12600B7082A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D5F3F4275DB12600B7082A /* Assets.xcassets */; };
-		88D5F3F8275DB12600B7082A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D5F3F6275DB12600B7082A /* LaunchScreen.storyboard */; };
 		88D5F3FB275DB12600B7082A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F3FA275DB12600B7082A /* main.m */; };
 		88D5F405275DB12600B7082A /* dysxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F404275DB12600B7082A /* dysxTests.m */; };
 		88D5F40F275DB12600B7082A /* dysxUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F40E275DB12600B7082A /* dysxUITests.m */; };
@@ -44,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0623448A277B3FDA006173EB /* UIView+CBWL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CBWL.h"; sourceTree = "<group>"; };
+		0623448B277B3FDA006173EB /* UIView+CBWL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CBWL.m"; sourceTree = "<group>"; };
 		120E99C4E3153BE8BAD42DC3 /* Pods-dysx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dysx.release.xcconfig"; path = "Target Support Files/Pods-dysx/Pods-dysx.release.xcconfig"; sourceTree = "<group>"; };
 		130FCFD9F4992BFC9F82362D /* Pods-dysx-dysxUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dysx-dysxUITests.release.xcconfig"; path = "Target Support Files/Pods-dysx-dysxUITests/Pods-dysx-dysxUITests.release.xcconfig"; sourceTree = "<group>"; };
 		270B558323A4C9A30B17773A /* Pods-dysx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dysx.debug.xcconfig"; path = "Target Support Files/Pods-dysx/Pods-dysx.debug.xcconfig"; sourceTree = "<group>"; };
@@ -56,7 +58,6 @@
 		88D5F3E8275DB12200B7082A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88D5F3E9275DB12200B7082A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		88D5F3F4275DB12600B7082A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		88D5F3F7275DB12600B7082A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88D5F3F9275DB12600B7082A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88D5F3FA275DB12600B7082A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		88D5F400275DB12600B7082A /* dysxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dysxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06234489277B3E49006173EB /* Catagory */ = {
+			isa = PBXGroup;
+			children = (
+				0623448A277B3FDA006173EB /* UIView+CBWL.h */,
+				0623448B277B3FDA006173EB /* UIView+CBWL.m */,
+			);
+			path = Catagory;
+			sourceTree = "<group>";
+		};
 		2276144E48D1C2FA62803A1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,9 +176,9 @@
 				88D5F424275DB1FF00B7082A /* MineViewController.m */,
 				88D5F41F275DB1FF00B7082A /* PrefixHeader.pch */,
 				88D5F3F4275DB12600B7082A /* Assets.xcassets */,
-				88D5F3F6275DB12600B7082A /* LaunchScreen.storyboard */,
 				88D5F3F9275DB12600B7082A /* Info.plist */,
 				88D5F3FA275DB12600B7082A /* main.m */,
+				06234489277B3E49006173EB /* Catagory */,
 			);
 			path = dysx;
 			sourceTree = "<group>";
@@ -283,7 +293,7 @@
 				};
 			};
 			buildConfigurationList = 88D5F3E0275DB12100B7082A /* Build configuration list for PBXProject "dysx" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -307,7 +317,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88D5F3F8275DB12600B7082A /* LaunchScreen.storyboard in Resources */,
 				88D5F3F5275DB12600B7082A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +449,7 @@
 				88D5F427275DB20000B7082A /* BaseNavigationController.m in Sources */,
 				88D5F428275DB20000B7082A /* BaseViewController.m in Sources */,
 				88D5F3EA275DB12200B7082A /* AppDelegate.m in Sources */,
+				0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */,
 				95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */,
 				88D5F429275DB20000B7082A /* MineViewController.m in Sources */,
 				95DB44152779E61500BC8062 /* CBTabBar.m in Sources */,
@@ -479,17 +489,6 @@
 			targetProxy = 88D5F40B275DB12600B7082A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		88D5F3F6275DB12600B7082A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88D5F3F7275DB12600B7082A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		88D5F412275DB12600B7082A /* Debug */ = {
