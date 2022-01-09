@@ -26,5 +26,9 @@
 
 //设置view的frame
 #define CBRect(x,y,width,height) CGRectMake((x),(y),(width),(height))
+// CGSize
+#define Size(width, height) CGSizeMake((width), (height))
+// CGPoint
+#define Point(x, y) CGPointMake((x), (y))
 
 #endif /* PrefixHeader_pch */

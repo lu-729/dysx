@@ -8,7 +8,9 @@
 #import "MainViewController.h"
 //#import <IMSLinkVisualMedia/IMSLinkVisualMedia.h>
 
-@interface MainViewController ()
+@interface MainViewController () {
+    
+}
 
 @end
 
