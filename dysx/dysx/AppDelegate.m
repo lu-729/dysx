@@ -55,9 +55,12 @@
 //    _window.windowLevel = UIWindowLevelAlert + 10000000.0;
 //    [_window makeKeyAndVisible];
     
+    
+    /*
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"更新提示" message:@"发现新版本。为保证各项功能正常使用，请您尽快更新。" preferredStyle:UIAlertControllerStyleAlert];
     //显示弹出框
     [_window.rootViewController presentViewController:alert animated:YES completion:nil];
+    
     
     [alert addAction:[UIAlertAction actionWithTitle:@"现在更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/id123456789?mt=8"]];
@@ -68,6 +71,8 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"下次再说" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"点击下次再说按钮");  //如果不add这段Action，则弹窗中只有1个按钮，即强制用户更新
     }]];
+     
+     */
     
     NSLog(@"000000000000000%f", IOS_VERSION);
     
@@ -122,6 +127,7 @@
      
     return YES;
 }
+
 
 
 @end
