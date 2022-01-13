@@ -6,6 +6,7 @@
 //
 
 #import "CBTabBar.h"
+#import "CBTabBarButton.h"
 
 @interface CBTabBar ()
 
@@ -14,6 +15,29 @@
 @end
 
 @implementation CBTabBar
+
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self addBarButton];
+    }
+    return self;
+}
+
+
+- (void)addBarButton {
+    for (int i=0; i<3; i++) {
+        CBTabBarButton *btn = [[CBTabBarButton alloc] init];
+        CGFloat btnW = self.frame.size.width / 3;
+        CGFloat btnX = i * btnW;
+        CGFloat btnY = 0;
+        CGFloat btnH = self.frame.size.height;
+        btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+        
+    }
+}
+
 
 - (void)addButtonWithImage:(UIImage *)image selectedImage:(UIImage *)selectedImage {
     UIButton *btn = [[UIButton alloc] init];

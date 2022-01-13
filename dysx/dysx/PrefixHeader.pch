@@ -31,4 +31,6 @@
 // CGPoint
 #define Point(x, y) CGPointMake((x), (y))
 
+#define kTabBarHeight 49
+
 #endif /* PrefixHeader_pch */
