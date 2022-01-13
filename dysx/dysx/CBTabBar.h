@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CBTabBarDelegate <NSObject>
 
+@required
 - (void)tabBar:(CBTabBar *)tabBar selectedFrom:(NSInteger)from to:(NSInteger)to;
 
 @end

@@ -6,37 +6,40 @@
 //
 
 #import "CBTabBarController.h"
-#import "CBTabBarButton.h"
 #import "CBTabBar.h"
 
 @interface CBTabBarController () <CBTabBarDelegate>
 
 //选中的按钮
 @property (nonatomic, weak) UIButton *selectedBtn;
+@property (nonatomic, strong) UIView *tabBarView;
 
 @end
 
 @implementation CBTabBarController
 
+
+- (instancetype)init {
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 //    [self.tabBar removeFromSuperview];
+    self.tabBar.hidden = YES;
     CGRect rect = self.tabBar.bounds;
     
-    CBTabBar *tabBar = [[CBTabBar alloc] init];
+    CBTabBar *tabBar = [[CBTabBar alloc] initWithFrame:self.tabBar.bounds];
+    NSLog(@"--------tabbarHeiht = %f", self.tabBar.bounds.size.height);
     tabBar.delegate = self;
-    tabBar.frame = rect;
     tabBar.backgroundColor = MAIN_COLOR;
-    [self.tabBar addSubview:tabBar];
-    //添加按钮
-    for (int i=0; i<self.viewControllers.count; i++) {
-        NSString *imageName = [NSString stringWithFormat:@"TabBar%d", i + 1];
-        NSString *selectedImageName =  [NSString stringWithFormat:@"TabBar%dSel", i + 1];
-        UIImage *image = [UIImage imageNamed:imageName];
-        UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
-        [tabBar addButtonWithImage:image selectedImage:selectedImage];
-    }
+//    CGRect frame = tabBar.frame;
+    tabBar.frame = CGRectMake(0, SCREEN_HEIGHT - (49.f + 34.f), SCREEN_WIDTH, 49.f + 34.f);
+    [self.view addSubview:tabBar];
 }
 
 - (void)tabBar:(CBTabBar *)tabBar selectedFrom:(NSInteger)from to:(NSInteger)to {

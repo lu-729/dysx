@@ -15,7 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.backgroundColor = MAIN_COLOR;
+//    self.navigationBar.backgroundColor = [UIColor greenColor];
 //    [self.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationBar setShadowImage:[[UIImage alloc] init]];
 }
