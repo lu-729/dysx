@@ -6,11 +6,9 @@
 //
 
 #import "AppDelegate.h"
-#import "BaseNavigationController.h"
-#import "MainViewController.h"
-#import "MineViewController.h"
 #import "AFHTTPSessionManager.h"
 #import "CBTabBarController.h"
+#import "LTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -21,21 +19,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //创建窗口、显示窗口
+    //创建并显示窗口
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    _window.backgroundColor = [UIColor redColor];
     [_window makeKeyAndVisible];
-
-    //设置窗口根视图控制器为TabBarController
-    MainViewController *mainVC = [[MainViewController alloc] init];
-    MineViewController *mineVC = [[MineViewController alloc] init];
-//    mainVC.view.backgroundColor = [UIColor greenColor];
-//    mineVC.view.backgroundColor = [UIColor yellowColor];
-    UINavigationController *mainNav = [[BaseNavigationController alloc] initWithRootViewController:mainVC];
-    UINavigationController *mineNav = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-    CBTabBarController *tabBarVC = [[CBTabBarController alloc] init];
-    tabBarVC.viewControllers = @[mainNav, mineNav];
-    _window.rootViewController = tabBarVC;
+    //设置窗口根视图控制器为CBTabBarController
+//    CBTabBarController *tabBarVC = [[CBTabBarController alloc] init];
+    LTabBarController *lTabBarVC = [[LTabBarController alloc] init];
+    _window.rootViewController = lTabBarVC;
     
 //    //初始化ALi SDK
 //    IMSIotSmartConfig *config = [IMSIotSmartConfig new];

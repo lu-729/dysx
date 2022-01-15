@@ -52,7 +52,7 @@
         btn.tag = i;
         if (i != 1) {
             [btn setTitle:title forState:UIControlStateNormal];
-            btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
+            btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             //使图片和文字水平居中显示
@@ -63,6 +63,8 @@
             //图片距离右边框距离减少图片的宽度，其它不边
             [btn setImageEdgeInsets:UIEdgeInsetsMake(-10.0, 0.0, 0.0, -btn.titleLabel.bounds.size.width)];
 
+        } else {
+            [btn setImageEdgeInsets:UIEdgeInsetsMake(-20.f, 0, 0, 0)];
         }
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];

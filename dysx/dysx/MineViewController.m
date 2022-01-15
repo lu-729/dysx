@@ -20,7 +20,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = MAIN_COLOR;
 //    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     [self setupSubViews];
 }
 
