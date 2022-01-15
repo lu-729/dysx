@@ -11,9 +11,10 @@
 
 
 @interface LTabbar()
-{
-    LTabBarButton *_selectedBarButton;
-}
+
+@property (nonatomic, strong) UIButton *publishBtn;
+@property (nonatomic, strong) LTabBarButton *_selectedBarButton;
+
 @end
 
 @implementation LTabbar
@@ -26,23 +27,23 @@
 }
 
 -(void) addBarButtons{
-  
+    UIButton *button = [[UIButton alloc] init];
+//    UIImage *image = [self createImageWithColor:[UIColor redColor]];
+//    [publishBtn setBackgroundImage:image forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"摄影机图标_点击前"] forState:UIControlStateNormal];
+//    publishBtn.backgroundColor = [UIColor redColor];
+    [button addTarget:self action:@selector(didClickPublishBtn:) forControlEvents:UIControlEventTouchUpInside];
+    button.adjustsImageWhenHighlighted = NO;
+    _publishBtn = button;
+    [self addSubview:_publishBtn];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    UIButton *publishBtn = [[UIButton alloc] init];
-//    UIImage *image = [self createImageWithColor:[UIColor redColor]];
-//    [publishBtn setBackgroundImage:image forState:UIControlStateNormal];
-    [publishBtn setBackgroundImage:[UIImage imageNamed:@"post_animate_add"] forState:UIControlStateNormal];
-//    publishBtn.backgroundColor = [UIColor redColor];
-    [publishBtn addTarget:self action:@selector(didClickPublishBtn:) forControlEvents:UIControlEventTouchUpInside];
-    publishBtn.adjustsImageWhenHighlighted = NO;
-    publishBtn.size = publishBtn.currentBackgroundImage.size;
-    publishBtn.centerX = self.width / 2;
-    publishBtn.centerY = publishBtn.height / 4;
-    [self addSubview:publishBtn];
+    _publishBtn.size = _publishBtn.currentBackgroundImage.size;
+    _publishBtn.centerX = self.width / 2;
+    _publishBtn.centerY = _publishBtn.height / 4;
     
     // 其他位置按钮
     NSUInteger count = self.subviews.count;
@@ -50,12 +51,13 @@
         UIView *view = self.subviews[i];
         Class class = NSClassFromString(@"UITabBarButton");
         if ([view isKindOfClass:class]) {
-            view.width = self.width / 3.0;
-            view.x = self.width * j / 3.0;
-            j++;
             if (j == 1) {
                 j++;
             }
+            view.width = self.width / 3.0;
+            view.x = self.width * j / 3.0;
+            j++;
+            
         }
     }
     

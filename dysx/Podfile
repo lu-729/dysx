@@ -9,6 +9,7 @@ target 'dysx' do
   # Pods for dysx
   
   pod 'AFNetworking', '~> 4.0.1'
+  pod 'Masonry', '~> 1.1.0'
 
 
   target 'dysxTests' do

@@ -26,7 +26,8 @@
     [self setChildVC:mainVC title:@"主页" imageName:@"TabBar1" selectedImageName:@"TabBar1Sel"];
     [self setChildVC:mineVC title:@"我的" imageName:@"TabBar3" selectedImageName:@"TabBar3Sel"];
     
-    LTabbar *customTabBar = [[LTabbar alloc] init];
+    LTabbar *customTabBar = [[LTabbar alloc] initWithFrame:self.tabBar.bounds];
+    [self.tabBar addSubview:customTabBar];
 //    [self setValue:customTabBar forKey:@"tabBar"];
 }
 

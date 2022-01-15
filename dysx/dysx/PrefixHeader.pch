@@ -12,7 +12,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import "UIView+CBWL.h"
-
+#import "Masonry.h"
 
 //主色
 #define MAIN_COLOR [UIColor colorWithRed:0/255.f green:190/255.f blue:255/255.f alpha:1];
@@ -22,13 +22,13 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 //根据RGB值获取颜色
-#define CBColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define LColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 //获取系统版本
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 
 //设置view的frame
-#define CBRect(x,y,width,height) CGRectMake((x),(y),(width),(height))
+#define LRect(x,y,width,height) CGRectMake((x),(y),(width),(height))
 // CGSize
 #define Size(width, height) CGSizeMake((width), (height))
 // CGPoint

@@ -83,6 +83,10 @@
     self.center = center;
 }
 
+- (CGFloat)centerY {
+    return self.center.y;
+}
+
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;

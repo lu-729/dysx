@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LTabbar : UIView
+@interface LTabbar : UITabBar
 
 @property (nonatomic,copy) void(^didClickPublishBtn)();
 
