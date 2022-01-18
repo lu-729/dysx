@@ -112,3 +112,60 @@
 
 
 @end
+
+#pragma mark - UILabel (Extension)
+@implementation UILabel (YND)
+
++ (instancetype)labelWithText:(NSString *)text font:(CGFloat)fontSize textColor:(UIColor *)color frame:(CGRect)frame {
+    UILabel * label = [[self alloc] initWithFrame:frame];
+    label.font = [UIFont systemFontOfSize:fontSize];
+    if (text) label.text = text;
+    if (color) label.textColor = color;
+    return label;
+}
+@end
+
+#pragma mark - UIImageView
+@implementation UIImageView (YND)
+
++ (instancetype)imageViewWithImage:(UIImage *)image frame:(CGRect)frame {
+    //    NSAssert(image != nil, @"图片不能为空");
+    UIImageView * imageView = [[self alloc] initWithFrame:frame];
+    [imageView setImage:image];
+    return imageView;
+}
+
++ (instancetype)imageViewWithUrl:(NSURL *)url frame:(CGRect)frame {
+    
+    return [self imageViewWithUrl:url placeHolder:nil frame:frame];
+}
+
++ (instancetype)imageViewWithUrl:(NSURL *)url placeHolder:(UIImage *)placeHolder frame:(CGRect)frame {
+    
+    UIImageView * imageView = [[self alloc] initWithFrame:frame];
+  //  [imageView sd_setImageWithURL:url placeholderImage:placeHolder];
+    return imageView;
+}
+
+@end
+
+#pragma mark - UIScrollView
+@implementation UIScrollView (YND)
+
++ (instancetype)defaultScrollView {
+    return [self scrollViewWithBgColor:nil frame:LRect(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+}
+
++ (instancetype)scrollViewWithBgColor:(UIColor *)bgColor frame:(CGRect)frame {
+    UIScrollView * scrollView = [[self alloc] initWithFrame:frame];
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    if (bgColor) {
+        scrollView.backgroundColor = bgColor;
+    } else {
+        scrollView.backgroundColor = [UIColor clearColor];
+    }
+    return scrollView;
+}
+
+@end

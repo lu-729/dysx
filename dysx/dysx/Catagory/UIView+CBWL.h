@@ -36,8 +36,26 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)viewWithBgColor:(UIColor *)bgColor frame:(CGRect)frame;
 /*  找到view的控制器：返回view所加载在的控制器 */
 - (UIViewController *)cb_viewController;
+///  找到view的控制器：返回view所加载在的导航控制器
+- (UINavigationController *)navigationController;
 
+@end
 
+@interface UILabel (YND)
+
++ (instancetype)labelWithText:(NSString *)text font:(CGFloat)fontSize textColor:(UIColor *)color frame:(CGRect)frame;
+
+@end
+
+@interface UIImageView (YND)
++ (instancetype)imageViewWithUrl:(NSURL *)url frame:(CGRect)frame;
++ (instancetype)imageViewWithUrl:(NSURL *)url placeHolder:(UIImage  * _Nullable)placeHolder frame:(CGRect)frame;
++ (instancetype)imageViewWithImage:(UIImage *)image frame:(CGRect)frame;
+@end
+
+@interface UIScrollView (YND)
++ (instancetype)defaultScrollView;
++ (instancetype)scrollViewWithBgColor:(UIColor * _Nullable)bgColor frame:(CGRect)frame;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,6 +13,11 @@
 
 #import "UIView+CBWL.h"
 #import "Masonry.h"
+#import "UIView+TransitonColor.h"
+#import "UIImage+Category.h"
+#import "UIColor+HexColor.h"
+#import "NSString+Category.h"
+#import "UIButton+Category.h"
 
 //主色
 #define MAIN_COLOR [UIColor colorWithRed:0/255.f green:190/255.f blue:255/255.f alpha:1];
@@ -21,6 +26,11 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+//判断是否为IPhone X系列
+#define IS_IPHONE_X (SCREEN_HEIGHT == 812.0f || SCREEN_HEIGHT == 896.0f) ? YES : NO
+#define NAVBARHEIGHT  ((IS_IPHONE_X== YES)?88.0f: 64.0f)
+#define HeightStatusBar ((IS_IPHONE_X == YES)?44.0f: 20.0f)
+
 //根据RGB值获取颜色
 #define LColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
@@ -28,11 +38,28 @@
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 
 //设置view的frame
-#define LRect(x,y,width,height) CGRectMake((x),(y),(width),(height))
-// CGSize
-#define Size(width, height) CGSizeMake((width), (height))
-// CGPoint
-#define Point(x, y) CGPointMake((x), (y))
+/// CGRect
+#define LRect(x, y, w, h) CGRectMake((x), (y), (w), (h))
+/// CGSize
+#define LSize(w, h) CGSizeMake((w), (h))
+/// CGPoint
+#define LPoint(x, y) CGPointMake((x), (y))
+
+#define HexColor(hexString) [UIColor colorWithHexString:(hexString)]
+#define HexColorInt32_t(rgbValue) \
+[UIColor colorWithRed:((float)((0x##rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((0x##rgbValue & 0x00FF00) >> 8))/255.0 blue:((float)(0x##rgbValue & 0x0000FF))/255.0  alpha:1]
+
+//图片 URL
+#define ImageWithName(nameString) [UIImage imageNamed:nameString]
+
+///  主题色
+#define ThemeTitleColor HexColorInt32_t(FFFFFF)
+
+//主色
+#define MAIN_COLOR [UIColor colorWithRed:0/255.f green:190/255.f blue:255/255.f alpha:1];
+
+///  安全运行block
+#define BLOCK_SAFE_RUN(block, ...) block ? block(__VA_ARGS__) : nil;
 
 #define kTabBarHeight 49
 

@@ -1,40 +1,25 @@
 //
-//  MainViewController.m
+//  PhotoViewController.m
 //  dysx
 //
-//  Created by wangyu on 2021/11/30.
+//  Created by chengbo on 2022/1/17.
 //
 
-#import "MainViewController.h"
-#import "LNavigationBar.h"
+#import "PhotoViewController.h"
 
-@interface MainViewController () {
-    
-}
+@interface PhotoViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation PhotoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.edgesForExtendedLayout	= UIRectEdgeNone;
-    [self.navigationController setNavigationBarHidden:YES];
-    self.l_navgationBar = [LNavigationBar navWithTitle:@"首页"];
-    
+    self.navigationController.navigationBarHidden = NO;
+    self.title = @"本地相册";
 }
-
-- (void)initSubView {
-    
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
-    
 
 /*
 #pragma mark - Navigation
@@ -45,5 +30,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
 
 @end

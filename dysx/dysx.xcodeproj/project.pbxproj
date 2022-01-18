@@ -24,6 +24,20 @@
 		959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBDE27914F45007A8200 /* LTabBarController.m */; };
 		959EEBE227914F6C007A8200 /* LTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE127914F6C007A8200 /* LTabBar.m */; };
 		959EEBE527915E86007A8200 /* LTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE427915E86007A8200 /* LTabBarButton.m */; };
+		95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE71727950EEE000282E0 /* mineTableViewCell.m */; };
+		95AAE71B2795136B000282E0 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE71A2795136B000282E0 /* ServiceViewController.m */; };
+		95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE71D279513A5000282E0 /* PhotoViewController.m */; };
+		95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE720279513F6000282E0 /* ProfileViewController.m */; };
+		95AAE72427951417000282E0 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72327951417000282E0 /* HelpViewController.m */; };
+		95AAE72727951436000282E0 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72627951436000282E0 /* QAViewController.m */; };
+		95AAE72A2795144A000282E0 /* FBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE7292795144A000282E0 /* FBViewController.m */; };
+		95AAE72D2795146B000282E0 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72C2795146B000282E0 /* SetViewController.m */; };
+		95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72F279549EE000282E0 /* UIView+TransitonColor.m */; };
+		95AAE73327954B9C000282E0 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73227954B9C000282E0 /* UIImage+Category.m */; };
+		95AAE73627954C10000282E0 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73527954C10000282E0 /* UIColor+HexColor.m */; };
+		95AAE73927954CD2000282E0 /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73827954CD2000282E0 /* NSString+Category.m */; };
+		95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73B27954E0C000282E0 /* UIButton+Category.m */; };
+		95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73E279552F4000282E0 /* LNavigationBar.m */; };
 		95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB440E2779E0BA00BC8062 /* CBTabBarController.m */; };
 		95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44112779E5D800BC8062 /* CBTabBarButton.m */; };
 		95DB44152779E61500BC8062 /* CBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44142779E61500BC8062 /* CBTabBar.m */; };
@@ -86,6 +100,34 @@
 		959EEBE127914F6C007A8200 /* LTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTabBar.m; sourceTree = "<group>"; };
 		959EEBE327915E86007A8200 /* LTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBarButton.h; sourceTree = "<group>"; };
 		959EEBE427915E86007A8200 /* LTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTabBarButton.m; sourceTree = "<group>"; };
+		95AAE71627950EEE000282E0 /* mineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mineTableViewCell.h; sourceTree = "<group>"; };
+		95AAE71727950EEE000282E0 /* mineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mineTableViewCell.m; sourceTree = "<group>"; };
+		95AAE7192795136B000282E0 /* ServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
+		95AAE71A2795136B000282E0 /* ServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
+		95AAE71C279513A5000282E0 /* PhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		95AAE71D279513A5000282E0 /* PhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		95AAE71F279513F6000282E0 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		95AAE720279513F6000282E0 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		95AAE72227951417000282E0 /* HelpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		95AAE72327951417000282E0 /* HelpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		95AAE72527951436000282E0 /* QAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
+		95AAE72627951436000282E0 /* QAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
+		95AAE7282795144A000282E0 /* FBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBViewController.h; sourceTree = "<group>"; };
+		95AAE7292795144A000282E0 /* FBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBViewController.m; sourceTree = "<group>"; };
+		95AAE72B2795146B000282E0 /* SetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		95AAE72C2795146B000282E0 /* SetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		95AAE72E279549EE000282E0 /* UIView+TransitonColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TransitonColor.h"; sourceTree = "<group>"; };
+		95AAE72F279549EE000282E0 /* UIView+TransitonColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+TransitonColor.m"; sourceTree = "<group>"; };
+		95AAE73127954B9C000282E0 /* UIImage+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
+		95AAE73227954B9C000282E0 /* UIImage+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		95AAE73427954C10000282E0 /* UIColor+HexColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
+		95AAE73527954C10000282E0 /* UIColor+HexColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		95AAE73727954CD2000282E0 /* NSString+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
+		95AAE73827954CD2000282E0 /* NSString+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Category.m"; sourceTree = "<group>"; };
+		95AAE73A27954E0C000282E0 /* UIButton+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Category.h"; sourceTree = "<group>"; };
+		95AAE73B27954E0C000282E0 /* UIButton+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Category.m"; sourceTree = "<group>"; };
+		95AAE73D279552F4000282E0 /* LNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LNavigationBar.h; sourceTree = "<group>"; };
+		95AAE73E279552F4000282E0 /* LNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LNavigationBar.m; sourceTree = "<group>"; };
 		95DB440D2779E0BA00BC8062 /* CBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBarController.h; sourceTree = "<group>"; };
 		95DB440E2779E0BA00BC8062 /* CBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBarController.m; sourceTree = "<group>"; };
 		95DB44102779E5D800BC8062 /* CBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBarButton.h; sourceTree = "<group>"; };
@@ -128,6 +170,16 @@
 			children = (
 				0623448A277B3FDA006173EB /* UIView+CBWL.h */,
 				0623448B277B3FDA006173EB /* UIView+CBWL.m */,
+				95AAE72E279549EE000282E0 /* UIView+TransitonColor.h */,
+				95AAE72F279549EE000282E0 /* UIView+TransitonColor.m */,
+				95AAE73127954B9C000282E0 /* UIImage+Category.h */,
+				95AAE73227954B9C000282E0 /* UIImage+Category.m */,
+				95AAE73427954C10000282E0 /* UIColor+HexColor.h */,
+				95AAE73527954C10000282E0 /* UIColor+HexColor.m */,
+				95AAE73727954CD2000282E0 /* NSString+Category.h */,
+				95AAE73827954CD2000282E0 /* NSString+Category.m */,
+				95AAE73A27954E0C000282E0 /* UIButton+Category.h */,
+				95AAE73B27954E0C000282E0 /* UIButton+Category.m */,
 			);
 			path = Catagory;
 			sourceTree = "<group>";
@@ -176,6 +228,8 @@
 				88D5F421275DB1FF00B7082A /* BaseNavigationController.m */,
 				88D5F420275DB1FF00B7082A /* BaseViewController.h */,
 				88D5F422275DB1FF00B7082A /* BaseViewController.m */,
+				95AAE73D279552F4000282E0 /* LNavigationBar.h */,
+				95AAE73E279552F4000282E0 /* LNavigationBar.m */,
 				959EEBDD27914F45007A8200 /* LTabBarController.h */,
 				959EEBDE27914F45007A8200 /* LTabBarController.m */,
 				959EEBE027914F6C007A8200 /* LTabBar.h */,
@@ -192,6 +246,22 @@
 				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
 				88D5F423275DB1FF00B7082A /* MineViewController.h */,
 				88D5F424275DB1FF00B7082A /* MineViewController.m */,
+				95AAE7192795136B000282E0 /* ServiceViewController.h */,
+				95AAE71A2795136B000282E0 /* ServiceViewController.m */,
+				95AAE71C279513A5000282E0 /* PhotoViewController.h */,
+				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
+				95AAE71F279513F6000282E0 /* ProfileViewController.h */,
+				95AAE720279513F6000282E0 /* ProfileViewController.m */,
+				95AAE72227951417000282E0 /* HelpViewController.h */,
+				95AAE72327951417000282E0 /* HelpViewController.m */,
+				95AAE72527951436000282E0 /* QAViewController.h */,
+				95AAE72627951436000282E0 /* QAViewController.m */,
+				95AAE7282795144A000282E0 /* FBViewController.h */,
+				95AAE7292795144A000282E0 /* FBViewController.m */,
+				95AAE72B2795146B000282E0 /* SetViewController.h */,
+				95AAE72C2795146B000282E0 /* SetViewController.m */,
+				95AAE71627950EEE000282E0 /* mineTableViewCell.h */,
+				95AAE71727950EEE000282E0 /* mineTableViewCell.m */,
 				88D5F41F275DB1FF00B7082A /* PrefixHeader.pch */,
 				9578238C279275C800A4AAC1 /* CustomTools.h */,
 				9578238D279275C800A4AAC1 /* CustomTools.m */,
@@ -467,18 +537,32 @@
 			files = (
 				959EEBE227914F6C007A8200 /* LTabBar.m in Sources */,
 				95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */,
+				95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */,
+				95AAE72727951436000282E0 /* QAViewController.m in Sources */,
+				95AAE73927954CD2000282E0 /* NSString+Category.m in Sources */,
+				95AAE71B2795136B000282E0 /* ServiceViewController.m in Sources */,
 				88D5F427275DB20000B7082A /* BaseNavigationController.m in Sources */,
+				95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */,
 				959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */,
+				95AAE72427951417000282E0 /* HelpViewController.m in Sources */,
 				88D5F428275DB20000B7082A /* BaseViewController.m in Sources */,
 				959EEBE527915E86007A8200 /* LTabBarButton.m in Sources */,
 				88D5F3EA275DB12200B7082A /* AppDelegate.m in Sources */,
+				95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */,
+				95AAE72A2795144A000282E0 /* FBViewController.m in Sources */,
+				95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */,
+				95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */,
 				0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */,
 				9578238E279275C800A4AAC1 /* CustomTools.m in Sources */,
+				95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */,
 				95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */,
 				88D5F429275DB20000B7082A /* MineViewController.m in Sources */,
 				95DB44152779E61500BC8062 /* CBTabBar.m in Sources */,
+				95AAE72D2795146B000282E0 /* SetViewController.m in Sources */,
 				88D5F426275DB20000B7082A /* MainViewController.m in Sources */,
+				95AAE73627954C10000282E0 /* UIColor+HexColor.m in Sources */,
 				88D5F3FB275DB12600B7082A /* main.m in Sources */,
+				95AAE73327954B9C000282E0 /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
