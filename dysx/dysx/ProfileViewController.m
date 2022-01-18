@@ -6,8 +6,12 @@
 //
 
 #import "ProfileViewController.h"
+#import "EditProfileViewController.h"
 
 @interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) NSArray *detailDataArr;
 
 @end
 
@@ -19,8 +23,30 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = NO;
     self.title = @"编辑资料";
+    _dataArr = @[@"昵称", @"手机号"];
+    _detailDataArr = @[@"骄阳似火", @"13971500541"];
     [self setUpSubViews];
+    
+    [self receiveNotificaiotn];
+    
 }
+
+- (void)receiveNotificaiotn {
+    EditProfileViewController *editVC = [[EditProfileViewController alloc] init];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(notificationAction:) name:@"nameChangeNotification" object:editVC];
+}
+
+- (void)notificationAction:(NSNotification *)notification {
+    if ([notification.name isEqualToString:@"nameChangeNotification"]) {
+        
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)setUpSubViews {
     UITableView *tableView = nil;
@@ -69,19 +95,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    EditProfileViewController *editVC = [[EditProfileViewController alloc] init];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reusrCellID = @"ProfileViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reusrCellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reusrCellID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reusrCellID];
     }
+    cell.textLabel.text = _dataArr[indexPath.row];
+    cell.detailTextLabel.text = _detailDataArr[indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     return cell;
 }
 
@@ -89,9 +121,11 @@
 //    return 135.f;
 //}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    return nil;
+//}
+
+
 
 
 /*

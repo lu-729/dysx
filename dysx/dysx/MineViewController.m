@@ -77,6 +77,7 @@
     UITableView *mineTableView = [[UITableView alloc] initWithFrame:LRect(0, topView.height, SCREEN_WIDTH, SCREEN_HEIGHT - topView.height - self.tabBarController.tabBar.height) style:UITableViewStyleInsetGrouped];
     mineTableView.delegate = self;
     mineTableView.dataSource = self;
+    mineTableView.showsVerticalScrollIndicator = NO;
 //    mineTableView.scrollEnabled = NO;
 //    mineTableView.separatorInset = UIEdgeInsetsMake(0, 50.f, 0, 0);
 //    mineTableView.backgroundColor = [UIColor purpleColor];

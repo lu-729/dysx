@@ -61,11 +61,11 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
-        self.contentView.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = LColor(242.f, 242.f, 247.f);
     } else {
         // 增加延迟消失动画效果，提升用户体验
         [UIView animateWithDuration:0.1 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.contentView.backgroundColor = [UIColor whiteColor];
+            self.backgroundColor = [UIColor whiteColor];
         } completion:nil];
     }
 }
