@@ -48,7 +48,7 @@
     }];
     
     CGFloat left = self.textLabel.frame.origin.x;
-    NSLog(@"left = %f", left);
+//    NSLog(@"left = %f", left);
     self.separatorInset = UIEdgeInsetsMake(0, 54.f, 0, 0);
     
 //    rame = (79 0; 256 50)

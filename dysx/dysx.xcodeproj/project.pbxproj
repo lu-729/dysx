@@ -22,6 +22,7 @@
 		8997E5A61CD45EA859DF2403 /* Pods_dysx_dysxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */; };
 		9578238E279275C800A4AAC1 /* CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9578238D279275C800A4AAC1 /* CustomTools.m */; };
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
+		9599C7732797EA520031F360 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9599C7722797EA520031F360 /* HelpView.m */; };
 		959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBDE27914F45007A8200 /* LTabBarController.m */; };
 		959EEBE227914F6C007A8200 /* LTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE127914F6C007A8200 /* LTabBar.m */; };
 		959EEBE527915E86007A8200 /* LTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE427915E86007A8200 /* LTabBarButton.m */; };
@@ -97,6 +98,8 @@
 		9578238D279275C800A4AAC1 /* CustomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTools.m; sourceTree = "<group>"; };
 		957E98DE27965542006880A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		957E98DF27965542006880A9 /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		9599C7712797EA520031F360 /* HelpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
+		9599C7722797EA520031F360 /* HelpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		959EEBDD27914F45007A8200 /* LTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBarController.h; sourceTree = "<group>"; };
 		959EEBDE27914F45007A8200 /* LTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTabBarController.m; sourceTree = "<group>"; };
 		959EEBE027914F6C007A8200 /* LTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBar.h; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 				957E98DF27965542006880A9 /* EditProfileViewController.m */,
 				95AAE72227951417000282E0 /* HelpViewController.h */,
 				95AAE72327951417000282E0 /* HelpViewController.m */,
+				9599C7712797EA520031F360 /* HelpView.h */,
+				9599C7722797EA520031F360 /* HelpView.m */,
 				95AAE72527951436000282E0 /* QAViewController.h */,
 				95AAE72627951436000282E0 /* QAViewController.m */,
 				95AAE7282795144A000282E0 /* FBViewController.h */,
@@ -547,6 +552,7 @@
 				95AAE73927954CD2000282E0 /* NSString+Category.m in Sources */,
 				95AAE71B2795136B000282E0 /* ServiceViewController.m in Sources */,
 				88D5F427275DB20000B7082A /* BaseNavigationController.m in Sources */,
+				9599C7732797EA520031F360 /* HelpView.m in Sources */,
 				95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */,
 				959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */,
 				95AAE72427951417000282E0 /* HelpViewController.m in Sources */,

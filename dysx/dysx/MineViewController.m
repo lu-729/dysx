@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) UILabel *nickNameLabel;
 
 @end
 
@@ -41,6 +42,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden =NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nickNameChange:) name:@"nameChangeNotification" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)nickNameChange:(NSNotification *)notification {
+    if ([notification.name isEqualToString:@"nameChangeNotification"]) {
+        NSDictionary *dict = notification.userInfo;
+        _nickNameLabel.text = dict[@"nickName"];
+    }
 }
 
 
@@ -67,6 +80,7 @@
     usrLabel.font = [UIFont boldSystemFontOfSize:22.f];
     usrLabel.textColor = [UIColor whiteColor];
     [usrInfoSuperView addSubview:usrLabel];
+    _nickNameLabel = usrLabel;
     [usrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(usrImgView.mas_right).offset(15);
         make.centerY.equalTo(usrImgView.mas_centerY);

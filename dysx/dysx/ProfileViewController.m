@@ -10,8 +10,9 @@
 
 @interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
-@property (nonatomic, strong) NSArray *detailDataArr;
+@property (nonatomic, strong) NSMutableArray *detailDataArr;
 
 @end
 
@@ -24,22 +25,30 @@
     self.navigationController.navigationBarHidden = NO;
     self.title = @"编辑资料";
     _dataArr = @[@"昵称", @"手机号"];
-    _detailDataArr = @[@"骄阳似火", @"13971500541"];
+//    _detailDataArr = @[@"骄阳似火", @"13971500541"];
+    _detailDataArr = [NSMutableArray arrayWithObjects:@"骄阳似火", @"13971500541", nil];
     [self setUpSubViews];
     
     [self receiveNotificaiotn];
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self receiveNotificaiotn];
+}
+
 - (void)receiveNotificaiotn {
-    EditProfileViewController *editVC = [[EditProfileViewController alloc] init];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(notificationAction:) name:@"nameChangeNotification" object:editVC];
+    [notificationCenter addObserver:self selector:@selector(notificationAction:) name:@"nameChangeNotification" object:nil];
 }
 
 - (void)notificationAction:(NSNotification *)notification {
     if ([notification.name isEqualToString:@"nameChangeNotification"]) {
-        
+        NSLog(@"收到昵称修改通知, notification = %@", notification);
+        NSDictionary *dict = notification.userInfo;
+        _detailDataArr[0] = [dict objectForKey:@"nickName"];
+        [_tableView reloadData];
     }
 }
 
@@ -49,21 +58,20 @@
 
 
 - (void)setUpSubViews {
-    UITableView *tableView = nil;
     if (@available(iOS 13.0, *)) {
-        tableView = [[UITableView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStyleInsetGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStyleInsetGrouped];
     } else {
-        tableView = [[UITableView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStyleGrouped];
     }
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.scrollEnabled = NO;
-    [self.view addSubview:tableView];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.scrollEnabled = NO;
+    [self.view addSubview:_tableView];
     
     UIView *ImgSuperView = [[UIView alloc] init];
     ImgSuperView.frame = LRect(0, 0, SCREEN_WIDTH, 135.f);
     ImgSuperView.backgroundColor = [UIColor redColor];
-    tableView.tableHeaderView = ImgSuperView;
+    _tableView.tableHeaderView = ImgSuperView;
     //
     UIImageView *usrImgView = [[UIImageView alloc] init];
     usrImgView.size = LSize(60.f, 60.f);
@@ -100,6 +108,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     EditProfileViewController *editVC = [[EditProfileViewController alloc] init];
+    editVC.flag = indexPath.row;
     [self.navigationController pushViewController:editVC animated:YES];
 }
 

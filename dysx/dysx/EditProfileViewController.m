@@ -13,6 +13,8 @@
 @property (nonatomic, copy) NSString *nickName;
 @property (nonatomic, strong) UIView *nickNameView;
 
+@property (nonatomic, strong) UIView *phoneView;
+
 @end
 
 @implementation EditProfileViewController
@@ -26,14 +28,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    _flag = 0;
+    // 通过上个控制器传入的flag值显示对应子视图
     if (_flag == 0) {
         [self setUpNickNameViews];
     } else {
         [self setUpPhoneNumViews];
     }
-    
 }
+
+#pragma mark - NickNameChange
 
 - (void)setUpNickNameViews {
     _nickNameView = [[UIView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT)];
@@ -86,29 +89,35 @@
     }];
 }
 
+#pragma mark - PhoneNumberChange
+
+- (void)setUpPhoneNumViews {
+    _phoneView = [[UIView alloc] init];
+    
+}
+
 - (void)btnClick {
     
-    if (![_nickName isEqualToString:@""]) {
+    if (![_textField.text isEqualToString:@""]) {
         [_textField resignFirstResponder];
         [self sendNotification];
         NSLog(@"text内容不为空");
+        NSLog(@"点击保存_textField。text = %@", _textField.text);
     } else {
-        
+        NSLog(@"text内容为空");
     }
 }
 
 // 昵称上传后端成功后发送通知,通知其他页面更改昵称
 - (void)sendNotification {
-    
+    NSDictionary *dict = @{@"nickName":_textField.text};
     NSString *nameChangenotification = @"nameChangeNotification";
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter postNotificationName:nameChangenotification object:self userInfo:nil];
-    
+    [notificationCenter postNotificationName:nameChangenotification object:self userInfo:dict];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)setUpPhoneNumViews {
-    
-}
+
 
 /*****************   监听文本框输入，限制输入文本长度  *********************/
 - (void)textFieldDidChange:(UITextField *)textField {
