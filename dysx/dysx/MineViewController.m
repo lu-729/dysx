@@ -15,6 +15,7 @@
 #import "QAViewController.h"
 #import "FBViewController.h"
 #import "SetViewController.h"
+#import "LPhotoTools.h"
 
 #define lStatusBarHeiht [CustomTools getStatusBarHeight]
 
@@ -149,9 +150,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 0) {
         
     } else if (indexPath.section == 1) {
+//        if (indexPath.row == 0) {
+//            BOOL isCanVisitPhoto = [LPhotoTools isCanVisitPhotoLibrary];
+//            if (isCanVisitPhoto) {
+//
+//            }
+//        }
         UIViewController *vc = nil;
         switch (indexPath.row) {
             case 0:vc = [[PhotoViewController alloc] init];break;
@@ -168,7 +176,6 @@
         
     }
 }
-
 
 
 
