@@ -9,6 +9,7 @@
 #import "AFHTTPSessionManager.h"
 #import "CBTabBarController.h"
 #import "LTabBarController.h"
+#import "LPhotoTools.h"
 
 @interface AppDelegate ()
 
@@ -113,11 +114,16 @@
             
         }];
      */
+    
+
+    [LPhotoTools getUsrPhotoAuthorizationStatus];
      
      
      
     return YES;
 }
+
+
 
 
 

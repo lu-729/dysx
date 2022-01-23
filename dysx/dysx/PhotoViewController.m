@@ -63,7 +63,7 @@
     [self.view addSubview:photoScrollView];
     
     NSLog(@"");
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, photoScrollView.height)];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
     
     
 }

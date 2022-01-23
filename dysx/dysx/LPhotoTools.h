@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LPhotoTools : NSObject
 
 + (BOOL)isCanVisitPhotoLibrary;
++ (void)getUsrPhotoAuthorizationStatus;
 
 @end
 

@@ -753,7 +753,8 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/dysx/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dysx/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "dysx需要你的相册权限以保存记录仪拍照和视频";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -782,7 +783,8 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/dysx/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dysx/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "dysx需要你的相册权限以保存记录仪拍照和视频";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

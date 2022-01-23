@@ -169,7 +169,16 @@
             case 4:vc = [[FBViewController alloc] init];break;
             default:break;
         }
-        [self.navigationController pushViewController:vc animated:YES];
+        if (indexPath.row == 0) {
+            if ([LPhotoTools isCanVisitPhotoLibrary] == YES) {
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                
+            }
+        } else {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+       
         self.tabBarController.tabBar.hidden = YES;
 //        self.hidesBottomBarWhenPushed = YES;
     } else {
