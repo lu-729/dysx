@@ -7,9 +7,10 @@
 
 #import "PhotoViewController.h"
 
-@interface PhotoViewController ()
+@interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UIButton *selectedBtn;
+@property (nonatomic, strong) UICollectionView * collectionView;
 
 @end
 
@@ -60,11 +61,25 @@
     
     UIScrollView *photoScrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
     photoScrollView.contentSize = LSize(2 * SCREEN_WIDTH, SCREEN_HEIGHT);
-    [self.view addSubview:photoScrollView];
+//    [self.view addSubview:photoScrollView];
     
     NSLog(@"");
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
     
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    CGFloat itemWidth = SCREEN_WIDTH / 4;
+    [flowLayout setItemSize:LSize(itemWidth, itemWidth)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    flowLayout.sectionInset = UIEdgeInsetsMake(5.f, 5.f, 5.f, 5.f);
+//    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
+    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f) collectionViewLayout:flowLayout];
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    _collectionView.backgroundColor = [UIColor clearColor];
+    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sdfshfkdshk"];
+    [self.view addSubview:_collectionView];
+    
+    CGFloat scale = 1.0 / [UIScreen mainScreen].scale;
+    CGFloat space = scale;
     
 }
 
@@ -80,6 +95,31 @@
     }
 }
 
+
+
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sdfshfkdshk" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor yellowColor];
+    NSLog(@"cell.frame = %@", cell);
+    return cell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 9;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 2;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"点击了第%ld组,第%ld个", indexPath.section, indexPath.row);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return LSize((SCREEN_WIDTH - 25.f) / 4, (SCREEN_WIDTH - 25.f) / 4);
+}
 
 
 
