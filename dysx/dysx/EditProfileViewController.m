@@ -139,8 +139,26 @@
     _verifyCodeTF.placeholder = @"输入验证码..";
     [self.view addSubview:_verifyCodeTF];
     [_verifyCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(verifyCodeLabel.mas_left);
+        make.top.equalTo(verifyCodeLabel.mas_bottom).offset(5.f);
+        make.width.mas_equalTo(80.f);
+        make.height.mas_equalTo(30.f);
+    }];
+    UIButton *getVerifyCodeBtn = [[UIButton alloc] init];
+    [getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    getVerifyCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    [getVerifyCodeBtn addTarget:self action:@selector(getVerifyCodeBtnClicked)];
+    [self.view addSubview:getVerifyCodeBtn];
+    [getVerifyCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
     }];
+    UILabel *verifyCodeCountLabel = [[UILabel alloc] init];
+    
+}
+
+
+- (void)getVerifyCodeBtnClicked {
+    
 }
 
 
