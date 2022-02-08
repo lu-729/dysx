@@ -38,6 +38,16 @@
     return [phoneTest evaluateWithObject:self];
 }
 
+/** 验手机号码  2020年  */
+- (BOOL)isPhoneNum
+{
+    NSString *MOBILE = @"^1(3[0-9]|4[579]|5[0-35-9]|6[6]|7[0-35-9]|8[0-9]|9[89])\\d{8}$";
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    return [regextestmobile evaluateWithObject:self];
+}
+
+
+
 - (BOOL)isIncludeSpecialCharact
 {
     //***需要过滤的特殊字符：~￥#&*<>《》()[]{}【】^@/￡¤￥|§¨「」『』￠￢￣~@#￥&*（）——+|《》$_€。

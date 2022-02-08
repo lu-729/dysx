@@ -6,6 +6,8 @@
 //
 
 #import "EditProfileViewController.h"
+#import "NSString+Category.h"
+#import "MBProgressHUD.h"
 
 @interface EditProfileViewController () <UITextFieldDelegate>
 
@@ -15,6 +17,7 @@
 
 @property (nonatomic, strong) UIView *phoneView;
 @property (nonatomic, strong) UITextField *phoneNumTF;
+@property (nonatomic, copy) NSString *phoneNumStr;
 
 @property (nonatomic, strong) UITextField *verifyCodeTF;
 
@@ -104,6 +107,8 @@
     currentNumLabel.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:currentNumLabel];
     _phoneNumTF = [[UITextField alloc] init];
+    _phoneNumTF.keyboardType = UIKeyboardTypeNumberPad;
+    _phoneNumTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     _phoneNumTF.delegate = self;
     _phoneNumTF.placeholder = @"输入当前绑定手机号..";
     [self.view addSubview:_phoneNumTF];
@@ -134,31 +139,78 @@
         make.width.mas_equalTo(100.f);
         make.height.mas_equalTo(20.f);
     }];
+    UIButton *getVerifyCodeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    getVerifyCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    [getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [getVerifyCodeBtn addTarget:self action:@selector(getVerifyCodeBtnClicked)];
+    [self.view addSubview:getVerifyCodeBtn];
+    [getVerifyCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(separateLine.mas_right);
+        make.top.equalTo(verifyCodeLabel.mas_bottom).offset(5.f);
+        make.width.mas_equalTo(100.f);
+        make.height.mas_equalTo(30.f);
+    }];
     _verifyCodeTF = [[UITextField alloc] init];
+    _verifyCodeTF.keyboardType = UIKeyboardTypeNumberPad;
+    _verifyCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     _verifyCodeTF.delegate = self;
     _verifyCodeTF.placeholder = @"输入验证码..";
     [self.view addSubview:_verifyCodeTF];
     [_verifyCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(verifyCodeLabel.mas_left);
         make.top.equalTo(verifyCodeLabel.mas_bottom).offset(5.f);
-        make.width.mas_equalTo(80.f);
+        make.right.equalTo(getVerifyCodeBtn.mas_left);
         make.height.mas_equalTo(30.f);
     }];
-    UIButton *getVerifyCodeBtn = [[UIButton alloc] init];
-    [getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    getVerifyCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
-    [getVerifyCodeBtn addTarget:self action:@selector(getVerifyCodeBtnClicked)];
-    [self.view addSubview:getVerifyCodeBtn];
-    [getVerifyCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+    
+    UIView *separateLineT = [[UIView alloc] init];
+    separateLineT.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:separateLineT];
+    [separateLineT mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_verifyCodeTF.mas_left);
+        make.height.mas_equalTo(0.5f);
+        make.width.equalTo(separateLine.mas_width);
+        make.top.equalTo(_verifyCodeTF.mas_bottom);
     }];
     UILabel *verifyCodeCountLabel = [[UILabel alloc] init];
+    
+    UIButton *confirmModifyBtn = [[UIButton alloc] init];
+    confirmModifyBtn.backgroundColor = [UIColor blueColor];
+    [confirmModifyBtn setTitle:@"确认修改" forState:UIControlStateNormal];
+    [confirmModifyBtn addTarget:self action:@selector(confirmModifyBtnClicked)];
+    [self.view addSubview:confirmModifyBtn];
+    [confirmModifyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(separateLineT.mas_bottom).offset(100.f);
+        make.left.mas_equalTo((SCREEN_WIDTH - 120) / 2);
+        make.width.mas_equalTo(120.f);
+        make.height.mas_equalTo(40.f);
+    }];
+    
+}
+
+
+- (void)confirmModifyBtnClicked {
     
 }
 
 
 - (void)getVerifyCodeBtnClicked {
-    
+    NSLog(@"获取短信验证码");
+    _phoneNumStr = _phoneNumTF.text;
+    if ([_phoneNumStr isPhoneNum]) {
+        [_phoneNumTF resignFirstResponder];
+    } else {
+        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+        [hud setRemoveFromSuperViewOnHide:YES];
+        hud.label.text = @"请输入有效号码";
+        UIView *view = [[UIView alloc] initWithFrame:LRect(0, 0, 50, 50)];
+        [hud setCustomView:view];
+        [hud setMode:MBProgressHUDModeCustomView];
+        [self.view addSubview:hud];
+        [hud showAnimated:YES];
+        hud.minShowTime = 0.8f;
+        [hud hideAnimated:YES];
+    }
 }
 
 
@@ -188,27 +240,36 @@
 
 /*****************   监听文本框输入，限制输入文本长度  *********************/
 - (void)textFieldDidChange:(UITextField *)textField {
-    NSInteger maxLength = 12;
-    NSString *toBeString = textField.text;
-    NSString *lang = [UIApplication sharedApplication].textInputMode.primaryLanguage;
-    if ([lang isEqualToString:@"zh-Hans"]) {
-        //如果使用的中文输入法
-        UITextRange *selectedRange = [textField markedTextRange];
-        //获取高亮部分
-        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
-        if (!position) {
+    if (textField == self.nickNameTF) {
+        NSInteger maxLength = 12;
+        NSString *toBeString = textField.text;
+        NSString *lang = [UIApplication sharedApplication].textInputMode.primaryLanguage;
+        if ([lang isEqualToString:@"zh-Hans"]) {
+            //如果使用的中文输入法
+            UITextRange *selectedRange = [textField markedTextRange];
+            //获取高亮部分
+            UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+            if (!position) {
+                if (toBeString.length > maxLength) {
+                    textField.text = [toBeString substringToIndex:maxLength];
+                }
+            } else {
+                
+            }
+        } else {
             if (toBeString.length > maxLength) {
                 textField.text = [toBeString substringToIndex:maxLength];
             }
-        } else {
-            
         }
+    } else if (textField == _phoneNumTF) {
+        
     } else {
-        if (toBeString.length > maxLength) {
-            textField.text = [toBeString substringToIndex:maxLength];
-        }
+        
     }
+    
 }
+
+
 
 
 /// 对中文、字母、数字进行正则判断（不包括空格）
@@ -230,6 +291,13 @@
     return isMatch;
 }
 
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"self.view点击事件");
+    [self.view endEditing:YES];
+}
+
+
 #pragma mark -  UITextFieldDelegate Methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -243,12 +311,24 @@
 
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if ([self isInuputRuleNoBlank:string] || [string isEqualToString:@""]) {
+//    if ([self isInuputRuleNoBlank:string] || [string isEqualToString:@""]) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+    
+    if (string.length == 0) {
         return YES;
-    } else {
+    }
+    NSInteger existedLength = textField.text.length;
+    NSInteger selectedLength = range.length;
+    NSInteger replaceLength = string.length;
+    if (existedLength - selectedLength + replaceLength > 11) {
         return NO;
     }
+    return YES;
 }
+
 
 
 

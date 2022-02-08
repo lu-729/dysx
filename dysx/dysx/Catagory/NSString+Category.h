@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 手机号码验证 */
 + (BOOL)validateMobile:(NSString *)mobile;
 - (BOOL)validateMobile;
+- (BOOL)isPhoneNum;
 
 /** 字符串是否包含特殊字符 */
 - (BOOL)isIncludeSpecialCharact;

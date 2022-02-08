@@ -15,20 +15,24 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0.1)
   - Masonry (~> 1.1.0)
+  - MBProgressHUD (~> 1.2.0)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - Masonry
+    - MBProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
 
-PODFILE CHECKSUM: a38e5371be5bd983b2f009fecf07d47426cd1d92
+PODFILE CHECKSUM: d074bac4eaf0b98e9482cb7a8af1ca102a9363af
 
 COCOAPODS: 1.11.2
