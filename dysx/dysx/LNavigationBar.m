@@ -43,6 +43,7 @@ typedef void (^ButtonClick)(void);
         diveder.backgroundColor = HexColorInt32_t(307859);
         [self addSubview:diveder];
         [self bringSubviewToFront:diveder];
+        
         _diveder = diveder;
     }
     return self;
