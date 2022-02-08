@@ -108,7 +108,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     EditProfileViewController *editVC = [[EditProfileViewController alloc] init];
-    editVC.flag = indexPath.row;
+    editVC.flag = indexPath.row + 100;
     [self.navigationController pushViewController:editVC animated:YES];
 }
 

@@ -9,11 +9,14 @@
 
 @interface EditProfileViewController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UITextField *nickNameTF;
 @property (nonatomic, copy) NSString *nickName;
 @property (nonatomic, strong) UIView *nickNameView;
 
 @property (nonatomic, strong) UIView *phoneView;
+@property (nonatomic, strong) UITextField *phoneNumTF;
+
+@property (nonatomic, strong) UITextField *verifyCodeTF;
 
 @end
 
@@ -29,7 +32,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     // 通过上个控制器传入的flag值显示对应子视图
-    if (_flag == 0) {
+    if (_flag == 100) {
         [self setUpNickNameViews];
     } else {
         [self setUpPhoneNumViews];
@@ -39,25 +42,26 @@
 #pragma mark - NickNameChange
 
 - (void)setUpNickNameViews {
+    self.title = @"修改昵称";
     _nickNameView = [[UIView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT)];
 //    nickNameView.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:_nickNameView];
-    _textField = [[UITextField alloc] initWithFrame:LRect(0, 80.f, 250.f, 30.f)];
-    _textField.delegate = self;
-    _textField.textAlignment = NSTextAlignmentCenter;
-    _textField.centerX = _nickNameView.centerX;
-    _textField.placeholder = @"输入昵称..";
-    [_textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [_nickNameView addSubview:_textField];
+    _nickNameTF = [[UITextField alloc] initWithFrame:LRect(0, 80.f, 250.f, 30.f)];
+    _nickNameTF.delegate = self;
+    _nickNameTF.textAlignment = NSTextAlignmentCenter;
+    _nickNameTF.centerX = _nickNameView.centerX;
+    _nickNameTF.placeholder = @"输入昵称..";
+    [_nickNameTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [_nickNameView addSubview:_nickNameTF];
     
     UIView *separateLine = [[UIView alloc] init];
     separateLine.backgroundColor = [UIColor lightGrayColor];
     [_nickNameView addSubview:separateLine];
     [separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_textField.mas_left);
+        make.left.equalTo(_nickNameTF.mas_left);
         make.height.mas_equalTo(0.5f);
-        make.width.equalTo(_textField.mas_width);
-        make.top.equalTo(_textField.mas_bottom);
+        make.width.equalTo(_nickNameTF.mas_width);
+        make.top.equalTo(_nickNameTF.mas_bottom);
     }];
     UILabel *tipLabel = [[UILabel alloc] init];
 //    tipLabel.backgroundColor = [UIColor greenColor];
@@ -89,28 +93,73 @@
     }];
 }
 
+
 #pragma mark - PhoneNumberChange
 
 - (void)setUpPhoneNumViews {
+    self.title = @"验证手机号";
     _phoneView = [[UIView alloc] init];
-    
+    UILabel *currentNumLabel = [[UILabel alloc] initWithFrame:LRect(40.f, HeightStatusBar + 100.f, 100.f, 20.f)];
+    currentNumLabel.text = @"当前手机号";
+    currentNumLabel.font = [UIFont systemFontOfSize:13.f];
+    [self.view addSubview:currentNumLabel];
+    _phoneNumTF = [[UITextField alloc] init];
+    _phoneNumTF.delegate = self;
+    _phoneNumTF.placeholder = @"输入当前绑定手机号..";
+    [self.view addSubview:_phoneNumTF];
+    __weak typeof(self) weakSelf = self;
+    [_phoneNumTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(currentNumLabel.mas_left);
+        make.top.equalTo(currentNumLabel.mas_bottom).offset(5.f);
+//        make.right.equalTo(weakSelf.view.mas_right).offset(40.f);
+        make.width.mas_equalTo(SCREEN_WIDTH - 80.f);
+        make.height.mas_equalTo(30.f);
+    }];
+    UIView *separateLine = [[UIView alloc] init];
+    separateLine.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:separateLine];
+    [separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_phoneNumTF.mas_left);
+        make.height.mas_equalTo(0.5f);
+        make.width.equalTo(_phoneNumTF.mas_width);
+        make.top.equalTo(_phoneNumTF.mas_bottom);
+    }];
+    UILabel *verifyCodeLabel = [[UILabel alloc] init];
+    verifyCodeLabel.text = @"验证码";
+    verifyCodeLabel.font = [UIFont systemFontOfSize:13.f];
+    [self.view addSubview:verifyCodeLabel];
+    [verifyCodeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(separateLine.mas_left);
+        make.top.equalTo(separateLine.mas_bottom).offset(10.f);
+        make.width.mas_equalTo(100.f);
+        make.height.mas_equalTo(20.f);
+    }];
+    _verifyCodeTF = [[UITextField alloc] init];
+    _verifyCodeTF.delegate = self;
+    _verifyCodeTF.placeholder = @"输入验证码..";
+    [self.view addSubview:_verifyCodeTF];
+    [_verifyCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+    }];
 }
+
 
 - (void)btnClick {
     
-    if (![_textField.text isEqualToString:@""]) {
-        [_textField resignFirstResponder];
+    if (![_nickNameTF.text isEqualToString:@""]) {
+        [_nickNameTF resignFirstResponder];
         [self sendNotification];
         NSLog(@"text内容不为空");
-        NSLog(@"点击保存_textField。text = %@", _textField.text);
+        NSLog(@"点击保存_textField。text = %@", _nickNameTF.text);
     } else {
         NSLog(@"text内容为空");
     }
 }
 
+
 // 昵称上传后端成功后发送通知,通知其他页面更改昵称
 - (void)sendNotification {
-    NSDictionary *dict = @{@"nickName":_textField.text};
+    NSDictionary *dict = @{@"nickName":_nickNameTF.text};
     NSString *nameChangenotification = @"nameChangeNotification";
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter postNotificationName:nameChangenotification object:self userInfo:dict];
