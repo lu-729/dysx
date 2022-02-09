@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UICollectionView * photoCollectionView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *collectionViewArr;
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -28,15 +29,22 @@
 }
 
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+}
+
+
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:LRect(0, HeightStatusBar + 50.f, SCREEN_WIDTH * 2, SCREEN_HEIGHT - HeightStatusBar - 50.f)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - HeightStatusBar - 50.f)];
         _scrollView.delegate = self;
         _scrollView.backgroundColor = [UIColor whiteColor];
         //设置scrollview滑动范围
-        _scrollView.contentSize = LSize(SCREEN_WIDTH * 2, _scrollView.height);
+        _scrollView.contentSize = LSize(2 * SCREEN_WIDTH, 0);
         _scrollView.pagingEnabled = YES;
         _scrollView.scrollEnabled = YES;
+        _scrollView.showsHorizontalScrollIndicator = YES;
+        _scrollView.showsVerticalScrollIndicator = YES;
         [self.view addSubview:_scrollView];
     }
     return _scrollView;
@@ -45,14 +53,18 @@
 
 - (UICollectionView *)vedioCollectionView {
     if (!_vedioCollectionView) {
-        CGRect frame = LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
+        CGRect frame = LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = LSize(50.f, 50.f);
         layout.minimumInteritemSpacing = 2.f;
         layout.minimumLineSpacing = 2.f;
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _vedioCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+        _vedioCollectionView.tag = 100;
         _vedioCollectionView.delegate = self;
         _vedioCollectionView.dataSource = self;
+        _vedioCollectionView.backgroundColor = [UIColor blueColor];
+        [_vedioCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"vedioCollectionViewCell"];
     }
     return _vedioCollectionView;
 }
@@ -60,24 +72,61 @@
 
 - (UICollectionView *)photoCollectionView {
     if (!_photoCollectionView) {
-        CGRect frame = LRect(SCREEN_WIDTH, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
+        CGRect frame = LRect(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = LSize(50.f, 50.f);
         layout.minimumInteritemSpacing = 2.f;
         layout.minimumLineSpacing = 2.f;
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _photoCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+        _photoCollectionView.tag = 101;
         _photoCollectionView.delegate = self;
         _photoCollectionView.dataSource = self;
+        _photoCollectionView.backgroundColor = [UIColor purpleColor];
+        [_photoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"photoCollectionViewCell"];
+
     }
     return _photoCollectionView;
 }
 
+
+- (UISegmentedControl *)segmentedControl {
+    if (!_segmentedControl) {
+        NSArray *items = @[@"视频", @"图片"];
+        _segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
+        _segmentedControl.frame = LRect(0, NAVBARHEIGHT, SCREEN_WIDTH - 100.f, 50.f);
+        _segmentedControl.centerX = SCREEN_WIDTH / 2;
+        _segmentedControl.selectedSegmentIndex = 0;
+        [_segmentedControl addTarget:self action:@selector(segmentedControlClicked:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _segmentedControl;
+}
+
 - (void)setUpSubViews {
+    [self.view addSubview:self.segmentedControl];
+    
+    
+    
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.vedioCollectionView];
     [self.scrollView addSubview:self.photoCollectionView];
     
     
+    /*
+    NSArray *items = @[@"视频", @"图片"];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
+    [self.view addSubview:segmentedControl];
+    __weak typeof(self) weakSelf = self;
+    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(50.f);
+        make.centerX.equalTo(weakSelf.view.mas_centerX);
+        make.top.mas_equalTo(NAVBARHEIGHT);
+        make.width.mas_equalTo(SCREEN_WIDTH - 100.f);
+    }];
+    */
+    
+    
+    /*
     UIView *topBtnView = [[UIView alloc] init];
     topBtnView.backgroundColor = [UIColor redColor];
     [self.view addSubview:topBtnView];
@@ -110,48 +159,18 @@
             _selectedBtn.selected = YES;
         }
     }
+     */
     
-//    UIScrollView *photoScrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
-//    photoScrollView.contentSize = LSize(2 * SCREEN_WIDTH, SCREEN_HEIGHT);
-//    [self.view addSubview:photoScrollView];
-    
-    /*
-    for (int i = 0; i<2; i++) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        CGFloat itemWidth = SCREEN_WIDTH / 4;
-        [flowLayout setItemSize:LSize(itemWidth, itemWidth)];
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        flowLayout.sectionInset = UIEdgeInsetsMake(5.f, 5.f, 5.f, 5.f);
-    //    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f) collectionViewLayout:flowLayout];
-        collectionView.delegate = self;
-        collectionView.dataSource = self;
-        collectionView.backgroundColor = [UIColor clearColor];
-        [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sdfshfkdshk"];
-        [self.scrollView addSubview:collectionView];
-        [self.collectionViewArr addObject:collectionView];
+}
+
+
+- (void)segmentedControlClicked:(UISegmentedControl *)segmentedControl {
+    NSInteger selectedIndex = segmentedControl.selectedSegmentIndex;
+    if (selectedIndex == 0) {
+        [_scrollView setContentOffset:LPoint(0, 0) animated:YES];
+    } else {
+        [_scrollView setContentOffset:LPoint(SCREEN_WIDTH, 0) animated:YES];
     }
-    self.collectionView = self.collectionViewArr.firstObject;
-    [self.view addSubview:self.scrollView];
-    */
-    
-//    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//    CGFloat itemWidth = SCREEN_WIDTH / 4;
-//    [flowLayout setItemSize:LSize(itemWidth, itemWidth)];
-//    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-//    flowLayout.sectionInset = UIEdgeInsetsMake(5.f, 5.f, 5.f, 5.f);
-//    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
-//    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f) collectionViewLayout:flowLayout];
-//    _collectionView.delegate = self;
-//    _collectionView.dataSource = self;
-//    _collectionView.backgroundColor = [UIColor clearColor];
-//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sdfshfkdshk"];
-//
-//    [self.view addSubview:_collectionView];
-    
-    CGFloat scale = 1.0 / [UIScreen mainScreen].scale;
-    CGFloat space = scale;
-    
 }
 
 
@@ -168,6 +187,25 @@
 }
 
 
+#pragma mark - UIScrollViewDelegate
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    if (scrollView.contentOffset.x == 0) {
+//        _segmentedControl.selectedSegmentIndex = 0;
+//    } else if (scrollView.contentOffset.x == SCREEN_WIDTH) {
+//        _segmentedControl.selectedSegmentIndex = 1;
+//    }
+//}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (scrollView == self.scrollView) {
+        NSInteger index = self.scrollView.contentOffset.x / self.scrollView.width;
+        self.segmentedControl.selectedSegmentIndex = index;
+    }
+}
+
+
+
 
 
 
@@ -175,8 +213,15 @@
 #pragma mark - UICollectionViewDelegate & UICollectionViewDataSource Methods
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sdfshfkdshk" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    UICollectionViewCell *cell;
+    if (collectionView.tag == 100) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"vedioCollectionViewCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor yellowColor];
+    } else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCollectionViewCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor greenColor];
+    }
+    
     NSLog(@"cell.frame = %@", cell);
     return cell;
 }
@@ -186,8 +231,10 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 4;
 }
+
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第%ld组,第%ld个", indexPath.section, indexPath.row);

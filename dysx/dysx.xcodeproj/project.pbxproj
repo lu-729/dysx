@@ -47,6 +47,7 @@
 		95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB440E2779E0BA00BC8062 /* CBTabBarController.m */; };
 		95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44112779E5D800BC8062 /* CBTabBarButton.m */; };
 		95DB44152779E61500BC8062 /* CBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44142779E61500BC8062 /* CBTabBar.m */; };
+		95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */; };
 		9D8159865A7CC4D6F28C4D8C /* Pods_dysxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0D324A78950A511AD55115 /* Pods_dysxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +152,8 @@
 		95DB44112779E5D800BC8062 /* CBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBarButton.m; sourceTree = "<group>"; };
 		95DB44132779E61500BC8062 /* CBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBar.h; sourceTree = "<group>"; };
 		95DB44142779E61500BC8062 /* CBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBar.m; sourceTree = "<group>"; };
+		95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
+		95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControl.m; sourceTree = "<group>"; };
 		E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dysx_dysxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -269,6 +272,8 @@
 				95AAE71A2795136B000282E0 /* ServiceViewController.m */,
 				95AAE71C279513A5000282E0 /* PhotoViewController.h */,
 				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
+				95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */,
+				95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */,
 				95C4C92727995D1700FA9144 /* PhotoScrollView.h */,
 				95C4C92827995D1700FA9144 /* PhotoScrollView.m */,
 				95AAE71F279513F6000282E0 /* ProfileViewController.h */,
@@ -585,6 +590,7 @@
 				95AAE72A2795144A000282E0 /* FBViewController.m in Sources */,
 				95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */,
 				95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */,
+				95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */,
 				0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */,
 				95C4C9262799054000FA9144 /* LTextField.m in Sources */,
 				9578238E279275C800A4AAC1 /* CustomTools.m in Sources */,
