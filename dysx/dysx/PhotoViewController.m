@@ -7,10 +7,13 @@
 
 #import "PhotoViewController.h"
 
-@interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *selectedBtn;
-@property (nonatomic, strong) UICollectionView * collectionView;
+@property (nonatomic, strong) UICollectionView * vedioCollectionView;
+@property (nonatomic, strong) UICollectionView * photoCollectionView;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSMutableArray *collectionViewArr;
 
 @end
 
@@ -18,14 +21,63 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = NO;
     self.title = @"本地相册";
     [self setUpSubViews];
 }
 
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:LRect(0, HeightStatusBar + 50.f, SCREEN_WIDTH * 2, SCREEN_HEIGHT - HeightStatusBar - 50.f)];
+        _scrollView.delegate = self;
+        _scrollView.backgroundColor = [UIColor whiteColor];
+        //设置scrollview滑动范围
+        _scrollView.contentSize = LSize(SCREEN_WIDTH * 2, _scrollView.height);
+        _scrollView.pagingEnabled = YES;
+        _scrollView.scrollEnabled = YES;
+        [self.view addSubview:_scrollView];
+    }
+    return _scrollView;
+}
+
+
+- (UICollectionView *)vedioCollectionView {
+    if (!_vedioCollectionView) {
+        CGRect frame = LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = LSize(50.f, 50.f);
+        layout.minimumInteritemSpacing = 2.f;
+        layout.minimumLineSpacing = 2.f;
+        _vedioCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+        _vedioCollectionView.delegate = self;
+        _vedioCollectionView.dataSource = self;
+    }
+    return _vedioCollectionView;
+}
+
+
+- (UICollectionView *)photoCollectionView {
+    if (!_photoCollectionView) {
+        CGRect frame = LRect(SCREEN_WIDTH, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.itemSize = LSize(50.f, 50.f);
+        layout.minimumInteritemSpacing = 2.f;
+        layout.minimumLineSpacing = 2.f;
+        _photoCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+        _photoCollectionView.delegate = self;
+        _photoCollectionView.dataSource = self;
+    }
+    return _photoCollectionView;
+}
+
 - (void)setUpSubViews {
+    [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.vedioCollectionView];
+    [self.scrollView addSubview:self.photoCollectionView];
+    
+    
     UIView *topBtnView = [[UIView alloc] init];
     topBtnView.backgroundColor = [UIColor redColor];
     [self.view addSubview:topBtnView];
@@ -59,29 +111,49 @@
         }
     }
     
-    UIScrollView *photoScrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
-    photoScrollView.contentSize = LSize(2 * SCREEN_WIDTH, SCREEN_HEIGHT);
+//    UIScrollView *photoScrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
+//    photoScrollView.contentSize = LSize(2 * SCREEN_WIDTH, SCREEN_HEIGHT);
 //    [self.view addSubview:photoScrollView];
     
-    NSLog(@"");
+    /*
+    for (int i = 0; i<2; i++) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        CGFloat itemWidth = SCREEN_WIDTH / 4;
+        [flowLayout setItemSize:LSize(itemWidth, itemWidth)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        flowLayout.sectionInset = UIEdgeInsetsMake(5.f, 5.f, 5.f, 5.f);
+    //    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f) collectionViewLayout:flowLayout];
+        collectionView.delegate = self;
+        collectionView.dataSource = self;
+        collectionView.backgroundColor = [UIColor clearColor];
+        [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sdfshfkdshk"];
+        [self.scrollView addSubview:collectionView];
+        [self.collectionViewArr addObject:collectionView];
+    }
+    self.collectionView = self.collectionViewArr.firstObject;
+    [self.view addSubview:self.scrollView];
+    */
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    CGFloat itemWidth = SCREEN_WIDTH / 4;
-    [flowLayout setItemSize:LSize(itemWidth, itemWidth)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    flowLayout.sectionInset = UIEdgeInsetsMake(5.f, 5.f, 5.f, 5.f);
+//    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+//    CGFloat itemWidth = SCREEN_WIDTH / 4;
+//    [flowLayout setItemSize:LSize(itemWidth, itemWidth)];
+//    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+//    flowLayout.sectionInset = UIEdgeInsetsMake(5.f, 5.f, 5.f, 5.f);
 //    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f)];
-    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f) collectionViewLayout:flowLayout];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    _collectionView.backgroundColor = [UIColor clearColor];
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sdfshfkdshk"];
-    [self.view addSubview:_collectionView];
+//    _collectionView = [[UICollectionView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f) collectionViewLayout:flowLayout];
+//    _collectionView.delegate = self;
+//    _collectionView.dataSource = self;
+//    _collectionView.backgroundColor = [UIColor clearColor];
+//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sdfshfkdshk"];
+//
+//    [self.view addSubview:_collectionView];
     
     CGFloat scale = 1.0 / [UIScreen mainScreen].scale;
     CGFloat space = scale;
     
 }
+
 
 - (void)buttonClicked:(UIButton *)button {
     _selectedBtn.selected = NO;
@@ -97,6 +169,10 @@
 
 
 
+
+
+
+#pragma mark - UICollectionViewDelegate & UICollectionViewDataSource Methods
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sdfshfkdshk" forIndexPath:indexPath];
