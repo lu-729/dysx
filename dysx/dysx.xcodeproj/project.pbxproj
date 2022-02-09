@@ -48,6 +48,7 @@
 		95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44112779E5D800BC8062 /* CBTabBarButton.m */; };
 		95DB44152779E61500BC8062 /* CBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44142779E61500BC8062 /* CBTabBar.m */; };
 		95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */; };
+		95E1514127B3EFDD0008A324 /* PhotoCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1514027B3EFDD0008A324 /* PhotoCollectionReusableView.m */; };
 		9D8159865A7CC4D6F28C4D8C /* Pods_dysxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0D324A78950A511AD55115 /* Pods_dysxTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,8 @@
 		95DB44142779E61500BC8062 /* CBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBar.m; sourceTree = "<group>"; };
 		95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
 		95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControl.m; sourceTree = "<group>"; };
+		95E1513F27B3EFDD0008A324 /* PhotoCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionReusableView.h; sourceTree = "<group>"; };
+		95E1514027B3EFDD0008A324 /* PhotoCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionReusableView.m; sourceTree = "<group>"; };
 		E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dysx_dysxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -274,6 +277,8 @@
 				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
 				95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */,
 				95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */,
+				95E1513F27B3EFDD0008A324 /* PhotoCollectionReusableView.h */,
+				95E1514027B3EFDD0008A324 /* PhotoCollectionReusableView.m */,
 				95C4C92727995D1700FA9144 /* PhotoScrollView.h */,
 				95C4C92827995D1700FA9144 /* PhotoScrollView.m */,
 				95AAE71F279513F6000282E0 /* ProfileViewController.h */,
@@ -580,6 +585,7 @@
 				9599C7732797EA520031F360 /* HelpView.m in Sources */,
 				95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */,
 				959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */,
+				95E1514127B3EFDD0008A324 /* PhotoCollectionReusableView.m in Sources */,
 				95AAE72427951417000282E0 /* HelpViewController.m in Sources */,
 				88D5F428275DB20000B7082A /* BaseViewController.m in Sources */,
 				959EEBE527915E86007A8200 /* LTabBarButton.m in Sources */,

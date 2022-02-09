@@ -6,6 +6,9 @@
 //
 
 #import "PhotoViewController.h"
+#import "PhotoCollectionReusableView.h"
+
+#define HeaderViewID @"PhotoCollectionReusableViewID"
 
 @interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
@@ -54,17 +57,19 @@
 - (UICollectionView *)vedioCollectionView {
     if (!_vedioCollectionView) {
         CGRect frame = LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = LSize(50.f, 50.f);
-        layout.minimumInteritemSpacing = 2.f;
-        layout.minimumLineSpacing = 2.f;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _vedioCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.itemSize = LSize(50.f, 50.f);
+        flowLayout.minimumInteritemSpacing = 2.f;
+        flowLayout.minimumLineSpacing = 2.f;
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        flowLayout.sectionHeadersPinToVisibleBounds = YES;
+        _vedioCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _vedioCollectionView.tag = 100;
         _vedioCollectionView.delegate = self;
         _vedioCollectionView.dataSource = self;
         _vedioCollectionView.backgroundColor = [UIColor blueColor];
         [_vedioCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"vedioCollectionViewCell"];
+        [_vedioCollectionView registerClass:[PhotoCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID];
     }
     return _vedioCollectionView;
 }
@@ -73,18 +78,19 @@
 - (UICollectionView *)photoCollectionView {
     if (!_photoCollectionView) {
         CGRect frame = LRect(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = LSize(50.f, 50.f);
-        layout.minimumInteritemSpacing = 2.f;
-        layout.minimumLineSpacing = 2.f;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _photoCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.itemSize = LSize(50.f, 50.f);
+        flowLayout.minimumInteritemSpacing = 2.f;
+        flowLayout.minimumLineSpacing = 2.f;
+        flowLayout.sectionHeadersPinToVisibleBounds = YES;
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _photoCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _photoCollectionView.tag = 101;
         _photoCollectionView.delegate = self;
         _photoCollectionView.dataSource = self;
         _photoCollectionView.backgroundColor = [UIColor purpleColor];
         [_photoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"photoCollectionViewCell"];
-
+        [_photoCollectionView registerClass:[PhotoCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID];
     }
     return _photoCollectionView;
 }
@@ -102,11 +108,9 @@
     return _segmentedControl;
 }
 
+
 - (void)setUpSubViews {
     [self.view addSubview:self.segmentedControl];
-    
-    
-    
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.vedioCollectionView];
     [self.scrollView addSubview:self.photoCollectionView];
@@ -189,24 +193,12 @@
 
 #pragma mark - UIScrollViewDelegate
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    if (scrollView.contentOffset.x == 0) {
-//        _segmentedControl.selectedSegmentIndex = 0;
-//    } else if (scrollView.contentOffset.x == SCREEN_WIDTH) {
-//        _segmentedControl.selectedSegmentIndex = 1;
-//    }
-//}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
         NSInteger index = self.scrollView.contentOffset.x / self.scrollView.width;
         self.segmentedControl.selectedSegmentIndex = index;
     }
 }
-
-
-
-
 
 
 
@@ -225,6 +217,17 @@
     NSLog(@"cell.frame = %@", cell);
     return cell;
 }
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    PhotoCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID forIndexPath:indexPath];
+    headerView.backgroundColor = [UIColor whiteColor];
+    return headerView;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return LSize(SCREEN_WIDTH, 30.f);
+}
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 9;
