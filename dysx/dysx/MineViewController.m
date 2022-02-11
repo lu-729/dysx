@@ -29,11 +29,12 @@
 
 @implementation MineViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.view.backgroundColor = MAIN_COLOR;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBarHidden = YES;
+    
     _dataArr = @[@[@"增值服务"], @[@"本地相册", @"编辑资料", @"紧急求助", @"常见问题", @"用户反馈"], @[@"设置"]];
     
     [self setupSubViews];
@@ -42,9 +43,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden =NO;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nickNameChange:) name:@"nameChangeNotification" object:nil];
 }
+
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -169,6 +177,7 @@
             case 4:vc = [[FBViewController alloc] init];break;
             default:break;
         }
+        self.hidesBottomBarWhenPushed = YES;
         if (indexPath.row == 0) {
             if ([LPhotoTools isCanVisitPhotoLibrary] == YES) {
                 [self.navigationController pushViewController:vc animated:YES];
@@ -179,8 +188,9 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
        
-        self.tabBarController.tabBar.hidden = YES;
-//        self.hidesBottomBarWhenPushed = YES;
+
+//        self.tabBarController.tabBar.hidden = YES;
+        
     } else {
         
     }

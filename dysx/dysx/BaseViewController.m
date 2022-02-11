@@ -15,11 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (BOOL)prefersHomeIndicatorAutoHidden {

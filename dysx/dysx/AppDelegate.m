@@ -22,7 +22,7 @@
     
     //创建并显示窗口
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    _window.backgroundColor = [UIColor redColor];
+    _window.backgroundColor = [UIColor whiteColor];
     [_window makeKeyAndVisible];
     //设置窗口根视图控制器为CBTabBarController
 //    CBTabBarController *tabBarVC = [[CBTabBarController alloc] init];

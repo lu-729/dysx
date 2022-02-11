@@ -18,15 +18,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
 //    self.edgesForExtendedLayout	= UIRectEdgeNone;
-    [self.navigationController setNavigationBarHidden:YES];
-    self.l_navgationBar = [LNavigationBar navWithTitle:@"首页"];
-    
+//    [self.navigationController setNavigationBarHidden:YES];
+//    self.l_navgationBar = [LNavigationBar navWithTitle:@"首页"];
+    [self createNavBarLeftButtonItem];
 }
 
-- (void)initSubView {
+
+- (void)createNavBarLeftButtonItem {
+    UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    if (messageBtn) {
+        messageBtn.frame = LRect(0, 0, SCREEN_WIDTH / 5.0, 44.f);
+        [messageBtn setTitle:@"消息" forState:UIControlStateNormal];
+//        [messageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        messageBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
+        messageBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [messageBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -30.f, 0, 0)];
+        [messageBtn addTarget:self action:@selector(messageBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:messageBtn];
+        if (leftItem) {
+            self.navigationItem.leftBarButtonItem = leftItem;
+        }
+    }
+}
+
+- (void)messageBtnAction {
     
 }
 

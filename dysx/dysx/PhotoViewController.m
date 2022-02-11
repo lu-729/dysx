@@ -7,6 +7,8 @@
 
 #import "PhotoViewController.h"
 #import "PhotoCollectionReusableView.h"
+#import "PreviewPhotoViewController.h"
+#import "BaseNavigationController.h"
 
 #define HeaderViewID @"PhotoCollectionReusableViewID"
 
@@ -25,12 +27,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = [UIColor systemPinkColor];
+//    self.navigationController.navigationBarHidden = NO;
     self.title = @"本地相册";
     [self setUpSubViews];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -202,7 +208,7 @@
 
 
 
-#pragma mark - UICollectionViewDelegate & UICollectionViewDataSource Methods
+#pragma mark - UICollectionViewDataSource Methods
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UICollectionViewCell *cell;
@@ -238,14 +244,23 @@
 }
 
 
+#pragma mark - UICollectionViewDelegate Methods
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第%ld组,第%ld个", indexPath.section, indexPath.row);
+    PreviewPhotoViewController *previewPhotoVC = [[PreviewPhotoViewController alloc] init];
+    BaseNavigationController *previewPhotoNav = [[BaseNavigationController alloc] initWithRootViewController:previewPhotoVC];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:previewPhotoVC animated:YES];
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return LSize((SCREEN_WIDTH - 25.f) / 4, (SCREEN_WIDTH - 25.f) / 4);
 }
+
+
 
 
 

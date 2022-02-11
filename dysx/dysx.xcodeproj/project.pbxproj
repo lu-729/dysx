@@ -23,6 +23,8 @@
 		8997E5A61CD45EA859DF2403 /* Pods_dysx_dysxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */; };
 		9578238E279275C800A4AAC1 /* CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9578238D279275C800A4AAC1 /* CustomTools.m */; };
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
+		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
+		9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92827B4A16E00D90337 /* UIViewController+LModal.m */; };
 		9599C7732797EA520031F360 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9599C7722797EA520031F360 /* HelpView.m */; };
 		959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBDE27914F45007A8200 /* LTabBarController.m */; };
 		959EEBE227914F6C007A8200 /* LTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE127914F6C007A8200 /* LTabBar.m */; };
@@ -105,6 +107,10 @@
 		9578238D279275C800A4AAC1 /* CustomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTools.m; sourceTree = "<group>"; };
 		957E98DE27965542006880A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		957E98DF27965542006880A9 /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewPhotoViewController.h; sourceTree = "<group>"; };
+		9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreviewPhotoViewController.m; sourceTree = "<group>"; };
+		9589F92727B4A16E00D90337 /* UIViewController+LModal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LModal.h"; sourceTree = "<group>"; };
+		9589F92827B4A16E00D90337 /* UIViewController+LModal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LModal.m"; sourceTree = "<group>"; };
 		9599C7712797EA520031F360 /* HelpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		9599C7722797EA520031F360 /* HelpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		959EEBDD27914F45007A8200 /* LTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBarController.h; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 				95AAE73827954CD2000282E0 /* NSString+Category.m */,
 				95AAE73A27954E0C000282E0 /* UIButton+Category.h */,
 				95AAE73B27954E0C000282E0 /* UIButton+Category.m */,
+				9589F92727B4A16E00D90337 /* UIViewController+LModal.h */,
+				9589F92827B4A16E00D90337 /* UIViewController+LModal.m */,
 			);
 			path = Catagory;
 			sourceTree = "<group>";
@@ -275,6 +283,8 @@
 				95AAE71A2795136B000282E0 /* ServiceViewController.m */,
 				95AAE71C279513A5000282E0 /* PhotoViewController.h */,
 				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
+				9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */,
+				9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */,
 				95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */,
 				95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */,
 				95E1513F27B3EFDD0008A324 /* PhotoCollectionReusableView.h */,
@@ -576,6 +586,8 @@
 			files = (
 				95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */,
 				959EEBE227914F6C007A8200 /* LTabBar.m in Sources */,
+				9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */,
+				9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */,
 				95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */,
 				95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */,
 				95AAE72727951436000282E0 /* QAViewController.m in Sources */,
