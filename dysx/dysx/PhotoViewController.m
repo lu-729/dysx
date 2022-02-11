@@ -9,8 +9,10 @@
 #import "PhotoCollectionReusableView.h"
 #import "PreviewPhotoViewController.h"
 #import "BaseNavigationController.h"
+#import "PhotoCollectionViewCell.h"
 
 #define HeaderViewID @"PhotoCollectionReusableViewID"
+#define collectionViewCellWidth
 
 @interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
@@ -20,6 +22,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *collectionViewArr;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
+@property (nonatomic, assign) BOOL isSelected;
 
 @end
 
@@ -64,7 +67,7 @@
     if (!_vedioCollectionView) {
         CGRect frame = LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = LSize(50.f, 50.f);
+        flowLayout.itemSize = LSize(80.f, 50.f);
         flowLayout.minimumInteritemSpacing = 2.f;
         flowLayout.minimumLineSpacing = 2.f;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -74,7 +77,7 @@
         _vedioCollectionView.delegate = self;
         _vedioCollectionView.dataSource = self;
         _vedioCollectionView.backgroundColor = [UIColor blueColor];
-        [_vedioCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"vedioCollectionViewCell"];
+        [_vedioCollectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"vedioCollectionViewCell"];
         [_vedioCollectionView registerClass:[PhotoCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID];
     }
     return _vedioCollectionView;
@@ -95,7 +98,7 @@
         _photoCollectionView.delegate = self;
         _photoCollectionView.dataSource = self;
         _photoCollectionView.backgroundColor = [UIColor purpleColor];
-        [_photoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"photoCollectionViewCell"];
+        [_photoCollectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"photoCollectionViewCell"];
         [_photoCollectionView registerClass:[PhotoCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID];
     }
     return _photoCollectionView;
@@ -115,7 +118,54 @@
 }
 
 
+
+/// 创建导航栏右侧选择按钮
+- (void)createNavBarRightBtn {
+//    UIButton *rightChoiceBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *rightChoiceBtn = [[UIButton alloc] init];;
+    if (rightChoiceBtn) {
+        _isSelected = NO;
+        rightChoiceBtn.frame = LRect(0, 0, SCREEN_WIDTH / 5.0, 44.f);
+        [rightChoiceBtn setTitle:@"选择" forState:UIControlStateNormal];
+        [rightChoiceBtn setTitle:@"取消" forState:UIControlStateSelected];
+        rightChoiceBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
+        [rightChoiceBtn setTitleColor:[UIColor systemBlueColor]];
+        rightChoiceBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [rightChoiceBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -30)];
+        [rightChoiceBtn addTarget:self action:@selector(choiceBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightChoiceBtn];
+        if (rightItem) {
+            self.navigationItem.rightBarButtonItem = rightItem;
+        }
+    }
+}
+
+
+- (void)choiceBtnAction:(UIButton *)button {
+    _isSelected = !_isSelected;
+    button.selected = _isSelected;
+    //点击按钮时，切换控制器标题以及segmentedControl控件的交互功能
+    if (_isSelected) {
+        self.title = @"已选择%d张照片";
+        _segmentedControl.userInteractionEnabled = NO;
+        _scrollView.scrollEnabled = NO;
+    } else {
+        self.title = @"本地相册";
+        _segmentedControl.userInteractionEnabled = YES;
+        _scrollView.scrollEnabled = YES;
+    }
+    
+    
+    
+    //使用颜色生成图片
+    UIImage *normalImg = [UIImage imageWithColor:[UIColor whiteColor] size:LSize(10.f, 10.f)];
+    UIImage *highlightedImg = [UIImage imageWithColor:[UIColor blueColor] size:LSize(10.f, 10.f)];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:normalImg highlightedImage:highlightedImg];
+    
+}
+
 - (void)setUpSubViews {
+    [self createNavBarRightBtn];
     [self.view addSubview:self.segmentedControl];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.vedioCollectionView];
@@ -211,7 +261,7 @@
 #pragma mark - UICollectionViewDataSource Methods
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UICollectionViewCell *cell;
+    PhotoCollectionViewCell *cell;
     if (collectionView.tag == 100) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"vedioCollectionViewCell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor yellowColor];
@@ -249,11 +299,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第%ld组,第%ld个", indexPath.section, indexPath.row);
+    if (_selectedBtn) {
+#warning previewPhotoVC is to be review
     PreviewPhotoViewController *previewPhotoVC = [[PreviewPhotoViewController alloc] init];
-    BaseNavigationController *previewPhotoNav = [[BaseNavigationController alloc] initWithRootViewController:previewPhotoVC];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:previewPhotoVC animated:YES];
-    
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

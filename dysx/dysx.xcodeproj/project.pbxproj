@@ -25,6 +25,7 @@
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
 		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
 		9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92827B4A16E00D90337 /* UIViewController+LModal.m */; };
+		9589F92C27B6148E00D90337 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */; };
 		9599C7732797EA520031F360 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9599C7722797EA520031F360 /* HelpView.m */; };
 		959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBDE27914F45007A8200 /* LTabBarController.m */; };
 		959EEBE227914F6C007A8200 /* LTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE127914F6C007A8200 /* LTabBar.m */; };
@@ -111,6 +112,8 @@
 		9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreviewPhotoViewController.m; sourceTree = "<group>"; };
 		9589F92727B4A16E00D90337 /* UIViewController+LModal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LModal.h"; sourceTree = "<group>"; };
 		9589F92827B4A16E00D90337 /* UIViewController+LModal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LModal.m"; sourceTree = "<group>"; };
+		9589F92A27B6148E00D90337 /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		9599C7712797EA520031F360 /* HelpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		9599C7722797EA520031F360 /* HelpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		959EEBDD27914F45007A8200 /* LTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBarController.h; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 				95AAE71A2795136B000282E0 /* ServiceViewController.m */,
 				95AAE71C279513A5000282E0 /* PhotoViewController.h */,
 				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
+				9589F92A27B6148E00D90337 /* PhotoCollectionViewCell.h */,
+				9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */,
 				9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */,
 				9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */,
 				95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */,
@@ -607,6 +612,7 @@
 				95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */,
 				95AAE72A2795144A000282E0 /* FBViewController.m in Sources */,
 				95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */,
+				9589F92C27B6148E00D90337 /* PhotoCollectionViewCell.m in Sources */,
 				95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */,
 				95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */,
 				0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */,

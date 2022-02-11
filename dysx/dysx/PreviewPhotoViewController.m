@@ -9,6 +9,9 @@
 
 @interface PreviewPhotoViewController ()
 
+@property (nonatomic, strong) NSArray *photoArr;
+
+
 @end
 
 @implementation PreviewPhotoViewController
