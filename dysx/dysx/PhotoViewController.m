@@ -12,7 +12,7 @@
 #import "PhotoCollectionViewCell.h"
 
 #define HeaderViewID @"PhotoCollectionReusableViewID"
-#define collectionViewCellWidth
+#define CollectionViewCellWidth (SCREEN_WIDTH - 2*2.f) / 3
 
 @interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
@@ -67,7 +67,7 @@
     if (!_vedioCollectionView) {
         CGRect frame = LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = LSize(80.f, 50.f);
+//        flowLayout.itemSize = LSize(80.f, 50.f);
         flowLayout.minimumInteritemSpacing = 2.f;
         flowLayout.minimumLineSpacing = 2.f;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -76,7 +76,7 @@
         _vedioCollectionView.tag = 100;
         _vedioCollectionView.delegate = self;
         _vedioCollectionView.dataSource = self;
-        _vedioCollectionView.backgroundColor = [UIColor blueColor];
+        _vedioCollectionView.backgroundColor = [UIColor whiteColor];
         [_vedioCollectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"vedioCollectionViewCell"];
         [_vedioCollectionView registerClass:[PhotoCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID];
     }
@@ -88,7 +88,7 @@
     if (!_photoCollectionView) {
         CGRect frame = LRect(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - 50.f);
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = LSize(50.f, 50.f);
+//        flowLayout.itemSize = LSize(50.f, 50.f);
         flowLayout.minimumInteritemSpacing = 2.f;
         flowLayout.minimumLineSpacing = 2.f;
         flowLayout.sectionHeadersPinToVisibleBounds = YES;
@@ -97,7 +97,7 @@
         _photoCollectionView.tag = 101;
         _photoCollectionView.delegate = self;
         _photoCollectionView.dataSource = self;
-        _photoCollectionView.backgroundColor = [UIColor purpleColor];
+        _photoCollectionView.backgroundColor = [UIColor whiteColor];
         [_photoCollectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:@"photoCollectionViewCell"];
         [_photoCollectionView registerClass:[PhotoCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID];
     }
@@ -280,10 +280,6 @@
     return headerView;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return LSize(SCREEN_WIDTH, 30.f);
-}
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 9;
@@ -294,12 +290,26 @@
 }
 
 
+#pragma mark - UICollectionViewDelegateFlowLayout Method
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat collectionViewCellHeight = CollectionViewCellWidth * (9.0 / 16) + 20.f;
+    return CGSizeMake(CollectionViewCellWidth, collectionViewCellHeight);
+}
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return LSize(SCREEN_WIDTH, 30.f);
+}
+
+
 #pragma mark - UICollectionViewDelegate Methods
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"点击了第%ld组,第%ld个", indexPath.section, indexPath.row);
-    if (_selectedBtn) {
+    if (!_isSelected) {
 #warning previewPhotoVC is to be review
     PreviewPhotoViewController *previewPhotoVC = [[PreviewPhotoViewController alloc] init];
     self.hidesBottomBarWhenPushed = YES;
@@ -307,9 +317,7 @@
     }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return LSize((SCREEN_WIDTH - 25.f) / 4, (SCREEN_WIDTH - 25.f) / 4);
-}
+
 
 
 
