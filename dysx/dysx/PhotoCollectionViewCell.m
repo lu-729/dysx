@@ -21,7 +21,7 @@
 
 
 - (void)createSubviews {
-    _markImgView = [[UIImageView alloc] initWithImage:<#(nullable UIImage *)#> highlightedImage:<#(nullable UIImage *)#>];
+//    _markImgView = [[UIImageView alloc] initWithImage:<#(nullable UIImage *)#> highlightedImage:<#(nullable UIImage *)#>];
     _markImgView.hidden = YES;
     [self addSubview:self.imgView];
     [self addSubview:self.timeLabel];
