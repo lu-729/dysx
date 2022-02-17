@@ -7,6 +7,7 @@
 
 #import "MainViewController.h"
 #import "LNavigationBar.h"
+#import "ScanViewController.h"
 
 @interface MainViewController () {
     
@@ -26,6 +27,11 @@
 }
 
 
+- (void)viewWillDisappear:(BOOL)animated {
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+
 - (void)createNavBarLeftButtonItem {
     UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     if (messageBtn) {
@@ -41,10 +47,30 @@
             self.navigationItem.leftBarButtonItem = leftItem;
         }
     }
+    
+    UIButton *scanBtn = [[UIButton alloc] initWithFrame:LRect(0, 0, 44.f, 44.f)];
+    if (scanBtn) {
+        [scanBtn setImage:[UIImage imageNamed:@"jiahao"] forState:UIControlStateNormal];
+        [scanBtn setImageEdgeInsets:UIEdgeInsetsMake(4.f, 4.f, 4.f, 0)];
+        [scanBtn addTarget:self action:@selector(scanBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:scanBtn];
+        if (rightItem) {
+            self.navigationItem.rightBarButtonItem = rightItem;
+        }
+    }
+    
 }
+
 
 - (void)messageBtnAction {
     
+}
+
+
+- (void)scanBtnAction {
+    ScanViewController *scanVC = [[ScanViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:scanVC animated:YES];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

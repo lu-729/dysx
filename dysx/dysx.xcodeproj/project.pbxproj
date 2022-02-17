@@ -21,7 +21,7 @@
 		88D5F428275DB20000B7082A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F422275DB1FF00B7082A /* BaseViewController.m */; };
 		88D5F429275DB20000B7082A /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F424275DB1FF00B7082A /* MineViewController.m */; };
 		8997E5A61CD45EA859DF2403 /* Pods_dysx_dysxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */; };
-		956C467227B743EE00FFE67C /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 956C467127B743ED00FFE67C /* Resources */; };
+		9519FF3527BDE7290059CFF8 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9519FF3427BDE7290059CFF8 /* ScanViewController.m */; };
 		9578238E279275C800A4AAC1 /* CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9578238D279275C800A4AAC1 /* CustomTools.m */; };
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
 		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
@@ -105,7 +105,8 @@
 		88D5F423275DB1FF00B7082A /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		88D5F424275DB1FF00B7082A /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		88D5F425275DB1FF00B7082A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		956C467127B743ED00FFE67C /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = dysx/Resources; sourceTree = "<group>"; };
+		9519FF3327BDE7290059CFF8 /* ScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		9519FF3427BDE7290059CFF8 /* ScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		9578238C279275C800A4AAC1 /* CustomTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTools.h; sourceTree = "<group>"; };
 		9578238D279275C800A4AAC1 /* CustomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTools.m; sourceTree = "<group>"; };
 		957E98DE27965542006880A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -236,7 +237,6 @@
 		88D5F3DC275DB12100B7082A = {
 			isa = PBXGroup;
 			children = (
-				956C467127B743ED00FFE67C /* Resources */,
 				88D5F3E7275DB12200B7082A /* dysx */,
 				88D5F403275DB12600B7082A /* dysxTests */,
 				88D5F40D275DB12600B7082A /* dysxUITests */,
@@ -281,6 +281,8 @@
 				95DB44142779E61500BC8062 /* CBTabBar.m */,
 				88D5F425275DB1FF00B7082A /* MainViewController.h */,
 				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
+				9519FF3327BDE7290059CFF8 /* ScanViewController.h */,
+				9519FF3427BDE7290059CFF8 /* ScanViewController.m */,
 				88D5F423275DB1FF00B7082A /* MineViewController.h */,
 				88D5F424275DB1FF00B7082A /* MineViewController.m */,
 				95C4C92A279AA48C00FA9144 /* LPhotoTools.h */,
@@ -465,7 +467,6 @@
 			files = (
 				066063A227B111E2009CD455 /* Launch Screen.storyboard in Resources */,
 				88D5F3F5275DB12600B7082A /* Assets.xcassets in Resources */,
-				956C467227B743EE00FFE67C /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +598,7 @@
 				959EEBE227914F6C007A8200 /* LTabBar.m in Sources */,
 				9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */,
 				9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */,
+				9519FF3527BDE7290059CFF8 /* ScanViewController.m in Sources */,
 				95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */,
 				95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */,
 				95AAE72727951436000282E0 /* QAViewController.m in Sources */,
@@ -792,9 +794,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dysx/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App需要你的授权才使用麦克风权限";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -822,9 +825,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dysx/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App需要你的授权才使用麦克风权限";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
