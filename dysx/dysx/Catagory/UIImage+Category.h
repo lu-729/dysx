@@ -52,7 +52,7 @@ typedef NS_ENUM(NSUInteger, SeparatedDirection) {
 /**
  *  图片拼接
  *
- *  @param view 生成的拼接图片
+ *  @param images 生成的拼接图片
  */
 + (UIImage *)composeNewImageWithImages:(NSArray<UIImage *> *)images;
 

@@ -221,50 +221,10 @@
 			path = Catagory;
 			sourceTree = "<group>";
 		};
-		2276144E48D1C2FA62803A1D /* Pods */ = {
+		06E162C427C0C88400F4FF0D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				270B558323A4C9A30B17773A /* Pods-dysx.debug.xcconfig */,
-				120E99C4E3153BE8BAD42DC3 /* Pods-dysx.release.xcconfig */,
-				614DF5C5146C654DD7D41278 /* Pods-dysx-dysxUITests.debug.xcconfig */,
-				130FCFD9F4992BFC9F82362D /* Pods-dysx-dysxUITests.release.xcconfig */,
-				763CBBC94FC40A4CECA3D951 /* Pods-dysxTests.debug.xcconfig */,
-				4EBB53A1A42A0B4B57BC1FE5 /* Pods-dysxTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		88D5F3DC275DB12100B7082A = {
-			isa = PBXGroup;
-			children = (
-				88D5F3E7275DB12200B7082A /* dysx */,
-				88D5F403275DB12600B7082A /* dysxTests */,
-				88D5F40D275DB12600B7082A /* dysxUITests */,
-				88D5F3E6275DB12200B7082A /* Products */,
-				2276144E48D1C2FA62803A1D /* Pods */,
-				8E64D5A3B8AE24ECD6645DFD /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		88D5F3E6275DB12200B7082A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				88D5F3E5275DB12200B7082A /* dysx.app */,
-				88D5F400275DB12600B7082A /* dysxTests.xctest */,
-				88D5F40A275DB12600B7082A /* dysxUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		88D5F3E7275DB12200B7082A /* dysx */ = {
-			isa = PBXGroup;
-			children = (
-				88D5F3E8275DB12200B7082A /* AppDelegate.h */,
-				88D5F3E9275DB12200B7082A /* AppDelegate.m */,
-				88D5F41D275DB1FF00B7082A /* BaseNavigationController.h */,
-				88D5F421275DB1FF00B7082A /* BaseNavigationController.m */,
-				88D5F420275DB1FF00B7082A /* BaseViewController.h */,
-				88D5F422275DB1FF00B7082A /* BaseViewController.m */,
+				06E162C827C0C9F800F4FF0D /* BaseClasses */,
 				95AAE73D279552F4000282E0 /* LNavigationBar.h */,
 				95AAE73E279552F4000282E0 /* LNavigationBar.m */,
 				959EEBDD27914F45007A8200 /* LTabBarController.h */,
@@ -319,13 +279,77 @@
 				95AAE72C2795146B000282E0 /* SetViewController.m */,
 				95AAE71627950EEE000282E0 /* mineTableViewCell.h */,
 				95AAE71727950EEE000282E0 /* mineTableViewCell.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		06E162C827C0C9F800F4FF0D /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F41D275DB1FF00B7082A /* BaseNavigationController.h */,
+				88D5F421275DB1FF00B7082A /* BaseNavigationController.m */,
+				88D5F420275DB1FF00B7082A /* BaseViewController.h */,
+				88D5F422275DB1FF00B7082A /* BaseViewController.m */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		06E162CC27C0CC2900F4FF0D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F3F9275DB12600B7082A /* Info.plist */,
 				88D5F41F275DB1FF00B7082A /* PrefixHeader.pch */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2276144E48D1C2FA62803A1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				270B558323A4C9A30B17773A /* Pods-dysx.debug.xcconfig */,
+				120E99C4E3153BE8BAD42DC3 /* Pods-dysx.release.xcconfig */,
+				614DF5C5146C654DD7D41278 /* Pods-dysx-dysxUITests.debug.xcconfig */,
+				130FCFD9F4992BFC9F82362D /* Pods-dysx-dysxUITests.release.xcconfig */,
+				763CBBC94FC40A4CECA3D951 /* Pods-dysxTests.debug.xcconfig */,
+				4EBB53A1A42A0B4B57BC1FE5 /* Pods-dysxTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		88D5F3DC275DB12100B7082A = {
+			isa = PBXGroup;
+			children = (
+				88D5F3E7275DB12200B7082A /* dysx */,
+				88D5F403275DB12600B7082A /* dysxTests */,
+				88D5F40D275DB12600B7082A /* dysxUITests */,
+				88D5F3E6275DB12200B7082A /* Products */,
+				2276144E48D1C2FA62803A1D /* Pods */,
+				8E64D5A3B8AE24ECD6645DFD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		88D5F3E6275DB12200B7082A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F3E5275DB12200B7082A /* dysx.app */,
+				88D5F400275DB12600B7082A /* dysxTests.xctest */,
+				88D5F40A275DB12600B7082A /* dysxUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88D5F3E7275DB12200B7082A /* dysx */ = {
+			isa = PBXGroup;
+			children = (
+				06E162C427C0C88400F4FF0D /* Classes */,
+				88D5F3E8275DB12200B7082A /* AppDelegate.h */,
+				88D5F3E9275DB12200B7082A /* AppDelegate.m */,
 				9578238C279275C800A4AAC1 /* CustomTools.h */,
 				9578238D279275C800A4AAC1 /* CustomTools.m */,
 				88D5F3F4275DB12600B7082A /* Assets.xcassets */,
-				88D5F3F9275DB12600B7082A /* Info.plist */,
 				88D5F3FA275DB12600B7082A /* main.m */,
 				06234489277B3E49006173EB /* Catagory */,
+				06E162CC27C0CC2900F4FF0D /* Supporting Files */,
 				066063A127B111E2009CD455 /* Launch Screen.storyboard */,
 			);
 			path = dysx;
@@ -790,9 +814,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P8WZV3WY5A;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/dysx/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/dysx/Supporting Files/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = dysx/Info.plist;
+				INFOPLIST_FILE = "dysx/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App需要你的授权才使用麦克风权限";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
@@ -821,9 +845,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P8WZV3WY5A;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/dysx/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/dysx/Supporting Files/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = dysx/Info.plist;
+				INFOPLIST_FILE = "dysx/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App需要你的授权才使用麦克风权限";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
