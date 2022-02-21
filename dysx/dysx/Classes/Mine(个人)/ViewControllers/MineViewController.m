@@ -35,7 +35,7 @@
 //    self.view.backgroundColor = MAIN_COLOR;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _dataArr = @[@[@"增值服务"], @[@"本地相册", @"编辑资料", @"紧急求助", @"常见问题", @"用户反馈"], @[@"设置"]];
+    _dataArr = @[@[@"增值服务"], @[@"本地相册", @"编辑资料", @"紧急求助", @"常见问题", @"用户反馈"], @[@"设置"]];		
     
     [self setupSubViews];
     
