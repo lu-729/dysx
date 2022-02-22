@@ -224,61 +224,11 @@
 		06E162C427C0C88400F4FF0D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				959592FD27C321C3003249B8 /* Toos */,
 				06E162C827C0C9F800F4FF0D /* BaseClasses */,
-				95AAE73D279552F4000282E0 /* LNavigationBar.h */,
-				95AAE73E279552F4000282E0 /* LNavigationBar.m */,
-				959EEBDD27914F45007A8200 /* LTabBarController.h */,
-				959EEBDE27914F45007A8200 /* LTabBarController.m */,
-				959EEBE027914F6C007A8200 /* LTabBar.h */,
-				959EEBE127914F6C007A8200 /* LTabBar.m */,
-				959EEBE327915E86007A8200 /* LTabBarButton.h */,
-				959EEBE427915E86007A8200 /* LTabBarButton.m */,
-				95DB440D2779E0BA00BC8062 /* CBTabBarController.h */,
-				95DB440E2779E0BA00BC8062 /* CBTabBarController.m */,
-				95DB44102779E5D800BC8062 /* CBTabBarButton.h */,
-				95DB44112779E5D800BC8062 /* CBTabBarButton.m */,
-				95DB44132779E61500BC8062 /* CBTabBar.h */,
-				95DB44142779E61500BC8062 /* CBTabBar.m */,
-				88D5F425275DB1FF00B7082A /* MainViewController.h */,
-				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
-				9519FF3327BDE7290059CFF8 /* ScanViewController.h */,
-				9519FF3427BDE7290059CFF8 /* ScanViewController.m */,
-				88D5F423275DB1FF00B7082A /* MineViewController.h */,
-				88D5F424275DB1FF00B7082A /* MineViewController.m */,
-				95C4C92A279AA48C00FA9144 /* LPhotoTools.h */,
-				95C4C92B279AA48C00FA9144 /* LPhotoTools.m */,
-				95AAE7192795136B000282E0 /* ServiceViewController.h */,
-				95AAE71A2795136B000282E0 /* ServiceViewController.m */,
-				95AAE71C279513A5000282E0 /* PhotoViewController.h */,
-				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
-				9589F92A27B6148E00D90337 /* PhotoCollectionViewCell.h */,
-				9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */,
-				9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */,
-				9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */,
-				95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */,
-				95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */,
-				95E1513F27B3EFDD0008A324 /* PhotoCollectionReusableView.h */,
-				95E1514027B3EFDD0008A324 /* PhotoCollectionReusableView.m */,
-				95C4C92727995D1700FA9144 /* PhotoScrollView.h */,
-				95C4C92827995D1700FA9144 /* PhotoScrollView.m */,
-				95AAE71F279513F6000282E0 /* ProfileViewController.h */,
-				95AAE720279513F6000282E0 /* ProfileViewController.m */,
-				957E98DE27965542006880A9 /* EditProfileViewController.h */,
-				957E98DF27965542006880A9 /* EditProfileViewController.m */,
-				95AAE72227951417000282E0 /* HelpViewController.h */,
-				95AAE72327951417000282E0 /* HelpViewController.m */,
-				9599C7712797EA520031F360 /* HelpView.h */,
-				9599C7722797EA520031F360 /* HelpView.m */,
-				95AAE72527951436000282E0 /* QAViewController.h */,
-				95AAE72627951436000282E0 /* QAViewController.m */,
-				95AAE7282795144A000282E0 /* FBViewController.h */,
-				95AAE7292795144A000282E0 /* FBViewController.m */,
-				95C4C9242799054000FA9144 /* LTextField.h */,
-				95C4C9252799054000FA9144 /* LTextField.m */,
-				95AAE72B2795146B000282E0 /* SetViewController.h */,
-				95AAE72C2795146B000282E0 /* SetViewController.m */,
-				95AAE71627950EEE000282E0 /* mineTableViewCell.h */,
-				95AAE71727950EEE000282E0 /* mineTableViewCell.m */,
+				959592FE27C322D2003249B8 /* TabBar & NavgationBar */,
+				9595930027C32CDF003249B8 /* Main(主页) */,
+				9595930127C32CEA003249B8 /* Mine(个人) */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -342,13 +292,9 @@
 			isa = PBXGroup;
 			children = (
 				06E162C427C0C88400F4FF0D /* Classes */,
-				88D5F3E8275DB12200B7082A /* AppDelegate.h */,
-				88D5F3E9275DB12200B7082A /* AppDelegate.m */,
-				9578238C279275C800A4AAC1 /* CustomTools.h */,
-				9578238D279275C800A4AAC1 /* CustomTools.m */,
-				88D5F3F4275DB12600B7082A /* Assets.xcassets */,
-				88D5F3FA275DB12600B7082A /* main.m */,
+				959592FC27C3216C003249B8 /* Entry */,
 				06234489277B3E49006173EB /* Catagory */,
+				959592FB27C3207B003249B8 /* Resource */,
 				06E162CC27C0CC2900F4FF0D /* Supporting Files */,
 				066063A127B111E2009CD455 /* Launch Screen.storyboard */,
 			);
@@ -380,6 +326,140 @@
 				7B0D324A78950A511AD55115 /* Pods_dysxTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		959592FB27C3207B003249B8 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F3F4275DB12600B7082A /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		959592FC27C3216C003249B8 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F3FA275DB12600B7082A /* main.m */,
+				88D5F3E8275DB12200B7082A /* AppDelegate.h */,
+				88D5F3E9275DB12200B7082A /* AppDelegate.m */,
+			);
+			path = Entry;
+			sourceTree = "<group>";
+		};
+		959592FD27C321C3003249B8 /* Toos */ = {
+			isa = PBXGroup;
+			children = (
+				95C4C92A279AA48C00FA9144 /* LPhotoTools.h */,
+				95C4C92B279AA48C00FA9144 /* LPhotoTools.m */,
+				9578238C279275C800A4AAC1 /* CustomTools.h */,
+				9578238D279275C800A4AAC1 /* CustomTools.m */,
+			);
+			path = Toos;
+			sourceTree = "<group>";
+		};
+		959592FE27C322D2003249B8 /* TabBar & NavgationBar */ = {
+			isa = PBXGroup;
+			children = (
+				95AAE73D279552F4000282E0 /* LNavigationBar.h */,
+				95AAE73E279552F4000282E0 /* LNavigationBar.m */,
+				959EEBDD27914F45007A8200 /* LTabBarController.h */,
+				959EEBDE27914F45007A8200 /* LTabBarController.m */,
+				959EEBE027914F6C007A8200 /* LTabBar.h */,
+				959EEBE127914F6C007A8200 /* LTabBar.m */,
+				959EEBE327915E86007A8200 /* LTabBarButton.h */,
+				959EEBE427915E86007A8200 /* LTabBarButton.m */,
+				95DB440D2779E0BA00BC8062 /* CBTabBarController.h */,
+				95DB440E2779E0BA00BC8062 /* CBTabBarController.m */,
+				95DB44102779E5D800BC8062 /* CBTabBarButton.h */,
+				95DB44112779E5D800BC8062 /* CBTabBarButton.m */,
+				95DB44132779E61500BC8062 /* CBTabBar.h */,
+				95DB44142779E61500BC8062 /* CBTabBar.m */,
+			);
+			path = "TabBar & NavgationBar";
+			sourceTree = "<group>";
+		};
+		9595930027C32CDF003249B8 /* Main(主页) */ = {
+			isa = PBXGroup;
+			children = (
+				9595930227C32D13003249B8 /* ViewControllers */,
+				9595930327C32D2D003249B8 /* Views */,
+			);
+			path = "Main(主页)";
+			sourceTree = "<group>";
+		};
+		9595930127C32CEA003249B8 /* Mine(个人) */ = {
+			isa = PBXGroup;
+			children = (
+				9595930427C33092003249B8 /* ViewControllers */,
+				9595930527C3309B003249B8 /* Views */,
+			);
+			path = "Mine(个人)";
+			sourceTree = "<group>";
+		};
+		9595930227C32D13003249B8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F425275DB1FF00B7082A /* MainViewController.h */,
+				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
+				9519FF3327BDE7290059CFF8 /* ScanViewController.h */,
+				9519FF3427BDE7290059CFF8 /* ScanViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9595930327C32D2D003249B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9595930427C33092003249B8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88D5F423275DB1FF00B7082A /* MineViewController.h */,
+				88D5F424275DB1FF00B7082A /* MineViewController.m */,
+				95AAE7192795136B000282E0 /* ServiceViewController.h */,
+				95AAE71A2795136B000282E0 /* ServiceViewController.m */,
+				95AAE71C279513A5000282E0 /* PhotoViewController.h */,
+				95AAE71D279513A5000282E0 /* PhotoViewController.m */,
+				9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */,
+				9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */,
+				95AAE71F279513F6000282E0 /* ProfileViewController.h */,
+				95AAE720279513F6000282E0 /* ProfileViewController.m */,
+				957E98DE27965542006880A9 /* EditProfileViewController.h */,
+				957E98DF27965542006880A9 /* EditProfileViewController.m */,
+				95AAE72227951417000282E0 /* HelpViewController.h */,
+				95AAE72327951417000282E0 /* HelpViewController.m */,
+				95AAE72527951436000282E0 /* QAViewController.h */,
+				95AAE72627951436000282E0 /* QAViewController.m */,
+				95AAE7282795144A000282E0 /* FBViewController.h */,
+				95AAE7292795144A000282E0 /* FBViewController.m */,
+				95AAE72B2795146B000282E0 /* SetViewController.h */,
+				95AAE72C2795146B000282E0 /* SetViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9595930527C3309B003249B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9589F92A27B6148E00D90337 /* PhotoCollectionViewCell.h */,
+				9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */,
+				95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */,
+				95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */,
+				95E1513F27B3EFDD0008A324 /* PhotoCollectionReusableView.h */,
+				95E1514027B3EFDD0008A324 /* PhotoCollectionReusableView.m */,
+				95C4C92727995D1700FA9144 /* PhotoScrollView.h */,
+				95C4C92827995D1700FA9144 /* PhotoScrollView.m */,
+				9599C7712797EA520031F360 /* HelpView.h */,
+				9599C7722797EA520031F360 /* HelpView.m */,
+				95C4C9242799054000FA9144 /* LTextField.h */,
+				95C4C9252799054000FA9144 /* LTextField.m */,
+				95AAE71627950EEE000282E0 /* mineTableViewCell.h */,
+				95AAE71727950EEE000282E0 /* mineTableViewCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -818,7 +898,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dysx/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App需要你的授权才使用麦克风权限";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
@@ -849,7 +928,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dysx/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App需要你的授权才使用麦克风权限";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";

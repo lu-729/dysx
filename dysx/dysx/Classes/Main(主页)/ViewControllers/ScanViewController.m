@@ -6,8 +6,8 @@
 //
 
 #import "ScanViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
-@import AVFoundation;
 
 @interface ScanViewController () <AVCaptureMetadataOutputObjectsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UILabel * introLab;
@@ -38,10 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"扫一扫";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.2 alpha:1];
     [self initUI];
     [self setupDevice];
 }
+
 
 - (void)initUI {
     isFirst = YES;
@@ -49,10 +50,13 @@
     num = 0;
 }
 
+
 - (void)startSessionRightNow:(NSNotification*)notification {
     [self creatTimer];
     [_session startRunning];
 }
+
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if(isFirst)
@@ -63,11 +67,13 @@
     isFirst=NO;
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self deleteTimer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"startSession" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"startSession" object:nil];
 }
+
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -75,20 +81,22 @@
 
 
 #pragma mark - 删除timer
-- (void)deleteTimer
-{
+- (void)deleteTimer {
     if (timer) {
         [timer invalidate];
         timer=nil;
     }
 }
+
+
 #pragma mark - 创建timer
-- (void)creatTimer
-{
+- (void)creatTimer {
     if (!timer) {
         timer=[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animation) userInfo:nil repeats:YES];
     }
 }
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(startSessionRightNow:) name:@"startSession" object:nil];
@@ -98,12 +106,65 @@
     }
 }
 
+
++ (void)requetSettingForAuth {
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([ [UIApplication sharedApplication] canOpenURL:url])
+    {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+
 - (void)setupDevice {
     //1.初始化捕捉设备AVCaptureDevice，类型为AVMediaTypeVideo
-    _captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    _captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (status == AVAuthorizationStatusAuthorized) {
+        NSLog(@"已授权访问相机权限");
+    } else if (status == AVAuthorizationStatusDenied) {
+        NSLog(@"已拒绝访问相机");
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"无法使用相机" message:@"请前往“设置-隐私-相机”启用此应用的相机权限。" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAlertAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }];
+        UIAlertAction *setupAlertAction = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([ [UIApplication sharedApplication] canOpenURL:url])
+            {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }];
+        [alertController addAction:cancelAlertAction];
+        [alertController addAction:setupAlertAction];
+//        alertController.preferredAction = setupAlertAction;
+        [self presentViewController:alertController animated:YES completion:nil];
+//        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//        if ([ [UIApplication sharedApplication] canOpenURL:url])
+//        {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }
+    } else if (status == AVAuthorizationStatusRestricted) {
+        
+    } else if (status == AVAuthorizationStatusNotDetermined) {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if (granted) {
+                NSLog(@"授权访问相册成功");
+            } else {
+                NSLog(@"授权访问相册失败");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+//                return;
+            }
+        }];
+    }
+    
     //用captureDevice创建输入流input;
     NSError *error;
-    AVCaptureInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_captureDevice error:&error];
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_captureDevice error:&error];
     if (!input) {
         NSLog(@"%@", [error localizedDescription]);
         return;
@@ -115,11 +176,11 @@
         [_session addInput:input];
     }
     //预览视图
-    AVCaptureVideoPreviewLayer *preview = [[AVCaptureVideoPreviewLayer alloc] init];
+    _preview = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
     //设置预览图层填充方式
-    [preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [preview setFrame:self.view.layer.bounds];
-    [self.view.layer addSublayer:preview];
+    [_preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [_preview setFrame:self.view.layer.bounds];
+    [self.view.layer addSublayer:_preview];
     //输出
     AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
     [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
@@ -130,10 +191,12 @@
     //设置扫描范围
     output.rectOfInterest = LRect(0.25, (SCREEN_WIDTH - self.view.layer.bounds.size.width * 0.7)/2/self.view.layer.bounds.size.width, self.view.layer.bounds.size.width * 0.7/self.view.layer.bounds.size.height, (self.view.layer.bounds.size.width * 0.7)/self.view.layer.bounds.size.width);
     NSArray *typesArr = output.availableMetadataObjectTypes;
+    NSLog(@"typesArr = %@", typesArr);
     if ([_output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
         _output.metadataObjectTypes = @[AVMetadataObjectTypeQRCode];
     } else {
         [_session stopRunning];
+        /*
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"抱歉" message:@"相机权限被拒绝，请前往设置-隐私-相机启用此应用的相机权限。" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAlertAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
@@ -144,6 +207,7 @@
         [alertController addAction:cancelAlertAction];
         [alertController addAction:setupAlertAction];
         alertController.preferredAction = setupAlertAction;
+         */
         return;
     }
     UIView *drawView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -220,12 +284,15 @@
     [_captureDevice setTorchMode:AVCaptureTorchModeOn];
     [_captureDevice unlockForConfiguration];
 }
+
+
 //关闭手电筒
 - (void) turnOffLed:(bool)update {
     [_captureDevice lockForConfiguration:nil];
     [_captureDevice setTorchMode: AVCaptureTorchModeOff];
     [_captureDevice unlockForConfiguration];
 }
+
 
 - (void)showTheQRCodeOfMine:(UIButton *)sender {
     NSLog(@"showTheQRCodeOfMine");
@@ -237,7 +304,6 @@
     if (upOrdown == NO) {
         num ++;
         _lineIV.frame = CGRectMake((SCREEN_WIDTH - self.view.layer.bounds.size.width * 0.7)/2,self.view.layer.bounds.size.height * 0.25+ 2 * num, self.view.layer.bounds.size.width * 0.7, 5);
-        
         if (2 * num == (int)(self.view.frame.size.width*.7)) {
             upOrdown = YES;
         }if (2 * num == (int)(self.view.layer.bounds.size.width *.7)-1){
@@ -273,7 +339,6 @@
     } else {
         num --;
         _lineIV.frame = CGRectMake((SCREEN_WIDTH - self.view.layer.bounds.size.width * 0.7)/2, self.view.layer.bounds.size.height * 0.25 + 2 * num, self.view.layer.bounds.size.width * 0.7, 5);
-        
         if (num == 0) {
             upOrdown = NO;
         }
@@ -281,11 +346,9 @@
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
-{
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
     //判断是否有数据
     if (metadataObjects != nil && [metadataObjects count] > 0) {
-        
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         //判断回传的数据类型
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
@@ -298,12 +361,17 @@
     [self performSelector:@selector(startReading) withObject:nil afterDelay:0.5];
 }
 
--(void)startReading{
+
+-(void)startReading {
     [_session startRunning];
 }
--(void)stopReading{
+
+
+-(void)stopReading {
     [_session stopRunning];
 }
+
+
 /**
  * 判断二维码
  */
@@ -327,6 +395,8 @@
     }
     
 }
+
+
 /**
  * 将二维码图片转化为字符
  */
@@ -371,6 +441,7 @@
     return qrStr.messageString;
 }
 
+
 - (void)KeepoutView:(NSString*)orcodeStr{
     //做扫描成功之后的逻辑处理
     UIView *outView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -380,16 +451,15 @@
     
 }
 
+
 -(void)dealloc{
     NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
 
-
 - (void)mineQRCodeAction {
     
 }
-
 
 
 @end
