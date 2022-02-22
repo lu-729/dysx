@@ -385,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				9595930227C32D13003249B8 /* ViewControllers */,
-				9595930327C32D2D003249B8 /* Views */,
 			);
 			path = "Main(主页)";
 			sourceTree = "<group>";
@@ -410,13 +409,6 @@
 				9519FF3427BDE7290059CFF8 /* ScanViewController.m */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		9595930327C32D2D003249B8 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		9595930427C33092003249B8 /* ViewControllers */ = {
