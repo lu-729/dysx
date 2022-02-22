@@ -8,6 +8,7 @@
 #import "MainViewController.h"
 #import "LNavigationBar.h"
 #import "ScanViewController.h"
+#import "FoundCarViewController.h"
 
 @interface MainViewController () {
     
@@ -24,6 +25,7 @@
 //    [self.navigationController setNavigationBarHidden:YES];
 //    self.l_navgationBar = [LNavigationBar navWithTitle:@"首页"];
     [self createNavBarLeftButtonItem];
+    [self setupSubviews];
 }
 
 
@@ -78,15 +80,22 @@
 }
 
     
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setupSubviews {
+    UIButton *foundCarBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [foundCarBtn setTitle:@"找车" forState:UIControlStateNormal];
+    foundCarBtn.frame = LRect(0, 200.f, 100.f, 40.f);
+    foundCarBtn.x = (SCREEN_WIDTH - 100.f) / 2;
+    foundCarBtn.backgroundColor = [UIColor systemGrayColor];
+    [foundCarBtn addTarget:self action:@selector(foundCarBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:foundCarBtn];
 }
-*/
+
+
+- (void)foundCarBtnClicked {
+    FoundCarViewController *foundCarVC = [[FoundCarViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:foundCarVC animated:YES];
+}
+
 
 @end

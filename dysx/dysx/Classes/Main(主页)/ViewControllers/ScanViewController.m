@@ -35,6 +35,8 @@
 
 @implementation ScanViewController
 
+
+#pragma mark - VeiwController LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"扫一扫";
@@ -44,16 +46,13 @@
 }
 
 
-- (void)initUI {
-    isFirst = YES;
-    upOrdown = NO;
-    num = 0;
-}
-
-
-- (void)startSessionRightNow:(NSNotification*)notification {
-    [self creatTimer];
-    [_session startRunning];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(startSessionRightNow:) name:@"startSession" object:nil];
+    if (!isFirst) {
+        [self creatTimer];
+        [_session startRunning];
+    }
 }
 
 
@@ -80,7 +79,14 @@
 }
 
 
-#pragma mark - 删除timer
+#pragma mark - 创建timer & 删除timer
+- (void)creatTimer {
+    if (!timer) {
+        timer=[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animation) userInfo:nil repeats:YES];
+    }
+}
+
+
 - (void)deleteTimer {
     if (timer) {
         [timer invalidate];
@@ -89,21 +95,16 @@
 }
 
 
-#pragma mark - 创建timer
-- (void)creatTimer {
-    if (!timer) {
-        timer=[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(animation) userInfo:nil repeats:YES];
-    }
+- (void)initUI {
+    isFirst = YES;
+    upOrdown = NO;
+    num = 0;
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(startSessionRightNow:) name:@"startSession" object:nil];
-    if (!isFirst) {
-        [self creatTimer];
-        [_session startRunning];
-    }
+- (void)startSessionRightNow:(NSNotification*)notification {
+    [self creatTimer];
+    [_session startRunning];
 }
 
 
@@ -139,13 +140,7 @@
         }];
         [alertController addAction:cancelAlertAction];
         [alertController addAction:setupAlertAction];
-//        alertController.preferredAction = setupAlertAction;
         [self presentViewController:alertController animated:YES completion:nil];
-//        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//        if ([ [UIApplication sharedApplication] canOpenURL:url])
-//        {
-//            [[UIApplication sharedApplication] openURL:url];
-//        }
     } else if (status == AVAuthorizationStatusRestricted) {
         
     } else if (status == AVAuthorizationStatusNotDetermined) {
@@ -216,7 +211,9 @@
     [self.view addSubview:drawView];
     //选定一块区域，设置不同的透明度
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:LRect(0, 0, self.view.width, self.view.height)];
-    [path appendPath:[UIBezierPath bezierPathWithRoundedRect:LRect((SCREEN_WIDTH - self.view.layer.bounds.size.width * 0.7)/2, self.view.layer.bounds.size.height * 0.25, self.view.layer.bounds.size.width * 0.7, self.view.layer.bounds.size.height * 0.7) cornerRadius:0]];
+    UIBezierPath *path2 = [UIBezierPath bezierPathWithRoundedRect:LRect((SCREEN_WIDTH - self.view.layer.bounds.size.width * 0.7)/2, self.view.layer.bounds.size.height * 0.25, self.view.layer.bounds.size.width * 0.7, self.view.layer.bounds.size.width * 0.7) cornerRadius:0];
+    UIBezierPath *appendPath = [path2 bezierPathByReversingPath];
+    [path appendPath:appendPath];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = path.CGPath;
     [drawView.layer setMask:shapeLayer];

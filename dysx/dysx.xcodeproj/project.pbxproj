@@ -22,6 +22,7 @@
 		88D5F429275DB20000B7082A /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D5F424275DB1FF00B7082A /* MineViewController.m */; };
 		8997E5A61CD45EA859DF2403 /* Pods_dysx_dysxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */; };
 		9519FF3527BDE7290059CFF8 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9519FF3427BDE7290059CFF8 /* ScanViewController.m */; };
+		951A51C727C4923200361D84 /* FoundCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A51C627C4923200361D84 /* FoundCarViewController.m */; };
 		9578238E279275C800A4AAC1 /* CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9578238D279275C800A4AAC1 /* CustomTools.m */; };
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
 		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
@@ -107,6 +108,8 @@
 		88D5F425275DB1FF00B7082A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		9519FF3327BDE7290059CFF8 /* ScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		9519FF3427BDE7290059CFF8 /* ScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
+		951A51C527C4923200361D84 /* FoundCarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoundCarViewController.h; sourceTree = "<group>"; };
+		951A51C627C4923200361D84 /* FoundCarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoundCarViewController.m; sourceTree = "<group>"; };
 		9578238C279275C800A4AAC1 /* CustomTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTools.h; sourceTree = "<group>"; };
 		9578238D279275C800A4AAC1 /* CustomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTools.m; sourceTree = "<group>"; };
 		957E98DE27965542006880A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -224,11 +227,11 @@
 		06E162C427C0C88400F4FF0D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9595930027C32CDF003249B8 /* Main(主页) */,
+				9595930127C32CEA003249B8 /* Mine(个人) */,
 				959592FD27C321C3003249B8 /* Toos */,
 				06E162C827C0C9F800F4FF0D /* BaseClasses */,
 				959592FE27C322D2003249B8 /* TabBar & NavgationBar */,
-				9595930027C32CDF003249B8 /* Main(主页) */,
-				9595930127C32CEA003249B8 /* Mine(个人) */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -401,6 +404,8 @@
 			children = (
 				88D5F425275DB1FF00B7082A /* MainViewController.h */,
 				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
+				951A51C527C4923200361D84 /* FoundCarViewController.h */,
+				951A51C627C4923200361D84 /* FoundCarViewController.m */,
 				9519FF3327BDE7290059CFF8 /* ScanViewController.h */,
 				9519FF3427BDE7290059CFF8 /* ScanViewController.m */,
 			);
@@ -710,6 +715,7 @@
 				95AAE71B2795136B000282E0 /* ServiceViewController.m in Sources */,
 				88D5F427275DB20000B7082A /* BaseNavigationController.m in Sources */,
 				9599C7732797EA520031F360 /* HelpView.m in Sources */,
+				951A51C727C4923200361D84 /* FoundCarViewController.m in Sources */,
 				95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */,
 				959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */,
 				95E1514127B3EFDD0008A324 /* PhotoCollectionReusableView.m in Sources */,
@@ -898,7 +904,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dysx/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSLocationUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你的相册权限以保存记录仪拍照和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -928,7 +938,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dysx/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要你的授权才能访问相机拍照或扫描二维码";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你们相册权限以保存记录仪拍张和录像视频";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSLocationUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App需要定位权限才能为你提供导航找车功能";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "app需要你的相册权限以保存记录仪拍照和录像视频";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
