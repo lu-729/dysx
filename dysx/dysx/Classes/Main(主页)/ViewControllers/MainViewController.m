@@ -9,6 +9,7 @@
 #import "LNavigationBar.h"
 #import "ScanViewController.h"
 #import "FoundCarViewController.h"
+#import "LFCarViewController.h"
 
 @interface MainViewController () {
     
@@ -93,8 +94,10 @@
 
 - (void)foundCarBtnClicked {
     FoundCarViewController *foundCarVC = [[FoundCarViewController alloc] init];
+    LFCarViewController *LFCarVC = [[LFCarViewController alloc] init];
     self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:foundCarVC animated:YES];
+//    [self.navigationController pushViewController:foundCarVC animated:YES];
+    [self.navigationController pushViewController:LFCarVC animated:YES];
 }
 
 

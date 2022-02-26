@@ -10,6 +10,9 @@
 #import "CBTabBarController.h"
 #import "LTabBarController.h"
 #import "LPhotoTools.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
+const static NSString *geoApiKey = @"199f789608381d8765dd2d6e46226b3b";
 
 @interface AppDelegate ()
 
@@ -118,13 +121,17 @@
 
     [LPhotoTools getUsrPhotoAuthorizationStatus];
      
-     
+    // 配置高德地图ApiKey
+    [self configureGeoApiKey];
      
     return YES;
 }
 
 
-
+//配置高德地图ApiKey
+- (void)configureGeoApiKey {
+    [AMapServices sharedServices].apiKey = (NSString *)geoApiKey;
+}
 
 
 @end

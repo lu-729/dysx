@@ -26,6 +26,12 @@
 		9578238E279275C800A4AAC1 /* CustomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9578238D279275C800A4AAC1 /* CustomTools.m */; };
 		957D65CD27CA3DCA004C4796 /* LFCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65CC27CA3DC9004C4796 /* LFCarViewController.m */; };
 		957D65D027CA3DED004C4796 /* FBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65CF27CA3DED004C4796 /* FBViewController.m */; };
+		957D65DB27CA40DF004C4796 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65D227CA40DD004C4796 /* LineDashPolyline.m */; };
+		957D65DC27CA40DF004C4796 /* MANaviAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65D527CA40DE004C4796 /* MANaviAnnotation.m */; };
+		957D65DD27CA40DF004C4796 /* CustomMAMultiPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65D727CA40DE004C4796 /* CustomMAMultiPolyline.m */; };
+		957D65DE27CA40DF004C4796 /* MANaviPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65D827CA40DF004C4796 /* MANaviPolyline.m */; };
+		957D65DF27CA40DF004C4796 /* MANaviRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65DA27CA40DF004C4796 /* MANaviRoute.m */; };
+		957D65E227CA4106004C4796 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65E127CA4106004C4796 /* CommonUtility.m */; };
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
 		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
 		9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92827B4A16E00D90337 /* UIViewController+LModal.m */; };
@@ -117,6 +123,18 @@
 		957D65CC27CA3DC9004C4796 /* LFCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCarViewController.m; sourceTree = "<group>"; };
 		957D65CE27CA3DEC004C4796 /* FBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBViewController.h; sourceTree = "<group>"; };
 		957D65CF27CA3DED004C4796 /* FBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBViewController.m; sourceTree = "<group>"; };
+		957D65D127CA40DD004C4796 /* CustomMAMultiPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMAMultiPolyline.h; sourceTree = "<group>"; };
+		957D65D227CA40DD004C4796 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
+		957D65D327CA40DE004C4796 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		957D65D427CA40DE004C4796 /* MANaviAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviAnnotation.h; sourceTree = "<group>"; };
+		957D65D527CA40DE004C4796 /* MANaviAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviAnnotation.m; sourceTree = "<group>"; };
+		957D65D627CA40DE004C4796 /* MANaviPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviPolyline.h; sourceTree = "<group>"; };
+		957D65D727CA40DE004C4796 /* CustomMAMultiPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMAMultiPolyline.m; sourceTree = "<group>"; };
+		957D65D827CA40DF004C4796 /* MANaviPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviPolyline.m; sourceTree = "<group>"; };
+		957D65D927CA40DF004C4796 /* MANaviRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANaviRoute.h; sourceTree = "<group>"; };
+		957D65DA27CA40DF004C4796 /* MANaviRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANaviRoute.m; sourceTree = "<group>"; };
+		957D65E027CA4106004C4796 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		957D65E127CA4106004C4796 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
 		957E98DE27965542006880A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		957E98DF27965542006880A9 /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewPhotoViewController.h; sourceTree = "<group>"; };
@@ -412,6 +430,18 @@
 				957D65CC27CA3DC9004C4796 /* LFCarViewController.m */,
 				9519FF3327BDE7290059CFF8 /* ScanViewController.h */,
 				9519FF3427BDE7290059CFF8 /* ScanViewController.m */,
+				957D65D127CA40DD004C4796 /* CustomMAMultiPolyline.h */,
+				957D65D727CA40DE004C4796 /* CustomMAMultiPolyline.m */,
+				957D65D327CA40DE004C4796 /* LineDashPolyline.h */,
+				957D65D227CA40DD004C4796 /* LineDashPolyline.m */,
+				957D65D427CA40DE004C4796 /* MANaviAnnotation.h */,
+				957D65D527CA40DE004C4796 /* MANaviAnnotation.m */,
+				957D65D627CA40DE004C4796 /* MANaviPolyline.h */,
+				957D65D827CA40DF004C4796 /* MANaviPolyline.m */,
+				957D65D927CA40DF004C4796 /* MANaviRoute.h */,
+				957D65DA27CA40DF004C4796 /* MANaviRoute.m */,
+				957D65E027CA4106004C4796 /* CommonUtility.h */,
+				957D65E127CA4106004C4796 /* CommonUtility.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -700,6 +730,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				957D65DE27CA40DF004C4796 /* MANaviPolyline.m in Sources */,
 				95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */,
 				959EEBE227914F6C007A8200 /* LTabBar.m in Sources */,
 				9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */,
@@ -716,21 +747,26 @@
 				95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */,
 				959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */,
 				95E1514127B3EFDD0008A324 /* PhotoCollectionReusableView.m in Sources */,
+				957D65DF27CA40DF004C4796 /* MANaviRoute.m in Sources */,
 				95AAE72427951417000282E0 /* HelpViewController.m in Sources */,
 				88D5F428275DB20000B7082A /* BaseViewController.m in Sources */,
 				959EEBE527915E86007A8200 /* LTabBarButton.m in Sources */,
 				88D5F3EA275DB12200B7082A /* AppDelegate.m in Sources */,
 				957E98E027965542006880A9 /* EditProfileViewController.m in Sources */,
+				957D65DC27CA40DF004C4796 /* MANaviAnnotation.m in Sources */,
 				95C4C92C279AA48C00FA9144 /* LPhotoTools.m in Sources */,
 				95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */,
 				95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */,
 				9589F92C27B6148E00D90337 /* PhotoCollectionViewCell.m in Sources */,
+				957D65DD27CA40DF004C4796 /* CustomMAMultiPolyline.m in Sources */,
 				95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */,
 				95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */,
+				957D65E227CA4106004C4796 /* CommonUtility.m in Sources */,
 				0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */,
 				95C4C9262799054000FA9144 /* LTextField.m in Sources */,
 				9578238E279275C800A4AAC1 /* CustomTools.m in Sources */,
 				95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */,
+				957D65DB27CA40DF004C4796 /* LineDashPolyline.m in Sources */,
 				95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */,
 				88D5F429275DB20000B7082A /* MineViewController.m in Sources */,
 				957D65D027CA3DED004C4796 /* FBViewController.m in Sources */,

@@ -109,6 +109,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     EditProfileViewController *editVC = [[EditProfileViewController alloc] init];
     editVC.flag = indexPath.row + 100;
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:editVC animated:YES];
 }
 
