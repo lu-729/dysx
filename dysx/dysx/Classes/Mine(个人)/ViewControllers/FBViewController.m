@@ -7,6 +7,7 @@
 
 #import "FBViewController.h"
 #import "LTextField.h"
+#import "MBProgressHUD.h"
 
 @interface FBViewController () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -30,6 +31,22 @@
 
 
 - (void)setUpSubViews {
+    
+    UIButton *commmitBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [commmitBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [commmitBtn addTarget:self action:@selector(commmitBtnAction)];
+    commmitBtn.frame = LRect(SCREEN_WIDTH - SCREEN_WIDTH / 5.0, 0, SCREEN_WIDTH / 5.0, 44.f);
+//        [messageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    commmitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
+    commmitBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [commmitBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30.f, 0, 0)];
+//    [commmitBtn addTarget:self action:@selector(messageBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:commmitBtn];
+    if (rightItem) {
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
+    
+    
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT)];
     scrollView.backgroundColor = LColor(242.f, 242.f, 247.f);
     [self.view addSubview:scrollView];
@@ -83,6 +100,21 @@
         make.height.mas_equalTo(55.f);
     }];
 }
+
+
+- (void)commmitBtnAction {
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    hud.label.text = @"提交成功";
+    UIView *view = [[UIView alloc] initWithFrame:LRect(0, 0, 50, 50)];
+    [hud setCustomView:view];
+    [hud setMode:MBProgressHUDModeCustomView];
+    [self.view addSubview:hud];
+    [hud showAnimated:YES];
+    hud.minShowTime = 1.f;
+    [hud hideAnimated:YES];
+}
+
 
 #pragma mark - UITextFieldDeleate Method
 
