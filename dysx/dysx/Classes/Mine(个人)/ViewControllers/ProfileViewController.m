@@ -7,12 +7,16 @@
 
 #import "ProfileViewController.h"
 #import "EditProfileViewController.h"
+#import "LPhotoTools.h"
+#import <Photos/Photos.h>
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
 @property (nonatomic, strong) NSMutableArray *detailDataArr;
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) UIImageView *usrImgV;
 
 @end
 
@@ -26,7 +30,7 @@
     self.title = @"编辑资料";
     _dataArr = @[@"昵称", @"手机号"];
 //    _detailDataArr = @[@"骄阳似火", @"13971500541"];
-    _detailDataArr = [NSMutableArray arrayWithObjects:@"骄阳似火", @"13971500541", nil];
+    _detailDataArr = [NSMutableArray arrayWithObjects:@"骄阳似火", @"139****0541", nil];
     [self setUpSubViews];
     
     [self receiveNotificaiotn];
@@ -52,8 +56,34 @@
     }
 }
 
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (UIImageView *)usrImgV {
+    if (!_usrImgV) {
+        _usrImgV = [[UIImageView alloc] init];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSData *data = [userDefaults dataForKey:@"userImage"];
+        UIImage *usrImg = [UIImage imageWithData:data];
+        if (usrImg) {
+            _usrImgV.image = usrImg;
+        } else {
+            _usrImgV.image = [UIImage imageNamed:@"weixin_log"];
+        }
+        
+        _usrImgV.frame = LRect(0, 0, 70.f, 70.f);
+    //    usrImgView.backgroundColor = [UIColor greenColor];
+        _usrImgV.layer.masksToBounds = YES;
+        _usrImgV.layer.cornerRadius = _usrImgV.width /2;
+        _usrImgV.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction:)];
+        [_usrImgV addGestureRecognizer:tapGR];
+        [_usrImgV addGestureRecognizer:tapGR];
+        [_usrImgV.layer setMasksToBounds:YES];
+    }
+    return _usrImgV;
 }
 
 
@@ -70,33 +100,103 @@
     
     UIView *ImgSuperView = [[UIView alloc] init];
     ImgSuperView.frame = LRect(0, 0, SCREEN_WIDTH, 135.f);
-    ImgSuperView.backgroundColor = [UIColor redColor];
+    ImgSuperView.backgroundColor = MAIN_COLOR;
     _tableView.tableHeaderView = ImgSuperView;
-    //
-    UIImageView *usrImgView = [[UIImageView alloc] init];
-    usrImgView.size = LSize(60.f, 60.f);
-    usrImgView.backgroundColor = [UIColor greenColor];
-    usrImgView.center = LPoint(ImgSuperView.width / 2, ImgSuperView.height / 2);
-    usrImgView.layer.cornerRadius = usrImgView.width /2;
-    [usrImgView.layer setMasksToBounds:YES];
-    [ImgSuperView addSubview:usrImgView];
-    
-    /*
-    UIView *ImgSuperView = [[UIView alloc] init];
-    ImgSuperView.frame = LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, 135.f);
-    ImgSuperView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:ImgSuperView];
-    //
-    UIImageView *usrImgView = [[UIImageView alloc] init];
-    usrImgView.size = LSize(60.f, 60.f);
-    usrImgView.backgroundColor = [UIColor greenColor];
-    usrImgView.center = LPoint(ImgSuperView.width / 2, ImgSuperView.height / 2);
-    usrImgView.layer.cornerRadius = usrImgView.width /2;
-    [usrImgView.layer setMasksToBounds:YES];
-    [ImgSuperView addSubview:usrImgView];
-     */
+    [ImgSuperView addSubview:self.usrImgV];
+    _usrImgV.center = LPoint(ImgSuperView.width / 2, ImgSuperView.height / 2);
+}
+
+
+- (void)tapGRAction:(UITapGestureRecognizer *)gesture {
+    NSLog(@"点击了头像");
+    [self initImagePicker];
+    [self requestAuthorizationPhotoLibrary];
     
 }
+
+
+- (void)initImagePicker {
+    if (!_imagePicker) {
+        _imagePicker = [[UIImagePickerController alloc] init];
+        _imagePicker.delegate = self;
+        _imagePicker.allowsEditing = YES;
+    }
+}
+
+
+- (void)requestAuthorizationPhotoLibrary {
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+               //操作图片
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self chooseImage];
+                });
+            } else {
+                   //注，这里一定要回归的主线程操作UI
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"相册权限未设置,请开启相册权限" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                    }];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+                    [alertController addAction:cancelAction];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                });
+            }
+    }];
+}
+
+
+-(void)chooseImage {
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"从相机拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+                self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:self.imagePicker animated:YES completion:nil];
+            }
+        }];
+        
+        UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:self.imagePicker animated:YES completion:nil];
+        }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"点击了取消");
+        }];
+        
+        [actionSheet addAction:cameraAction];
+        [actionSheet addAction:photoAction];
+        [actionSheet addAction:cancelAction];
+        
+        [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        self.usrImgV.image = image;
+    NSDictionary *dict = @{@"usrImg":image};
+    if (image) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ProfileViewControllerUsrImgChanged" object:nil userInfo:dict];
+        NSData *data;
+        if (UIImagePNGRepresentation(image)) {
+            data = UIImagePNGRepresentation(image);
+        } else {
+            data = UIImageJPEGRepresentation(image, 1.0);
+        }
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:data forKey:@"userImage"];
+        [userDefaults synchronize];
+    }
+    
+}
+
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -138,14 +238,6 @@
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

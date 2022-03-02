@@ -10,10 +10,13 @@
 #import "ScanViewController.h"
 #import "FoundCarViewController.h"
 #import "LFCarViewController.h"
+#import "DeviceTableViewCell.h"
+#import "RemoteVideoViewController.h"
 
-@interface MainViewController () {
+@interface MainViewController () <UITableViewDelegate, UITableViewDataSource>
     
-}
+@property (nonatomic, strong) UITableView *deviceTableView;
+
 
 @end
 
@@ -21,17 +24,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"主页";
     self.view.backgroundColor = [UIColor whiteColor];
 //    self.edgesForExtendedLayout	= UIRectEdgeNone;
 //    [self.navigationController setNavigationBarHidden:YES];
 //    self.l_navgationBar = [LNavigationBar navWithTitle:@"首页"];
     [self createNavBarLeftButtonItem];
     [self setupSubviews];
+//    [self initTableView];
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.hidesBottomBarWhenPushed = NO;
+}
+
+
+- (void)initTableView {
+    if (!_deviceTableView) {
+        _deviceTableView = [[UITableView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStyleInsetGrouped];
+        _deviceTableView.delegate = self;
+        _deviceTableView.dataSource = self;
+        [self.view addSubview:_deviceTableView];
+    }
 }
 
 
@@ -82,23 +97,66 @@
 
     
 - (void)setupSubviews {
-    UIButton *foundCarBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [foundCarBtn setTitle:@"找车" forState:UIControlStateNormal];
-    foundCarBtn.frame = LRect(0, 200.f, 100.f, 40.f);
-    foundCarBtn.x = (SCREEN_WIDTH - 100.f) / 2;
-    foundCarBtn.backgroundColor = [UIColor systemGrayColor];
-    [foundCarBtn addTarget:self action:@selector(foundCarBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:foundCarBtn];
+    UIView *bgView = [[UIView alloc] initWithFrame:LRect(10.f, NAVBARHEIGHT + 20.f, SCREEN_WIDTH - 20.f, 180.f)];
+    bgView.backgroundColor = [UIColor lightGrayColor];
+    bgView.cornerRadius = 5.f;
+    [self.view addSubview:bgView];
+    UIImageView *deviceImg = [[UIImageView alloc] initWithFrame:LRect(5.f, 5.f, bgView.width - 10.f, 125.f)];
+    deviceImg.backgroundColor = [UIColor darkGrayColor];
+    [bgView addSubview:deviceImg];
+    CGFloat btnWidth = (bgView.width - 20.f) / 3;
+    CGFloat btnHeight = 40.f;
+    CGFloat btnY = 135.f;
+    CGFloat btnX;
+    NSArray *titleArr = @[@"远程视频", @"本地连接", @"找车"];
+    for (int i = 0; i < 3; i++) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.tag = i;
+        [button setTitle:titleArr[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor systemGrayColor]];
+        button.frame = LRect(5 + (btnWidth + 5) * i, btnY, btnWidth, btnHeight);
+        button.backgroundColor = [UIColor whiteColor];
+        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:button];
+    }
+    
 }
 
 
-- (void)foundCarBtnClicked {
-    FoundCarViewController *foundCarVC = [[FoundCarViewController alloc] init];
-    LFCarViewController *LFCarVC = [[LFCarViewController alloc] init];
+- (void)buttonAction:(UIButton *)button {
     self.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:foundCarVC animated:YES];
-    [self.navigationController pushViewController:LFCarVC animated:YES];
+    if (button.tag == 0) {
+        RemoteVideoViewController *rVideoVC = [[RemoteVideoViewController alloc] init];
+        [self.navigationController pushViewController:rVideoVC animated:YES];
+    } else if (button.tag == 1) {
+        
+    } else if (button.tag == 2) {
+        FoundCarViewController *foundCarVC = [[FoundCarViewController alloc] init];
+        LFCarViewController *lFCarVC = [[LFCarViewController alloc] init];
+    //    [self.navigationController pushViewController:foundCarVC animated:YES];
+        [self.navigationController pushViewController:lFCarVC animated:YES];
+    }
 }
+
+
+#pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *reuseCellId = @"DeviceTableViewCell";
+    DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseCellId];
+    if (!cell) {
+        cell = [[DeviceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseCellId];
+    }
+    return cell;
+}
+
 
 
 @end

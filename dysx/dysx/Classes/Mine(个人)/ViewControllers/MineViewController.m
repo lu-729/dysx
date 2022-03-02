@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *dataArr;
 @property (nonatomic, strong) UILabel *nickNameLabel;
+@property (nonatomic, strong) UIImageView *usrImgV;
 
 @end
 
@@ -38,7 +39,7 @@
     _dataArr = @[@[@"增值服务"], @[@"本地相册", @"编辑资料", @"紧急求助", @"常见问题", @"用户反馈"], @[@"设置"]];		
     
     [self setupSubViews];
-    
+    [self addNotificationObserver];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,6 +55,13 @@
 }
 
 
+
+
+- (void)addNotificationObserver {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usrImgChanged:) name:@"ProfileViewControllerUsrImgChanged" object:nil];
+}
+
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -66,6 +74,12 @@
 }
 
 
+- (void)usrImgChanged:(NSNotification *)notification {
+    UIImage *usrImg = [notification.userInfo objectForKey:@"usrImg"];
+    self.usrImgV.image = usrImg;
+}
+
+
 - (void)setupSubViews {
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 132.f)];
     topView.backgroundColor = MAIN_COLOR;
@@ -74,13 +88,22 @@
 //    usrInfoSuperView.backgroundColor = [UIColor greenColor];
     [topView addSubview:usrInfoSuperView];
     //创建用户头像视图
-    UIImageView *usrImgView = [[UIImageView alloc] init];
-    usrImgView.frame = LRect(20.f, 0, 60.f, 60.f);
-    usrImgView.centerY = usrInfoSuperView.height / 2;
-    usrImgView.backgroundColor = [UIColor redColor];
-    usrImgView.layer.cornerRadius = usrImgView.width /2;
-    [usrImgView.layer setMasksToBounds:YES];
-    [usrInfoSuperView addSubview:usrImgView];
+    _usrImgV = [[UIImageView alloc] init];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [userDefaults dataForKey:@"userImage"];
+    UIImage *usrImg = [UIImage imageWithData:data];
+    if (usrImg) {
+        _usrImgV.image = usrImg;
+    } else {
+        _usrImgV.image = [UIImage imageNamed:@"weixin_log"];
+    }
+    
+    _usrImgV.frame = LRect(20.f, 0, 60.f, 60.f);
+    _usrImgV.centerY = usrInfoSuperView.height / 2;
+    _usrImgV.backgroundColor = [UIColor redColor];
+    _usrImgV.layer.cornerRadius = _usrImgV.width /2;
+    [_usrImgV.layer setMasksToBounds:YES];
+    [usrInfoSuperView addSubview:_usrImgV];
     //创建用户账号手机号标签
     UILabel *usrLabel = [[UILabel alloc] init];
 //    usrLabel.backgroundColor = [UIColor blueColor];
@@ -91,8 +114,8 @@
     [usrInfoSuperView addSubview:usrLabel];
     _nickNameLabel = usrLabel;
     [usrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usrImgView.mas_right).offset(15);
-        make.centerY.equalTo(usrImgView.mas_centerY);
+        make.left.equalTo(_usrImgV.mas_right).offset(15);
+        make.centerY.equalTo(_usrImgV.mas_centerY);
         make.width.mas_equalTo(200);
         make.height.mas_equalTo(50);
     }];

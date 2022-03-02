@@ -11,6 +11,7 @@
 #import "LTabBarController.h"
 #import "LPhotoTools.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
 
 const static NSString *geoApiKey = @"199f789608381d8765dd2d6e46226b3b";
 
@@ -123,6 +124,9 @@ const static NSString *geoApiKey = @"199f789608381d8765dd2d6e46226b3b";
      
     // 配置高德地图ApiKey
     [self configureGeoApiKey];
+    
+    [MAMapView updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
+    [MAMapView updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
      
     return YES;
 }

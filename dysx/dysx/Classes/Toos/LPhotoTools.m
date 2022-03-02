@@ -74,6 +74,7 @@
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             if (status == PHAuthorizationStatusAuthorized) {
                 NSLog(@"用户同意授权");
+                
             } else {
                 NSLog(@"用户拒绝授权");
             }

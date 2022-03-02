@@ -20,6 +20,10 @@
 @property (nonatomic, copy) NSString *phoneNumStr;
 
 @property (nonatomic, strong) UITextField *verifyCodeTF;
+@property (nonatomic, strong) UIButton *getVerifyCodeBtn;
+@property (nonatomic, strong) UILabel *timeCountLabel;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) NSInteger timeCount;
 
 @end
 
@@ -100,17 +104,17 @@
 #pragma mark - PhoneNumberChange
 
 - (void)setUpPhoneNumViews {
-    self.title = @"验证手机号";
+    self.title = @"更换手机号";
     _phoneView = [[UIView alloc] init];
     UILabel *currentNumLabel = [[UILabel alloc] initWithFrame:LRect(40.f, HeightStatusBar + 100.f, 100.f, 20.f)];
-    currentNumLabel.text = @"当前手机号";
+    currentNumLabel.text = @"手机号";
     currentNumLabel.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:currentNumLabel];
     _phoneNumTF = [[UITextField alloc] init];
     _phoneNumTF.keyboardType = UIKeyboardTypeNumberPad;
     _phoneNumTF.clearButtonMode = UITextFieldViewModeWhileEditing;
     _phoneNumTF.delegate = self;
-    _phoneNumTF.placeholder = @"输入当前绑定手机号..";
+    _phoneNumTF.placeholder = @"输入新手机号..";
     [self.view addSubview:_phoneNumTF];
     __weak typeof(self) weakSelf = self;
     [_phoneNumTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -139,12 +143,12 @@
         make.width.mas_equalTo(100.f);
         make.height.mas_equalTo(20.f);
     }];
-    UIButton *getVerifyCodeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    getVerifyCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
-    [getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [getVerifyCodeBtn addTarget:self action:@selector(getVerifyCodeBtnClicked)];
-    [self.view addSubview:getVerifyCodeBtn];
-    [getVerifyCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _getVerifyCodeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    _getVerifyCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    [_getVerifyCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [_getVerifyCodeBtn addTarget:self action:@selector(getVerifyCodeBtnClicked)];
+    [self.view addSubview:_getVerifyCodeBtn];
+    [_getVerifyCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(separateLine.mas_right);
         make.top.equalTo(verifyCodeLabel.mas_bottom).offset(5.f);
         make.width.mas_equalTo(100.f);
@@ -159,7 +163,7 @@
     [_verifyCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(verifyCodeLabel.mas_left);
         make.top.equalTo(verifyCodeLabel.mas_bottom).offset(5.f);
-        make.right.equalTo(getVerifyCodeBtn.mas_left);
+        make.right.equalTo(_getVerifyCodeBtn.mas_left);
         make.height.mas_equalTo(30.f);
     }];
     
@@ -172,8 +176,19 @@
         make.width.equalTo(separateLine.mas_width);
         make.top.equalTo(_verifyCodeTF.mas_bottom);
     }];
-    UILabel *verifyCodeCountLabel = [[UILabel alloc] init];
-    
+    _timeCountLabel = [[UILabel alloc] init];
+    _timeCountLabel.text = @"45秒后重新发送";
+    _timeCountLabel.hidden = YES;
+    _timeCountLabel.textAlignment = NSTextAlignmentCenter;
+    _timeCountLabel.font = [UIFont systemFontOfSize:13.f];
+    _timeCountLabel.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:_timeCountLabel];
+    [_timeCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(separateLine.mas_right);
+        make.bottom.equalTo(separateLineT.mas_top).offset(-2.f);
+        make.width.mas_equalTo(100.f);
+        make.height.mas_equalTo(30.f);
+    }];
     UIButton *confirmModifyBtn = [[UIButton alloc] init];
     confirmModifyBtn.backgroundColor = [UIColor blueColor];
     [confirmModifyBtn setTitle:@"确认修改" forState:UIControlStateNormal];
@@ -199,19 +214,94 @@
     _phoneNumStr = _phoneNumTF.text;
     if ([_phoneNumStr isPhoneNum]) {
         [_phoneNumTF resignFirstResponder];
+        _timeCountLabel.hidden = NO;
+        _getVerifyCodeBtn.hidden = YES;
+        [self tipHud:@"短信已发送"];
+        [self openCountdown];
     } else {
-        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-        [hud setRemoveFromSuperViewOnHide:YES];
-        hud.label.text = @"请输入有效号码";
-        UIView *view = [[UIView alloc] initWithFrame:LRect(0, 0, 50, 50)];
-        [hud setCustomView:view];
-        [hud setMode:MBProgressHUDModeCustomView];
-        [self.view addSubview:hud];
-        [hud showAnimated:YES];
-        hud.minShowTime = 0.8f;
-        [hud hideAnimated:YES];
+        [self tipHud:@"请输入有效号码"];
     }
 }
+
+
+- (void)tipHud:(NSString *)str {
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    hud.label.text = str;
+    UIView *view = [[UIView alloc] initWithFrame:LRect(0, 0, 50, 45)];
+    [hud setCustomView:view];
+    [hud setMode:MBProgressHUDModeCustomView];
+    [self.view addSubview:hud];
+    [hud showAnimated:YES];
+    hud.minShowTime = 0.8f;
+    [hud hideAnimated:YES];
+}
+    
+
+-(void)openCountdown{
+
+     
+
+        __block NSInteger time = 44;
+    __weak typeof(self) weakSelf = self;
+     
+
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+     
+
+        dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+
+     
+
+        dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+
+        dispatch_source_set_event_handler(_timer, ^{
+
+             if(time <= 0){
+
+             dispatch_source_cancel(_timer);
+
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 
+                 weakSelf.timeCountLabel.hidden = YES;
+                 weakSelf.getVerifyCodeBtn.hidden = NO;
+//                    [self.authCodeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
+//
+//                    [self.authCodeBtn setTitleColor:[UIColor colorFromHexCode:@"FB8557"]
+//
+//                    forState:UIControlStateNormal];
+//
+//                     self.authCodeBtn.userInteractionEnabled = YES;
+
+                });
+
+            }else{
+
+             int seconds = time % 45;
+
+             dispatch_async(dispatch_get_main_queue(), ^{
+
+//                    [self.authCodeBtn setTitle:[NSString stringWithFormat:@"重新发送(%.2d)", seconds] forState:UIControlStateNormal];
+//
+//
+//                    [self.authCodeBtn setTitleColor:[UIColor colorFromHexCode:@"979797"]
+//
+//    forState:UIControlStateNormal];
+//
+//            self.authCodeBtn.userInteractionEnabled = NO;
+                 weakSelf.timeCountLabel.text = [NSString stringWithFormat:@"%.2ds 重新发送", seconds];
+
+                });
+
+                time--;
+            }
+
+        });
+
+        dispatch_resume(_timer);
+
+    }
 
 
 - (void)btnClick {

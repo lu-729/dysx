@@ -10,6 +10,7 @@
 #import "PreviewPhotoViewController.h"
 #import "BaseNavigationController.h"
 #import "PhotoCollectionViewCell.h"
+#import "LLCollectionView.h"
 
 #define HeaderViewID @"PhotoCollectionReusableViewID"
 #define CollectionViewCellWidth (SCREEN_WIDTH - 2*2.f) / 3
@@ -23,15 +24,14 @@
 @property (nonatomic, strong) NSMutableArray *collectionViewArr;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, assign) BOOL isSelected;
-
+ 
 @end
 
 @implementation PhotoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor systemPinkColor];
-//    self.navigationController.navigationBarHidden = NO;
+    self.view.backgroundColor = MAIN_COLOR;
     self.title = @"本地相册";
     [self setUpSubViews];
 }
@@ -72,7 +72,7 @@
         flowLayout.minimumLineSpacing = 2.f;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         flowLayout.sectionHeadersPinToVisibleBounds = YES;
-        _vedioCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
+        _vedioCollectionView = [[LLCollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _vedioCollectionView.tag = 100;
         _vedioCollectionView.delegate = self;
         _vedioCollectionView.dataSource = self;
@@ -93,7 +93,7 @@
         flowLayout.minimumLineSpacing = 2.f;
         flowLayout.sectionHeadersPinToVisibleBounds = YES;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _photoCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
+        _photoCollectionView = [[LLCollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _photoCollectionView.tag = 101;
         _photoCollectionView.delegate = self;
         _photoCollectionView.dataSource = self;

@@ -36,7 +36,10 @@
 		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
 		9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92827B4A16E00D90337 /* UIViewController+LModal.m */; };
 		9589F92C27B6148E00D90337 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */; };
+		958A156D27CC80270055D969 /* LLCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 958A156C27CC80270055D969 /* LLCollectionView.m */; };
 		9599C7732797EA520031F360 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9599C7722797EA520031F360 /* HelpView.m */; };
+		959C271027CE25DA00B4498A /* UserInfos.m in Sources */ = {isa = PBXBuildFile; fileRef = 959C270F27CE25DA00B4498A /* UserInfos.m */; };
+		959C271327CE491100B4498A /* RemoteVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959C271227CE491100B4498A /* RemoteVideoViewController.m */; };
 		959EEBDF27914F45007A8200 /* LTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBDE27914F45007A8200 /* LTabBarController.m */; };
 		959EEBE227914F6C007A8200 /* LTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE127914F6C007A8200 /* LTabBar.m */; };
 		959EEBE527915E86007A8200 /* LTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 959EEBE427915E86007A8200 /* LTabBarButton.m */; };
@@ -53,6 +56,7 @@
 		95AAE73927954CD2000282E0 /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73827954CD2000282E0 /* NSString+Category.m */; };
 		95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73B27954E0C000282E0 /* UIButton+Category.m */; };
 		95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73E279552F4000282E0 /* LNavigationBar.m */; };
+		95BB175E27CBC9A6001EC612 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BB175D27CBC9A6001EC612 /* DeviceTableViewCell.m */; };
 		95C4C9262799054000FA9144 /* LTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C9252799054000FA9144 /* LTextField.m */; };
 		95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C92827995D1700FA9144 /* PhotoScrollView.m */; };
 		95C4C92C279AA48C00FA9144 /* LPhotoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C92B279AA48C00FA9144 /* LPhotoTools.m */; };
@@ -143,8 +147,14 @@
 		9589F92827B4A16E00D90337 /* UIViewController+LModal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LModal.m"; sourceTree = "<group>"; };
 		9589F92A27B6148E00D90337 /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		958A156B27CC80270055D969 /* LLCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCollectionView.h; sourceTree = "<group>"; };
+		958A156C27CC80270055D969 /* LLCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCollectionView.m; sourceTree = "<group>"; };
 		9599C7712797EA520031F360 /* HelpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		9599C7722797EA520031F360 /* HelpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
+		959C270E27CE25DA00B4498A /* UserInfos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfos.h; sourceTree = "<group>"; };
+		959C270F27CE25DA00B4498A /* UserInfos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfos.m; sourceTree = "<group>"; };
+		959C271127CE491100B4498A /* RemoteVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteVideoViewController.h; sourceTree = "<group>"; };
+		959C271227CE491100B4498A /* RemoteVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteVideoViewController.m; sourceTree = "<group>"; };
 		959EEBDD27914F45007A8200 /* LTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBarController.h; sourceTree = "<group>"; };
 		959EEBDE27914F45007A8200 /* LTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTabBarController.m; sourceTree = "<group>"; };
 		959EEBE027914F6C007A8200 /* LTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTabBar.h; sourceTree = "<group>"; };
@@ -177,6 +187,8 @@
 		95AAE73B27954E0C000282E0 /* UIButton+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Category.m"; sourceTree = "<group>"; };
 		95AAE73D279552F4000282E0 /* LNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LNavigationBar.h; sourceTree = "<group>"; };
 		95AAE73E279552F4000282E0 /* LNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LNavigationBar.m; sourceTree = "<group>"; };
+		95BB175C27CBC9A6001EC612 /* DeviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceTableViewCell.h; sourceTree = "<group>"; };
+		95BB175D27CBC9A6001EC612 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
 		95C4C9242799054000FA9144 /* LTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTextField.h; sourceTree = "<group>"; };
 		95C4C9252799054000FA9144 /* LTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTextField.m; sourceTree = "<group>"; };
 		95C4C92727995D1700FA9144 /* PhotoScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoScrollView.h; sourceTree = "<group>"; };
@@ -377,6 +389,8 @@
 				95C4C92B279AA48C00FA9144 /* LPhotoTools.m */,
 				9578238C279275C800A4AAC1 /* CustomTools.h */,
 				9578238D279275C800A4AAC1 /* CustomTools.m */,
+				959C270E27CE25DA00B4498A /* UserInfos.h */,
+				959C270F27CE25DA00B4498A /* UserInfos.m */,
 			);
 			path = Toos;
 			sourceTree = "<group>";
@@ -406,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				9595930227C32D13003249B8 /* ViewControllers */,
+				95BB175B27CBC94D001EC612 /* Views */,
 			);
 			path = "Main(主页)";
 			sourceTree = "<group>";
@@ -424,6 +439,8 @@
 			children = (
 				88D5F425275DB1FF00B7082A /* MainViewController.h */,
 				88D5F41E275DB1FF00B7082A /* MainViewController.m */,
+				959C271127CE491100B4498A /* RemoteVideoViewController.h */,
+				959C271227CE491100B4498A /* RemoteVideoViewController.m */,
 				951A51C527C4923200361D84 /* FoundCarViewController.h */,
 				951A51C627C4923200361D84 /* FoundCarViewController.m */,
 				957D65CB27CA3DC9004C4796 /* LFCarViewController.h */,
@@ -490,6 +507,17 @@
 				95C4C9252799054000FA9144 /* LTextField.m */,
 				95AAE71627950EEE000282E0 /* mineTableViewCell.h */,
 				95AAE71727950EEE000282E0 /* mineTableViewCell.m */,
+				958A156B27CC80270055D969 /* LLCollectionView.h */,
+				958A156C27CC80270055D969 /* LLCollectionView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		95BB175B27CBC94D001EC612 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95BB175C27CBC9A6001EC612 /* DeviceTableViewCell.h */,
+				95BB175D27CBC9A6001EC612 /* DeviceTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -734,6 +762,7 @@
 				95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */,
 				959EEBE227914F6C007A8200 /* LTabBar.m in Sources */,
 				9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */,
+				959C271027CE25DA00B4498A /* UserInfos.m in Sources */,
 				9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */,
 				9519FF3527BDE7290059CFF8 /* ScanViewController.m in Sources */,
 				95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */,
@@ -758,6 +787,8 @@
 				95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */,
 				95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */,
 				9589F92C27B6148E00D90337 /* PhotoCollectionViewCell.m in Sources */,
+				959C271327CE491100B4498A /* RemoteVideoViewController.m in Sources */,
+				958A156D27CC80270055D969 /* LLCollectionView.m in Sources */,
 				957D65DD27CA40DF004C4796 /* CustomMAMultiPolyline.m in Sources */,
 				95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */,
 				95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */,
@@ -765,6 +796,7 @@
 				0623448C277B3FDA006173EB /* UIView+CBWL.m in Sources */,
 				95C4C9262799054000FA9144 /* LTextField.m in Sources */,
 				9578238E279275C800A4AAC1 /* CustomTools.m in Sources */,
+				95BB175E27CBC9A6001EC612 /* DeviceTableViewCell.m in Sources */,
 				95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */,
 				957D65DB27CA40DF004C4796 /* LineDashPolyline.m in Sources */,
 				95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */,
