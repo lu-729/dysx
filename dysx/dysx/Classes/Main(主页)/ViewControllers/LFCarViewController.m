@@ -12,6 +12,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import "CommonUtility.h"
 #import "MANaviRoute.h"
+#import "DYMapView.h"
 
 static const NSString *RoutePlanningViewControllerStartTitle       = @"起点";
 static const NSString *RoutePlanningViewControllerDestinationTitle = @"终点";
@@ -20,11 +21,11 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 #define DefaultLocationTimeout  2
 #define DefaultReGeocodeTimeout 2
 
-@interface LFCarViewController () <MAMapViewDelegate,AMapSearchDelegate,AMapLocationManagerDelegate>
+@interface LFCarViewController () <MAMapViewDelegate,AMapSearchDelegate,AMapLocationManagerDelegate,DYMapViewDelegate>
 
-@property (nonatomic, strong) UISegmentedControl *segmentCtrl;
+@property (nonatomic, strong) UIView *videoBgView;
 @property (nonatomic, strong) AMapLocationManager *locationManager;
-@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) DYMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *search;
 @property (nonatomic, strong) AMapRoute *route;
 /* 当前路线方案索引值. */
@@ -58,7 +59,6 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     self.title = @"找车";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
     [self setupSubviews];
     [self addDefaultAnnotations];
     
@@ -68,21 +68,20 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     [self requestLocation];
     NSLog(@"222222222222222222222lat:%f;lon:%f;222222222222222222222222", _startCoordinate.latitude, _startCoordinate.longitude);
 //    [self getOriginalAndDestination];
-
     [self initSearchAPI];
-    
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
 //    [self startHeadingLocation];
-    
     if ([AMapLocationManager headingAvailable] == NO)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该设备不支持方向功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"该设备不支持方向功能"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
         [alertView show];
     }
 }
@@ -91,7 +90,6 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 - (void)configLocationManager {
     _locationManager = [[AMapLocationManager alloc] init];
     _locationManager.delegate = self;
-    
     //设置期望定位精度
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
     
@@ -102,21 +100,17 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     
     //设置允许在后台定位
     [self.locationManager setAllowsBackgroundLocationUpdates:YES];
-    
     //设置定位超时时间
     [self.locationManager setLocationTimeout:DefaultLocationTimeout];
-    
     //设置逆地理超时时间
     [self.locationManager setReGeocodeTimeout:DefaultReGeocodeTimeout];
-    
     //设置开启虚拟定位风险监测，可以根据需要开启
     [self.locationManager setDetectRiskOfFakeLocation:NO];
     
 }
 
 
-- (void)initCompleteBlock
-{
+- (void)initCompleteBlock {
     __weak LFCarViewController *weakSelf = self;
     self.completionBlock = ^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error)
     {
@@ -232,36 +226,57 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
     }
 }
 
+#pragma mark -
+- (void)zoomInMapView {
+    self.mapView.zoomLevel = self.mapView.zoomLevel + 1;
+//    __weak typeof(self) weakSelf = self;
+//    [UIView animateWithDuration:1.0 animations:^{
+//        weakSelf.mapView.zoomLevel = weakSelf.mapView.zoomLevel + 1;
+//    }];
+}
+
+
+- (void)zoomOutMapView {
+    self.mapView.zoomLevel = self.mapView.zoomLevel - 1;
+//    __weak typeof(self) weakSelf = self;
+//    [UIView animateWithDuration:1.0 animations:^{
+//        weakSelf.mapView.zoomLevel = weakSelf.mapView.zoomLevel - 1;
+//    }];
+}
+
 
 
 #pragma mark - Initialization
 - (void)setupSubviews {
-    [self.view addSubview:self.segmentCtrl];
+    [self.view addSubview:self.videoBgView];
     [self.view addSubview:self.mapView];
 }
 
 
-- (UISegmentedControl *)segmentCtrl {
-    if (!_segmentCtrl) {
-        NSArray *itemArr = @[@"GPS找车", @"视频找车"];
-        _segmentCtrl = [[UISegmentedControl alloc] initWithItems:itemArr];
-        _segmentCtrl.frame = LRect(0, NAVBARHEIGHT, SCREEN_WIDTH - 100.f, 50.f);
-        _segmentCtrl.centerX = SCREEN_WIDTH / 2;
-        _segmentCtrl.selectedSegmentIndex = 0;
-        [_segmentCtrl addTarget:self action:@selector(segmentedControlClicked:) forControlEvents:UIControlEventValueChanged];
+- (UIView *)videoBgView {
+    if (!_videoBgView) {
+        _videoBgView = [[UIView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, 240.f)];
     }
-    return _segmentCtrl;
+    return _videoBgView;
 }
 
 
 - (MAMapView *)mapView {
     if (!_mapView) {
-        self.mapView = [[MAMapView alloc] initWithFrame:LRect(0, _segmentCtrl.y + _segmentCtrl.height, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - _segmentCtrl.height)];
-        self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.mapView.delegate = self;
+        _mapView = [[DYMapView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + _videoBgView.height, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT - _videoBgView.height)];
+        _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _mapView.delegate = self;
+        _mapView.dyDelegate = self;
+        
+//        UIButton *scaleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        scaleBtn.frame = LRect(0, 0, 60.f, 30.f);
+//        scaleBtn.backgroundColor = [UIColor redColor];
+//        [_mapView addSubview:scaleBtn];
     }
     return _mapView;
 }
+
+
 
 
 - (void)initSearchAPI {
@@ -271,8 +286,7 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 
 
 /* 添加默认标注 */
-- (void)addDefaultAnnotations
-{
+- (void)addDefaultAnnotations {
     /* 起始位置标注 */
     MAPointAnnotation *startAnnotation = [[MAPointAnnotation alloc] init];
     startAnnotation.coordinate = self.startCoordinate;
@@ -306,11 +320,9 @@ static const NSInteger RoutePlanningPaddingEdge                    = 20;
 /* 路径规划搜索回调. */
 - (void)onRouteSearchDone:(AMapRouteSearchBaseRequest *)request response:(AMapRouteSearchResponse *)response
 {
-    if (response.route == nil)
-    {
+    if (response.route == nil) {
         return;
     }
-    
     self.route = response.route;
     [self updateTotal];
     self.currentCourse = 0;

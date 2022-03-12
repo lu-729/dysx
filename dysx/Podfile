@@ -11,7 +11,7 @@ target 'dysx' do
   pod 'AFNetworking', '~> 4.0.1'
   pod 'Masonry', '~> 1.1.0'
   pod 'MBProgressHUD', '~> 1.2.0'
-  # pod 'AMap3DMap-NO-IDFA'
+  #pod 'AMap3DMap-NO-IDFA'
   pod 'AMapLocation-NO-IDFA'
   pod 'AMapSearch-NO-IDFA'
 

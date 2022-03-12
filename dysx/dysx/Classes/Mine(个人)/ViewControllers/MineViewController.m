@@ -85,7 +85,6 @@
     topView.backgroundColor = MAIN_COLOR;
     [self.view addSubview:topView];
     UIView *usrInfoSuperView = [[UIView alloc] initWithFrame:LRect(0, lStatusBarHeiht, topView.width, topView.height - lStatusBarHeiht)];
-//    usrInfoSuperView.backgroundColor = [UIColor greenColor];
     [topView addSubview:usrInfoSuperView];
     //创建用户头像视图
     _usrImgV = [[UIImageView alloc] init];
@@ -97,7 +96,6 @@
     } else {
         _usrImgV.image = [UIImage imageNamed:@"weixin_log"];
     }
-    
     _usrImgV.frame = LRect(20.f, 0, 60.f, 60.f);
     _usrImgV.centerY = usrInfoSuperView.height / 2;
     _usrImgV.backgroundColor = [UIColor redColor];
@@ -107,8 +105,12 @@
     //创建用户账号手机号标签
     UILabel *usrLabel = [[UILabel alloc] init];
 //    usrLabel.backgroundColor = [UIColor blueColor];
-    usrLabel.text= @"骄阳似火";
-//    usrLabel.font = [UIFont systemFontOfSize:22.f];
+    NSString *nickName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
+    if (nickName) {
+        usrLabel.text = nickName;
+    } else {
+        usrLabel.text= @"骄阳似火";
+    }
     usrLabel.font = [UIFont boldSystemFontOfSize:22.f];
     usrLabel.textColor = [UIColor whiteColor];
     [usrInfoSuperView addSubview:usrLabel];
@@ -124,15 +126,6 @@
     mineTableView.delegate = self;
     mineTableView.dataSource = self;
     mineTableView.showsVerticalScrollIndicator = NO;
-//    mineTableView.scrollEnabled = NO;
-//    mineTableView.separatorInset = UIEdgeInsetsMake(0, 50.f, 0, 0);
-//    mineTableView.backgroundColor = [UIColor purpleColor];
-//    [mineTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(topView.mas_bottom);
-//        make.bottom.equalTo(self.tabBarController.tabBar.mas_top);
-//        make.width.mas_equalTo(SCREEN_WIDTH);
-//        make.left.equalTo(topView.mas_left);
-//    }];
     
     [self.view addSubview:mineTableView];
 }
@@ -200,7 +193,7 @@
             case 4:vc = [[FBViewController alloc] init];break;
             default:break;
         }
-        self.hidesBottomBarWhenPushed = YES;
+        vc.hidesBottomBarWhenPushed = YES;
         if (indexPath.row == 0) {
             if ([LPhotoTools isCanVisitPhotoLibrary] == YES) {
                 [self.navigationController pushViewController:vc animated:YES];
@@ -220,10 +213,6 @@
 }
 
 
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 10.f;
-//}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

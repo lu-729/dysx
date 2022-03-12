@@ -88,7 +88,8 @@
     SaveButton.layer.cornerRadius = 5.f;
     [SaveButton.layer setMasksToBounds:YES];
     [SaveButton setTitle:@"保存" forState:UIControlStateNormal];
-    [SaveButton addTarget:self action:@selector(btnClick)];
+    [SaveButton addTarget:self action:@selector(nameSaveBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//    [SaveButton addTarget:self action:@selector(nameSaveBtnAction)];
     [_nickNameView addSubview:SaveButton];
     
     __weak typeof(self) weakSelf = self;
@@ -304,16 +305,32 @@
     }
 
 
-- (void)btnClick {
+- (void)nameSaveBtnAction {
     
     if (![_nickNameTF.text isEqualToString:@""]) {
         [_nickNameTF resignFirstResponder];
         [self sendNotification];
-        NSLog(@"text内容不为空");
+        NSString *nickName = _nickNameTF.text;
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:nickName forKey:@"nickName"];
+        [userDefaults synchronize];
         NSLog(@"点击保存_textField。text = %@", _nickNameTF.text);
     } else {
         NSLog(@"text内容为空");
     }
+}
+
+- (void)tipHud {
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    hud.label.text = @"";
+    UIView *view = [[UIView alloc] initWithFrame:LRect(0, 0, 50, 50)];
+    [hud setCustomView:view];
+    [hud setMode:MBProgressHUDModeCustomView];
+    [self.view addSubview:hud];
+    [hud showAnimated:YES];
+    hud.minShowTime = 1.f;
+    [hud hideAnimated:YES];
 }
 
 

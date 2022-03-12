@@ -30,6 +30,7 @@
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *preview;
 @property (nonatomic, strong) UIButton *mineQRCode;
 @property (nonatomic, strong) UIButton *theLightBtn;
+@property (nonatomic, strong) UIView *navBgView;
 
 @end
 
@@ -41,6 +42,7 @@
     [super viewDidLoad];
     self.title = @"扫一扫";
     self.view.backgroundColor = [UIColor colorWithWhite:0.2 alpha:1];
+    [self setupNavigationBar];
     [self initUI];
     [self setupDevice];
 }
@@ -76,6 +78,26 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+}
+
+
+- (void)setupNavigationBar {
+    //设置状态栏样式(当视图控制器处于导航栏控制器中时，如果导航栏没有被隐藏，则无法通过preferredStatusBarStyle方法更换状态栏样式)
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    //设置导航栏全透明效果，隐藏导航栏下方黑线
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    //设置导航栏文字属性
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    //添加导航栏返回按钮
+    UIImage *backButtonBackgroundImage = [UIImage imageNamed:@"fanhui"];
+        // The background should be pinned to the left and not stretch.
+        backButtonBackgroundImage = [backButtonBackgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backButtonBackgroundImage.size.width - 1, 0, 0)];
+
+    id appearance = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]];
+        [appearance setBackButtonBackgroundImage:backButtonBackgroundImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:NULL];
+        self.navigationController.navigationItem.backBarButtonItem = backBarButton;
 }
 
 
@@ -217,34 +239,37 @@
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = path.CGPath;
     [drawView.layer setMask:shapeLayer];
+    
     UIImageView *codeFrameImgView = [[UIImageView alloc] initWithFrame:LRect((SCREEN_WIDTH - self.view.layer.bounds.size.width * 0.7)/2, self.view.layer.bounds.size.height * 0.25, self.view.layer.bounds.size.width * 0.7, self.view.layer.bounds.size.width * 0.7)];
     codeFrameImgView.contentMode = UIViewContentModeScaleAspectFit;
     [codeFrameImgView setImage:[UIImage imageNamed:@"codeframe"]];
     [self.view addSubview:codeFrameImgView];
-    introLab = [[UILabel alloc] initWithFrame:LRect(_preview.frame.origin.x, _preview.frame.origin.y + _preview.frame.size.height, _preview.frame.size.width, 40.f)];
-    introLab.numberOfLines = 1;
-    introLab.textAlignment = NSTextAlignmentCenter;
-    introLab.textColor = [UIColor whiteColor];
-    introLab.adjustsFontSizeToFitWidth = YES;
-    introLab.text = @"将二维码放入框内，即可自动扫描";
-    [self.view addSubview:introLab];
-    _mineQRCode = [UIButton buttonWithType:UIButtonTypeCustom];
-    _mineQRCode.frame = LRect(self.view.width / 2 - 100 / 2.0, introLab.y + introLab.height - 5.f, 100.f, introLab.height);
-    [_mineQRCode setTitle:@"我的二维码" forState:UIControlStateNormal];
-    [_mineQRCode setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [_mineQRCode addTarget:self action:@selector(mineQRCodeAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_mineQRCode];
-    _mineQRCode.hidden = YES;
+    
+//    introLab = [[UILabel alloc] initWithFrame:LRect(10.f, codeFrameImgView.y + codeFrameImgView.height + 20.f, SCREEN_WIDTH - 20.f, 30.f)];
+//    introLab.numberOfLines = 1;
+//    introLab.textAlignment = NSTextAlignmentCenter;
+//    introLab.textColor = [UIColor whiteColor];
+//    introLab.adjustsFontSizeToFitWidth = YES;
+//    introLab.text = @"将二维码放入框内，即可自动扫描";
+//    [self.view addSubview:introLab];
+    
+//    _mineQRCode = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _mineQRCode.frame = LRect(self.view.width / 2 - 100 / 2.0, introLab.y + introLab.height - 5.f, 100.f, introLab.height);
+//    [_mineQRCode setTitle:@"我的二维码" forState:UIControlStateNormal];
+//    [_mineQRCode setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//    [_mineQRCode addTarget:self action:@selector(mineQRCodeAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_mineQRCode];
+//    NSLog(@"_mineQRCode = %@", _mineQRCode);
+//    _mineQRCode.hidden = YES;
     
     //theLightBtn
     _theLightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    _theLightBtn.frame = CGRectMake(self.view.frame.size.width / 2 - 100 / 2, _mineQRCode.frame.origin.y + _mineQRCode.frame.size.height + 20, 100, introLab.frame.size.height);
-    
+    _theLightBtn.frame = CGRectMake(self.view.frame.size.width / 2 - 100 / 2, codeFrameImgView.frame.origin.y + codeFrameImgView.frame.size.height + 40, 100, 30.f);
     [_theLightBtn setImage:[UIImage imageNamed:@"light"] forState:UIControlStateNormal];
     [_theLightBtn setImage:[UIImage imageNamed:@"lighton"] forState:UIControlStateSelected];
     [_theLightBtn addTarget:self action:@selector(lightOnOrOff:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_theLightBtn];
+    NSLog(@"_theLightBtn = %@", _theLightBtn);
     
     if (![_captureDevice isTorchAvailable]) {
         _theLightBtn.hidden = YES;

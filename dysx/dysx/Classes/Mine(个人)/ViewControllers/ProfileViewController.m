@@ -166,11 +166,9 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"点击了取消");
         }];
-        
         [actionSheet addAction:cameraAction];
         [actionSheet addAction:photoAction];
         [actionSheet addAction:cancelAction];
-        
         [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
@@ -196,8 +194,6 @@
 }
 
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -220,7 +216,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reusrCellID];
     }
     cell.textLabel.text = _dataArr[indexPath.row];
-    cell.detailTextLabel.text = _detailDataArr[indexPath.row];
+    NSString *nickName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
+    if (indexPath.row == 0 && nickName) {
+        cell.detailTextLabel.text = nickName;
+    } else {
+        cell.detailTextLabel.text = _detailDataArr[indexPath.row];
+    }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -234,10 +235,5 @@
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 //    return nil;
 //}
-
-
-
-
-
 
 @end

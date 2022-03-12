@@ -14,6 +14,9 @@
 @property (nonatomic, strong) UILabel *charTipLabel;
 @property (nonatomic, strong) UILabel *placeHolderLabel;
 @property (nonatomic, assign) NSInteger retainCharNumber;
+@property (nonatomic, strong) LTextField *usrContactTF;
+@property (nonatomic, strong) UIButton *commmitBtn;
+@property (nonatomic, strong) UITextView *usrInputTV;
 
 @end
 
@@ -26,52 +29,48 @@
     self.navigationController.navigationBarHidden = NO;
     self.title = @"用户反馈";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self setUpSubViews];
+    [self setupSubViews];
 }
 
 
-- (void)setUpSubViews {
-    
-    UIButton *commmitBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [commmitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    [commmitBtn addTarget:self action:@selector(commmitBtnAction)];
-    commmitBtn.frame = LRect(SCREEN_WIDTH - SCREEN_WIDTH / 5.0, 0, SCREEN_WIDTH / 5.0, 44.f);
+- (void)setupSubViews {
+    _commmitBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_commmitBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [_commmitBtn setTitleColor:[UIColor grayColor]];
+    _commmitBtn.userInteractionEnabled = NO;
+    [_commmitBtn addTarget:self action:@selector(commmitBtnAction)];
+    _commmitBtn.frame = LRect(SCREEN_WIDTH - SCREEN_WIDTH / 5.0, 0, SCREEN_WIDTH / 5.0, 44.f);
 //        [messageBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    commmitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
-    commmitBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    [commmitBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30.f, 0, 0)];
+    _commmitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
+    _commmitBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [_commmitBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30.f, 0, 0)];
 //    [commmitBtn addTarget:self action:@selector(messageBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:commmitBtn];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:_commmitBtn];
     if (rightItem) {
         self.navigationItem.rightBarButtonItem = rightItem;
     }
-    
-    
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT)];
     scrollView.backgroundColor = LColor(242.f, 242.f, 247.f);
     [self.view addSubview:scrollView];
-    
-    UITextView *usrInputTV = [[UITextView alloc] initWithFrame:LRect(20.f, 20.f, SCREEN_WIDTH - 40.f, 130.f)];
-    usrInputTV.delegate = self;
-    usrInputTV.textContainerInset = UIEdgeInsetsMake(8, 6, 0, 0);
-    usrInputTV.backgroundColor = [UIColor whiteColor];
-    usrInputTV.layer.cornerRadius = 5.f;
-    usrInputTV.layer.masksToBounds = YES;
-    usrInputTV.font = [UIFont systemFontOfSize:15.f];
-    [scrollView addSubview:usrInputTV];
-    
+    _usrInputTV = [[UITextView alloc] initWithFrame:LRect(20.f, 20.f, SCREEN_WIDTH - 40.f, 130.f)];
+    _usrInputTV.delegate = self;
+    _usrInputTV.textContainerInset = UIEdgeInsetsMake(8, 6, 0, 0);
+    _usrInputTV.backgroundColor = [UIColor whiteColor];
+    _usrInputTV.layer.cornerRadius = 5.f;
+    _usrInputTV.layer.masksToBounds = YES;
+    _usrInputTV.font = [UIFont systemFontOfSize:15.f];
+    [scrollView addSubview:_usrInputTV];
     _placeHolderLabel = [[UILabel alloc] init];
     _placeHolderLabel.text = @"请输入反馈内容";
     _placeHolderLabel.font = [UIFont systemFontOfSize:15.f];
     _placeHolderLabel.textColor = LColor(205.f, 205.f, 206.f);
-    [usrInputTV addSubview:_placeHolderLabel];
+    [_usrInputTV addSubview:_placeHolderLabel];
     [_placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usrInputTV.mas_left).offset(10.f);
-        make.top.equalTo(usrInputTV.mas_top).offset(2.5f);
+        make.left.equalTo(_usrInputTV.mas_left).offset(10.f);
+        make.top.equalTo(_usrInputTV.mas_top).offset(2.5f);
         make.width.mas_equalTo(180.f);
         make.height.mas_equalTo(30.f);
     }];
-    
     _charTipLabel = [[UILabel alloc] init];
     _charTipLabel.text = @"剩余150字符";
     _charTipLabel.font = [UIFont systemFontOfSize:13.f];
@@ -79,26 +78,37 @@
     _charTipLabel.textColor = [UIColor lightGrayColor];
     [self.view addSubview:_charTipLabel];
     [_charTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(usrInputTV.mas_right);
-        make.top.equalTo(usrInputTV.mas_bottom);
+        make.right.equalTo(_usrInputTV.mas_right);
+        make.top.equalTo(_usrInputTV.mas_bottom);
         make.width.mas_equalTo(100.f);
         make.height.mas_equalTo(30.f);
     }];
-    
-    LTextField *usrContactTF = [[LTextField alloc] init];
-    usrContactTF.backgroundColor = [UIColor whiteColor];
-    usrContactTF.placeholder = @"请输入联系方式..";
-    usrContactTF.font = [UIFont systemFontOfSize:15.f];
-    usrContactTF.layer.cornerRadius = 5.f;
-    usrContactTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-    usrContactTF.delegate = self;
-    [scrollView addSubview:usrContactTF];
-    [usrContactTF mas_makeConstraints:^(MASConstraintMaker *make) {
+    _usrContactTF = [[LTextField alloc] init];
+    _usrContactTF.backgroundColor = [UIColor whiteColor];
+    _usrContactTF.placeholder = @"请输入联系方式..";
+    _usrContactTF.font = [UIFont systemFontOfSize:15.f];
+    _usrContactTF.layer.cornerRadius = 5.f;
+    _usrContactTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _usrContactTF.delegate = self;
+    [_usrContactTF addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
+    [scrollView addSubview:_usrContactTF];
+    [_usrContactTF mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20.f);
-        make.right.mas_equalTo(usrInputTV.mas_right);
+        make.right.mas_equalTo(_usrInputTV.mas_right);
         make.top.equalTo(_charTipLabel.mas_bottom).offset(10.f);
         make.height.mas_equalTo(55.f);
     }];
+}
+
+
+- (void)textFieldDidChanged:(UITextField *)textField {
+    if (_usrInputTV.text.length > 0 && textField.text.length > 0) {
+        self.commmitBtn.userInteractionEnabled = YES;
+        [self.commmitBtn setTitleColor:[UIColor systemBlueColor]];
+    } else {
+        [_commmitBtn setTitleColor:[UIColor grayColor]];
+        _commmitBtn.userInteractionEnabled = NO;
+    }
 }
 
 
@@ -117,9 +127,7 @@
 
 
 #pragma mark - UITextFieldDeleate Method
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
     if (string.length == 0) {
         return YES;
     }
@@ -138,8 +146,8 @@
     return YES;
 }
 
-#pragma mark - UITextViewDelegate Method
 
+#pragma mark - UITextViewDelegate Method
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
@@ -151,10 +159,27 @@
 
 
 - (void)textViewDidChange:(UITextView *)textView {
-    if([textView.text length] == 0){
+    _usrInputTV = textView;
+    if (_usrInputTV.text.length > 0 && _usrContactTF.text.length > 0) {
+        self.commmitBtn.userInteractionEnabled = YES;
+        [self.commmitBtn setTitleColor:[UIColor systemBlueColor]];
+    } else {
+        [_commmitBtn setTitleColor:[UIColor grayColor]];
+        _commmitBtn.userInteractionEnabled = NO;
+    }
+    if([_usrInputTV.text length] == 0){
         _placeHolderLabel.text = @"请输入反馈内容..";
     } else {
         _placeHolderLabel.text = @"";//这里给空
+//        if (![_usrInputTV.text isEqual: @""] && ![_usrContactTF.text isEqual:@""]) {
+//            NSLog(@"TV11111111111111111111111_usrInputTV.text = %@ , _usrContactTF.text = %@",_usrInputTV.text,_usrContactTF.text);
+//            [_commmitBtn setTitleColor:[UIColor systemBlueColor]];
+//            _commmitBtn.userInteractionEnabled = YES;
+//        } else {
+//            NSLog(@"TV000000000000000000000000_usrInputTV.text = %@ , _usrContactTF.text = %@",_usrInputTV.text,_usrContactTF.text);
+//            [_commmitBtn setTitleColor:[UIColor grayColor]];
+//            _commmitBtn.userInteractionEnabled = NO;
+//        }
     }
     NSString *textContent = textView.text;
     NSInteger existTextNum = textContent.length;
@@ -165,7 +190,7 @@
     if (_retainCharNumber < 0) {
         _retainCharNumber = 0;
     }
-    NSLog(@"existTextNum = %ld, _retainCharNumber = %ld", existTextNum, _retainCharNumber);
+//    NSLog(@"existTextNum = %ld, _retainCharNumber = %ld", existTextNum, _retainCharNumber);
     _charTipLabel.text = [NSString stringWithFormat:@"剩余%ld字符", _retainCharNumber];
 }
 

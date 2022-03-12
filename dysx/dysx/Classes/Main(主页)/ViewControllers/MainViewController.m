@@ -12,6 +12,7 @@
 #import "LFCarViewController.h"
 #import "DeviceTableViewCell.h"
 #import "RemoteVideoViewController.h"
+#import "HotspotManager.h"
 
 @interface MainViewController () <UITableViewDelegate, UITableViewDataSource>
     
@@ -84,12 +85,14 @@
     
 }
 
-
 - (void)scanBtnAction {
     ScanViewController *scanVC = [[ScanViewController alloc] init];
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:scanVC animated:YES];
+    scanVC.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:scanVC];
+//    nav.navigationBar.
+    [self presentViewController:nav animated:YES completion:nil];
 }
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -129,7 +132,7 @@
         RemoteVideoViewController *rVideoVC = [[RemoteVideoViewController alloc] init];
         [self.navigationController pushViewController:rVideoVC animated:YES];
     } else if (button.tag == 1) {
-        
+        [HotspotManager connectWifiWithSSID:@"Chengbo" password:@"cheng@wifi"];
     } else if (button.tag == 2) {
         FoundCarViewController *foundCarVC = [[FoundCarViewController alloc] init];
         LFCarViewController *lFCarVC = [[LFCarViewController alloc] init];

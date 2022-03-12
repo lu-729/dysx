@@ -57,12 +57,14 @@
 		95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73B27954E0C000282E0 /* UIButton+Category.m */; };
 		95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73E279552F4000282E0 /* LNavigationBar.m */; };
 		95BB175E27CBC9A6001EC612 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BB175D27CBC9A6001EC612 /* DeviceTableViewCell.m */; };
+		95BD482627D73AA700FEC668 /* DYMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD482527D73AA700FEC668 /* DYMapView.m */; };
+		95BD482827D8CC1D00FEC668 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BD482727D8CC1D00FEC668 /* NetworkExtension.framework */; };
+		95BD482C27D8CCDC00FEC668 /* HotspotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD482B27D8CCDC00FEC668 /* HotspotManager.m */; };
+		95BD483727D9EACC00FEC668 /* DYTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD483527D9EACB00FEC668 /* DYTabBarController.m */; };
+		95BD483827D9EACC00FEC668 /* DYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD483627D9EACB00FEC668 /* DYTabBar.m */; };
 		95C4C9262799054000FA9144 /* LTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C9252799054000FA9144 /* LTextField.m */; };
 		95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C92827995D1700FA9144 /* PhotoScrollView.m */; };
 		95C4C92C279AA48C00FA9144 /* LPhotoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C92B279AA48C00FA9144 /* LPhotoTools.m */; };
-		95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB440E2779E0BA00BC8062 /* CBTabBarController.m */; };
-		95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44112779E5D800BC8062 /* CBTabBarButton.m */; };
-		95DB44152779E61500BC8062 /* CBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DB44142779E61500BC8062 /* CBTabBar.m */; };
 		95E1513E27B3C16C0008A324 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */; };
 		95E1514127B3EFDD0008A324 /* PhotoCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E1514027B3EFDD0008A324 /* PhotoCollectionReusableView.m */; };
 		9D8159865A7CC4D6F28C4D8C /* Pods_dysxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0D324A78950A511AD55115 /* Pods_dysxTests.framework */; };
@@ -189,18 +191,22 @@
 		95AAE73E279552F4000282E0 /* LNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LNavigationBar.m; sourceTree = "<group>"; };
 		95BB175C27CBC9A6001EC612 /* DeviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceTableViewCell.h; sourceTree = "<group>"; };
 		95BB175D27CBC9A6001EC612 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
+		95BD482427D73AA700FEC668 /* DYMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYMapView.h; sourceTree = "<group>"; };
+		95BD482527D73AA700FEC668 /* DYMapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DYMapView.m; sourceTree = "<group>"; };
+		95BD482727D8CC1D00FEC668 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		95BD482927D8CC6200FEC668 /* dysx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dysx.entitlements; sourceTree = "<group>"; };
+		95BD482A27D8CCDC00FEC668 /* HotspotManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotspotManager.h; sourceTree = "<group>"; };
+		95BD482B27D8CCDC00FEC668 /* HotspotManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotspotManager.m; sourceTree = "<group>"; };
+		95BD483327D9EACB00FEC668 /* DYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYTabBar.h; sourceTree = "<group>"; };
+		95BD483427D9EACB00FEC668 /* DYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYTabBarController.h; sourceTree = "<group>"; };
+		95BD483527D9EACB00FEC668 /* DYTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTabBarController.m; sourceTree = "<group>"; };
+		95BD483627D9EACB00FEC668 /* DYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTabBar.m; sourceTree = "<group>"; };
 		95C4C9242799054000FA9144 /* LTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTextField.h; sourceTree = "<group>"; };
 		95C4C9252799054000FA9144 /* LTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTextField.m; sourceTree = "<group>"; };
 		95C4C92727995D1700FA9144 /* PhotoScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoScrollView.h; sourceTree = "<group>"; };
 		95C4C92827995D1700FA9144 /* PhotoScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollView.m; sourceTree = "<group>"; };
 		95C4C92A279AA48C00FA9144 /* LPhotoTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPhotoTools.h; sourceTree = "<group>"; };
 		95C4C92B279AA48C00FA9144 /* LPhotoTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPhotoTools.m; sourceTree = "<group>"; };
-		95DB440D2779E0BA00BC8062 /* CBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBarController.h; sourceTree = "<group>"; };
-		95DB440E2779E0BA00BC8062 /* CBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBarController.m; sourceTree = "<group>"; };
-		95DB44102779E5D800BC8062 /* CBTabBarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBarButton.h; sourceTree = "<group>"; };
-		95DB44112779E5D800BC8062 /* CBTabBarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBarButton.m; sourceTree = "<group>"; };
-		95DB44132779E61500BC8062 /* CBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBTabBar.h; sourceTree = "<group>"; };
-		95DB44142779E61500BC8062 /* CBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBTabBar.m; sourceTree = "<group>"; };
 		95E1513C27B3C16C0008A324 /* CustomSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
 		95E1513D27B3C16C0008A324 /* CustomSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControl.m; sourceTree = "<group>"; };
 		95E1513F27B3EFDD0008A324 /* PhotoCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionReusableView.h; sourceTree = "<group>"; };
@@ -213,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95BD482827D8CC1D00FEC668 /* NetworkExtension.framework in Frameworks */,
 				468D7AFD8D98599EA2579360 /* Pods_dysx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +290,7 @@
 		06E162CC27C0CC2900F4FF0D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				95BD482927D8CC6200FEC668 /* dysx.entitlements */,
 				88D5F3F9275DB12600B7082A /* Info.plist */,
 				88D5F41F275DB1FF00B7082A /* PrefixHeader.pch */,
 			);
@@ -357,6 +365,7 @@
 		8E64D5A3B8AE24ECD6645DFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95BD482727D8CC1D00FEC668 /* NetworkExtension.framework */,
 				465C56E1770C6A1AD4049932 /* Pods_dysx.framework */,
 				E4F19F6A2FD702BF4828F4DD /* Pods_dysx_dysxUITests.framework */,
 				7B0D324A78950A511AD55115 /* Pods_dysxTests.framework */,
@@ -391,6 +400,8 @@
 				9578238D279275C800A4AAC1 /* CustomTools.m */,
 				959C270E27CE25DA00B4498A /* UserInfos.h */,
 				959C270F27CE25DA00B4498A /* UserInfos.m */,
+				95BD482A27D8CCDC00FEC668 /* HotspotManager.h */,
+				95BD482B27D8CCDC00FEC668 /* HotspotManager.m */,
 			);
 			path = Toos;
 			sourceTree = "<group>";
@@ -398,6 +409,10 @@
 		959592FE27C322D2003249B8 /* TabBar & NavgationBar */ = {
 			isa = PBXGroup;
 			children = (
+				95BD483327D9EACB00FEC668 /* DYTabBar.h */,
+				95BD483627D9EACB00FEC668 /* DYTabBar.m */,
+				95BD483427D9EACB00FEC668 /* DYTabBarController.h */,
+				95BD483527D9EACB00FEC668 /* DYTabBarController.m */,
 				95AAE73D279552F4000282E0 /* LNavigationBar.h */,
 				95AAE73E279552F4000282E0 /* LNavigationBar.m */,
 				959EEBDD27914F45007A8200 /* LTabBarController.h */,
@@ -406,12 +421,6 @@
 				959EEBE127914F6C007A8200 /* LTabBar.m */,
 				959EEBE327915E86007A8200 /* LTabBarButton.h */,
 				959EEBE427915E86007A8200 /* LTabBarButton.m */,
-				95DB440D2779E0BA00BC8062 /* CBTabBarController.h */,
-				95DB440E2779E0BA00BC8062 /* CBTabBarController.m */,
-				95DB44102779E5D800BC8062 /* CBTabBarButton.h */,
-				95DB44112779E5D800BC8062 /* CBTabBarButton.m */,
-				95DB44132779E61500BC8062 /* CBTabBar.h */,
-				95DB44142779E61500BC8062 /* CBTabBar.m */,
 			);
 			path = "TabBar & NavgationBar";
 			sourceTree = "<group>";
@@ -518,6 +527,8 @@
 			children = (
 				95BB175C27CBC9A6001EC612 /* DeviceTableViewCell.h */,
 				95BB175D27CBC9A6001EC612 /* DeviceTableViewCell.m */,
+				95BD482427D73AA700FEC668 /* DYMapView.h */,
+				95BD482527D73AA700FEC668 /* DYMapView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -758,6 +769,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95BD482627D73AA700FEC668 /* DYMapView.m in Sources */,
 				957D65DE27CA40DF004C4796 /* MANaviPolyline.m in Sources */,
 				95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */,
 				959EEBE227914F6C007A8200 /* LTabBar.m in Sources */,
@@ -765,12 +777,12 @@
 				959C271027CE25DA00B4498A /* UserInfos.m in Sources */,
 				9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */,
 				9519FF3527BDE7290059CFF8 /* ScanViewController.m in Sources */,
-				95DB44122779E5D800BC8062 /* CBTabBarButton.m in Sources */,
 				95AAE73F279552F4000282E0 /* LNavigationBar.m in Sources */,
 				95AAE72727951436000282E0 /* QAViewController.m in Sources */,
 				95AAE73927954CD2000282E0 /* NSString+Category.m in Sources */,
 				95AAE71B2795136B000282E0 /* ServiceViewController.m in Sources */,
 				88D5F427275DB20000B7082A /* BaseNavigationController.m in Sources */,
+				95BD482C27D8CCDC00FEC668 /* HotspotManager.m in Sources */,
 				9599C7732797EA520031F360 /* HelpView.m in Sources */,
 				951A51C727C4923200361D84 /* FoundCarViewController.m in Sources */,
 				95AAE71827950EEE000282E0 /* mineTableViewCell.m in Sources */,
@@ -799,11 +811,11 @@
 				95BB175E27CBC9A6001EC612 /* DeviceTableViewCell.m in Sources */,
 				95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */,
 				957D65DB27CA40DF004C4796 /* LineDashPolyline.m in Sources */,
-				95DB440F2779E0BA00BC8062 /* CBTabBarController.m in Sources */,
 				88D5F429275DB20000B7082A /* MineViewController.m in Sources */,
 				957D65D027CA3DED004C4796 /* FBViewController.m in Sources */,
-				95DB44152779E61500BC8062 /* CBTabBar.m in Sources */,
 				957D65CD27CA3DCA004C4796 /* LFCarViewController.m in Sources */,
+				95BD483727D9EACC00FEC668 /* DYTabBarController.m in Sources */,
+				95BD483827D9EACC00FEC668 /* DYTabBar.m in Sources */,
 				95AAE72D2795146B000282E0 /* SetViewController.m in Sources */,
 				88D5F426275DB20000B7082A /* MainViewController.m in Sources */,
 				95AAE73627954C10000282E0 /* UIColor+HexColor.m in Sources */,
@@ -963,6 +975,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dysx/Supporting Files/dysx.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P8WZV3WY5A;
@@ -997,6 +1010,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dysx/Supporting Files/dysx.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P8WZV3WY5A;

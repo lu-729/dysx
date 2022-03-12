@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "AFHTTPSessionManager.h"
-#import "CBTabBarController.h"
+#import "DYTabBarController.h"
 #import "LTabBarController.h"
 #import "LPhotoTools.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
@@ -29,8 +29,7 @@ const static NSString *geoApiKey = @"199f789608381d8765dd2d6e46226b3b";
     _window.backgroundColor = [UIColor whiteColor];
     [_window makeKeyAndVisible];
     //设置窗口根视图控制器为CBTabBarController
-//    CBTabBarController *tabBarVC = [[CBTabBarController alloc] init];
-    LTabBarController *lTabBarVC = [[LTabBarController alloc] init];
+    DYTabBarController *lTabBarVC = [[DYTabBarController alloc] init];
     _window.rootViewController = lTabBarVC;
     
 //    //初始化ALi SDK
