@@ -49,7 +49,7 @@
 		95AAE721279513F6000282E0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE720279513F6000282E0 /* ProfileViewController.m */; };
 		95AAE72427951417000282E0 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72327951417000282E0 /* HelpViewController.m */; };
 		95AAE72727951436000282E0 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72627951436000282E0 /* QAViewController.m */; };
-		95AAE72D2795146B000282E0 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72C2795146B000282E0 /* SetViewController.m */; };
+		95AAE72D2795146B000282E0 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72C2795146B000282E0 /* SetupViewController.m */; };
 		95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE72F279549EE000282E0 /* UIView+TransitonColor.m */; };
 		95AAE73327954B9C000282E0 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73227954B9C000282E0 /* UIImage+Category.m */; };
 		95AAE73627954C10000282E0 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAE73527954C10000282E0 /* UIColor+HexColor.m */; };
@@ -62,6 +62,7 @@
 		95BD482C27D8CCDC00FEC668 /* HotspotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD482B27D8CCDC00FEC668 /* HotspotManager.m */; };
 		95BD483727D9EACC00FEC668 /* DYTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD483527D9EACB00FEC668 /* DYTabBarController.m */; };
 		95BD483827D9EACC00FEC668 /* DYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD483627D9EACB00FEC668 /* DYTabBar.m */; };
+		95BD483C27DC954600FEC668 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BD483B27DC954600FEC668 /* LoginViewController.m */; };
 		95C4C9262799054000FA9144 /* LTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C9252799054000FA9144 /* LTextField.m */; };
 		95C4C92927995D1700FA9144 /* PhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C92827995D1700FA9144 /* PhotoScrollView.m */; };
 		95C4C92C279AA48C00FA9144 /* LPhotoTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C92B279AA48C00FA9144 /* LPhotoTools.m */; };
@@ -175,8 +176,8 @@
 		95AAE72327951417000282E0 /* HelpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		95AAE72527951436000282E0 /* QAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
 		95AAE72627951436000282E0 /* QAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
-		95AAE72B2795146B000282E0 /* SetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
-		95AAE72C2795146B000282E0 /* SetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		95AAE72B2795146B000282E0 /* SetupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
+		95AAE72C2795146B000282E0 /* SetupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		95AAE72E279549EE000282E0 /* UIView+TransitonColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TransitonColor.h"; sourceTree = "<group>"; };
 		95AAE72F279549EE000282E0 /* UIView+TransitonColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+TransitonColor.m"; sourceTree = "<group>"; };
 		95AAE73127954B9C000282E0 /* UIImage+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
@@ -201,6 +202,8 @@
 		95BD483427D9EACB00FEC668 /* DYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYTabBarController.h; sourceTree = "<group>"; };
 		95BD483527D9EACB00FEC668 /* DYTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTabBarController.m; sourceTree = "<group>"; };
 		95BD483627D9EACB00FEC668 /* DYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTabBar.m; sourceTree = "<group>"; };
+		95BD483A27DC954600FEC668 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		95BD483B27DC954600FEC668 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		95C4C9242799054000FA9144 /* LTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTextField.h; sourceTree = "<group>"; };
 		95C4C9252799054000FA9144 /* LTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTextField.m; sourceTree = "<group>"; };
 		95C4C92727995D1700FA9144 /* PhotoScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoScrollView.h; sourceTree = "<group>"; };
@@ -267,6 +270,7 @@
 		06E162C427C0C88400F4FF0D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				95BD483927DC951900FEC668 /* Login */,
 				9595930027C32CDF003249B8 /* Main(主页) */,
 				9595930127C32CEA003249B8 /* Mine(个人) */,
 				959592FD27C321C3003249B8 /* Toos */,
@@ -493,8 +497,8 @@
 				95AAE72627951436000282E0 /* QAViewController.m */,
 				957D65CE27CA3DEC004C4796 /* FBViewController.h */,
 				957D65CF27CA3DED004C4796 /* FBViewController.m */,
-				95AAE72B2795146B000282E0 /* SetViewController.h */,
-				95AAE72C2795146B000282E0 /* SetViewController.m */,
+				95AAE72B2795146B000282E0 /* SetupViewController.h */,
+				95AAE72C2795146B000282E0 /* SetupViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -531,6 +535,15 @@
 				95BD482527D73AA700FEC668 /* DYMapView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		95BD483927DC951900FEC668 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				95BD483A27DC954600FEC668 /* LoginViewController.h */,
+				95BD483B27DC954600FEC668 /* LoginViewController.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -795,6 +808,7 @@
 				88D5F3EA275DB12200B7082A /* AppDelegate.m in Sources */,
 				957E98E027965542006880A9 /* EditProfileViewController.m in Sources */,
 				957D65DC27CA40DF004C4796 /* MANaviAnnotation.m in Sources */,
+				95BD483C27DC954600FEC668 /* LoginViewController.m in Sources */,
 				95C4C92C279AA48C00FA9144 /* LPhotoTools.m in Sources */,
 				95AAE73C27954E0C000282E0 /* UIButton+Category.m in Sources */,
 				95AAE71E279513A5000282E0 /* PhotoViewController.m in Sources */,
@@ -816,7 +830,7 @@
 				957D65CD27CA3DCA004C4796 /* LFCarViewController.m in Sources */,
 				95BD483727D9EACC00FEC668 /* DYTabBarController.m in Sources */,
 				95BD483827D9EACC00FEC668 /* DYTabBar.m in Sources */,
-				95AAE72D2795146B000282E0 /* SetViewController.m in Sources */,
+				95AAE72D2795146B000282E0 /* SetupViewController.m in Sources */,
 				88D5F426275DB20000B7082A /* MainViewController.m in Sources */,
 				95AAE73627954C10000282E0 /* UIColor+HexColor.m in Sources */,
 				88D5F3FB275DB12600B7082A /* main.m in Sources */,

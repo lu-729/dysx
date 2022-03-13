@@ -14,7 +14,7 @@
 #import "HelpViewController.h"
 #import "QAViewController.h"
 #import "FBViewController.h"
-#import "SetViewController.h"
+#import "SetupViewController.h"
 #import "LPhotoTools.h"
 
 #define lStatusBarHeiht [CustomTools getStatusBarHeight]
@@ -203,12 +203,11 @@
         } else {
             [self.navigationController pushViewController:vc animated:YES];
         }
-       
-
-//        self.tabBarController.tabBar.hidden = YES;
         
     } else {
-        
+        NSLog(@"点击了设置选项");
+        SetupViewController *setupVC = [[SetupViewController alloc] init];
+        [self.navigationController pushViewController:setupVC animated:YES];
     }
 }
 

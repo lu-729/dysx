@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "MineViewController.h"
 #import "ScanViewController.h"
+#import "BaseNavigationController.h"
 
 @interface DYTabBarController () <DYTabBarDelegate>
 
@@ -84,7 +85,7 @@
     childVC.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVC.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 //    [self addChildViewController:childVC];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:childVC];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:childVC];
     [self addChildViewController:nav];
 }
 
@@ -95,8 +96,8 @@
  */
 - (void)tabBarDidClickPlusButton:(DYTabBar *)tabBar {
     ScanViewController *scanVC = [[ScanViewController alloc] init];
-    
-    [self presentViewController:scanVC animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:scanVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - Getters And Setters

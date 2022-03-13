@@ -6,6 +6,7 @@
 //
 
 #import "MainViewController.h"
+#import "BaseNavigationController.h"
 #import "LNavigationBar.h"
 #import "ScanViewController.h"
 #import "FoundCarViewController.h"
@@ -84,11 +85,13 @@
 - (void)messageBtnAction {
     
 }
+ 
 
 - (void)scanBtnAction {
     ScanViewController *scanVC = [[ScanViewController alloc] init];
     scanVC.hidesBottomBarWhenPushed = YES;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:scanVC];
+//    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:scanVC];
 //    nav.navigationBar.
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -122,7 +125,6 @@
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:button];
     }
-    
 }
 
 

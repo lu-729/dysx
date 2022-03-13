@@ -16,10 +16,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:nil];
 }
 
 - (BOOL)prefersHomeIndicatorAutoHidden {
     return YES;
 }
+
+
+
+
+
 
 @end

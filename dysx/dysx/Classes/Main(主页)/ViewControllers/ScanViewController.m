@@ -89,16 +89,26 @@
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     //设置导航栏文字属性
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //添加导航栏返回按钮
-    UIImage *backButtonBackgroundImage = [UIImage imageNamed:@"fanhui"];
-        // The background should be pinned to the left and not stretch.
-        backButtonBackgroundImage = [backButtonBackgroundImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backButtonBackgroundImage.size.width - 1, 0, 0)];
-
-    id appearance = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]];
-        [appearance setBackButtonBackgroundImage:backButtonBackgroundImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:NULL];
-        self.navigationController.navigationItem.backBarButtonItem = backBarButton;
+    //自定义返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
+    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [backButton setTitleFont:16.f];
+    [backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backButton sizeToFit];
+    // 这句代码放在sizeToFit后面
+    backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
 }
+
+
+- (void)back {
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 #pragma mark - 创建timer & 删除timer

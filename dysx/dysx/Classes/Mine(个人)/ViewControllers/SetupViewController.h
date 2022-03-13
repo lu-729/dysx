@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SetViewController : BaseViewController
+@interface SetupViewController : BaseViewController
 
 @end
 
