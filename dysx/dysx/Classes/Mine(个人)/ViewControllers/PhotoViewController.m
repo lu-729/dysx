@@ -15,11 +15,13 @@
 #define HeaderViewID @"PhotoCollectionReusableViewID"
 #define CollectionViewCellWidth (SCREEN_WIDTH - 2*2.f) / 3
 
-@interface PhotoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
+@interface PhotoViewController () <UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *selectedBtn;
 @property (nonatomic, strong) UICollectionView * vedioCollectionView;
 @property (nonatomic, strong) UICollectionView * photoCollectionView;
+@property (nonatomic, strong) UITableView *vedioTableView;
+@property (nonatomic, strong) UITableView *photoTableView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *collectionViewArr;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
@@ -46,6 +48,29 @@
 }
 
 
+- (UITableView *)vedioTableView {
+    if (!_vedioTableView) {
+        _vedioTableView = [[UITableView alloc] initWithFrame:LRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStylePlain];
+        _vedioTableView.delegate = self;
+        _vedioTableView.dataSource = self;
+        _vedioTableView.backgroundColor = [UIColor redColor];
+//        _vedioTableView.
+    }
+    return _vedioTableView;
+}
+
+
+- (UITableView *)photoTableView {
+    if (!_photoTableView) {
+        _photoTableView = [[UITableView alloc] initWithFrame:LRect(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBARHEIGHT) style:UITableViewStylePlain];
+        _photoTableView.delegate = self;
+        _photoTableView.dataSource = self;
+        _photoTableView.backgroundColor = [UIColor greenColor];
+    }
+    return _photoTableView;
+}
+
+
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:LRect(0, NAVBARHEIGHT + 50.f, SCREEN_WIDTH, SCREEN_HEIGHT - HeightStatusBar - 50.f)];
@@ -54,9 +79,7 @@
         //设置scrollview滑动范围
         _scrollView.contentSize = LSize(2 * SCREEN_WIDTH, 0);
         _scrollView.pagingEnabled = YES;
-        _scrollView.scrollEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = YES;
-        _scrollView.showsVerticalScrollIndicator = YES;
         [self.view addSubview:_scrollView];
     }
     return _scrollView;
@@ -168,8 +191,10 @@
     [self createNavBarRightBtn];
     [self.view addSubview:self.segmentedControl];
     [self.view addSubview:self.scrollView];
-    [self.scrollView addSubview:self.vedioCollectionView];
-    [self.scrollView addSubview:self.photoCollectionView];
+    [self.scrollView addSubview:self.vedioTableView];
+    [self.scrollView addSubview:self.photoTableView];
+//    [self.scrollView addSubview:self.vedioCollectionView];
+//    [self.scrollView addSubview:self.photoCollectionView];
     
     
     /*
@@ -248,7 +273,6 @@
 
 
 #pragma mark - UIScrollViewDelegate
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
         NSInteger index = self.scrollView.contentOffset.x / self.scrollView.width;
@@ -257,9 +281,16 @@
 }
 
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGPoint offset = scrollView.contentOffset;
+    NSLog(@"offset.x = %lf", offset.x);
+    if (offset.x < 0) {
+        scrollView.scrollEnabled = NO;
+    }
+}
+
 
 #pragma mark - UICollectionViewDataSource Methods
-
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PhotoCollectionViewCell *cell;
     if (collectionView.tag == 100) {
@@ -269,10 +300,10 @@
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCollectionViewCell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor greenColor];
     }
-    
     NSLog(@"cell.frame = %@", cell);
     return cell;
 }
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     PhotoCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderViewID forIndexPath:indexPath];
@@ -318,8 +349,50 @@
 }
 
 
+#pragma mark - UITableViewDataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
 
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellid = @"";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    }
+    return cell;
+}
+
+
+
+#pragma mark - UITableViewDelegate Methods
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120.f;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30.f;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor greenColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:LRect(20.f, 0, 120.f, 30.f)];
+    NSInteger num = 16;
+    num += section;
+    label.text = [NSString stringWithFormat:@"2022-3-%ld", num];
+    label.font = [UIFont systemFontOfSize:14.f];
+    [view addSubview:label];
+    return view;
+}
 
 
 

@@ -33,6 +33,8 @@
 		957D65DF27CA40DF004C4796 /* MANaviRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65DA27CA40DF004C4796 /* MANaviRoute.m */; };
 		957D65E227CA4106004C4796 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 957D65E127CA4106004C4796 /* CommonUtility.m */; };
 		957E98E027965542006880A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957E98DF27965542006880A9 /* EditProfileViewController.m */; };
+		9587C7E127DED3D1009C0730 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9587C7E027DED3D1009C0730 /* LoginViewController.storyboard */; };
+		9587C7E427DEF55B009C0730 /* vedioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9587C7E327DEF55B009C0730 /* vedioTableViewCell.m */; };
 		9589F92627B49EBE00D90337 /* PreviewPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */; };
 		9589F92927B4A16E00D90337 /* UIViewController+LModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92827B4A16E00D90337 /* UIViewController+LModal.m */; };
 		9589F92C27B6148E00D90337 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9589F92B27B6148E00D90337 /* PhotoCollectionViewCell.m */; };
@@ -144,6 +146,9 @@
 		957D65E127CA4106004C4796 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
 		957E98DE27965542006880A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		957E98DF27965542006880A9 /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		9587C7E027DED3D1009C0730 /* LoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
+		9587C7E227DEF55B009C0730 /* vedioTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vedioTableViewCell.h; sourceTree = "<group>"; };
+		9587C7E327DEF55B009C0730 /* vedioTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vedioTableViewCell.m; sourceTree = "<group>"; };
 		9589F92427B49EBE00D90337 /* PreviewPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewPhotoViewController.h; sourceTree = "<group>"; };
 		9589F92527B49EBE00D90337 /* PreviewPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreviewPhotoViewController.m; sourceTree = "<group>"; };
 		9589F92727B4A16E00D90337 /* UIViewController+LModal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LModal.h"; sourceTree = "<group>"; };
@@ -522,6 +527,8 @@
 				95AAE71727950EEE000282E0 /* mineTableViewCell.m */,
 				958A156B27CC80270055D969 /* LLCollectionView.h */,
 				958A156C27CC80270055D969 /* LLCollectionView.m */,
+				9587C7E227DEF55B009C0730 /* vedioTableViewCell.h */,
+				9587C7E327DEF55B009C0730 /* vedioTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -542,6 +549,7 @@
 			children = (
 				95BD483A27DC954600FEC668 /* LoginViewController.h */,
 				95BD483B27DC954600FEC668 /* LoginViewController.m */,
+				9587C7E027DED3D1009C0730 /* LoginViewController.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -653,6 +661,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9587C7E127DED3D1009C0730 /* LoginViewController.storyboard in Resources */,
 				066063A227B111E2009CD455 /* Launch Screen.storyboard in Resources */,
 				88D5F3F5275DB12600B7082A /* Assets.xcassets in Resources */,
 			);
@@ -823,6 +832,7 @@
 				95C4C9262799054000FA9144 /* LTextField.m in Sources */,
 				9578238E279275C800A4AAC1 /* CustomTools.m in Sources */,
 				95BB175E27CBC9A6001EC612 /* DeviceTableViewCell.m in Sources */,
+				9587C7E427DEF55B009C0730 /* vedioTableViewCell.m in Sources */,
 				95AAE730279549EE000282E0 /* UIView+TransitonColor.m in Sources */,
 				957D65DB27CA40DF004C4796 /* LineDashPolyline.m in Sources */,
 				88D5F429275DB20000B7082A /* MineViewController.m in Sources */,

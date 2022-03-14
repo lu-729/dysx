@@ -9,12 +9,19 @@
 
 @interface LoginViewController ()
 
+@property (nonatomic, strong) UITextField *phoneNumTF;
+@property (nonatomic, strong) UITextField *pswTF;
+
 @end
 
 @implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupSubviews];
+}
+
+- (void)setupSubviews {
     
 }
 
